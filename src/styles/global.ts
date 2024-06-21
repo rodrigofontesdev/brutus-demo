@@ -12,19 +12,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${(props) => props.theme['blue-700']};
     color: ${(props) => props.theme['blue-50']};
-    font-family: ${(props) => props.theme['font-montserrat']};
-    font-weight: 600;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
   }
 
   img {
@@ -44,5 +33,9 @@ export const GlobalStyle = createGlobalStyle`
 
   a:hover {
     color: ${(props) => props.theme['blue-400']};
+  }
+
+  li {
+    list-style-position: inside;
   }
 `
