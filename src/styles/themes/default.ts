@@ -24,5 +24,7 @@ export const defaultTheme = {
   shadow: '0 4px 4px 0 rgb(0 0 0 / 25%)',
   'shadow-inner': 'inset 0 4px 4px 0 rgb(0 0 0 / 25%)',
 
-  'backdrop-blur': 'blur(5px);',
+  'backdrop-blur': 'blur(5px)',
+
+  outline: '3px solid rgb(80 107 241 / 30%)',
 } as const
