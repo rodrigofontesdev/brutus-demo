@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const MainFooter = styled.footer`
-  height: 50px;
+  min-height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1.5625rem;
+  padding: 0.75rem 1.5625rem;
 
   ul {
     display: flex;
