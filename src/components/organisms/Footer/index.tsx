@@ -1,4 +1,4 @@
-import { MainFooter } from './styles'
+import { FooterLinks, MainFooter } from './styles'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -6,26 +6,22 @@ export function Footer() {
 
   return (
     <MainFooter>
-      <ul>
-        <li>
+      <FooterLinks>
+        <p>
           &copy; {currentYear} - {appName}. Developed by{' '}
           <a href="https://rodrigofontes.dev" target="_blank">
             Rodrigo Fontes
           </a>
-        </li>
+        </p>
 
-        <li>
-          <a href="#" target="_blank">
-            Política de privacidade
-          </a>
-        </li>
+        <a href="#" target="_blank">
+          Política de privacidade
+        </a>
 
-        <li>
-          <a href="#" target="_blank">
-            Termos de uso
-          </a>
-        </li>
-      </ul>
+        <a href="#" target="_blank">
+          Termos de uso
+        </a>
+      </FooterLinks>
     </MainFooter>
   )
 }
