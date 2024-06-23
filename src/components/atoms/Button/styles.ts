@@ -36,11 +36,31 @@ export const ButtonStyle = styled.button<{ $variant: buttonVariants }>`
     }
   }}
 
+  &:not(:disabled):focus {
+    ${(props) => {
+      switch (props.$variant) {
+        case 'success':
+          return css`
+            outline: ${(props) => props.theme['outline-success']};
+          `
+        case 'error':
+          return css`
+            outline: ${(props) => props.theme['outline-error']};
+          `
+        default:
+          return css`
+            outline: ${(props) => props.theme['outline']};
+          `
+      }
+    }}
+  }
+
   &:hover {
     filter: brightness(80%);
   }
 
   &:disabled {
     filter: brightness(50%);
+    cursor: default;
   }
 `
