@@ -27,4 +27,6 @@ export const defaultTheme = {
   'backdrop-blur': 'blur(5px)',
 
   outline: '3px solid rgb(80 107 241 / 30%)',
+  'outline-success': '3px solid rgb(14 175 148 / 30%)',
+  'outline-error': '3px solid rgb(241 80 107 / 30%)',
 } as const
