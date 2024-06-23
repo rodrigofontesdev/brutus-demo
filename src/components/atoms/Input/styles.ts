@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const InputStyle = styled.input`
   width: 100%;
   height: 60px;
+  position: relative;
   background-color: ${(props) => props.theme['blue-400']};
   color: ${(props) => props.theme['blue-50']};
   font: ${(props) => props.theme['input']};
