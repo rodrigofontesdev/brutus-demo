@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const InputMaskStyle = styled(IMaskInput)`
   width: 100%;
   height: 60px;
+  position: relative;
   background-color: ${(props) => props.theme['blue-400']};
   color: ${(props) => props.theme['blue-50']};
   font: ${(props) => props.theme['input']};
