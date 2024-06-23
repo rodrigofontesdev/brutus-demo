@@ -10,17 +10,7 @@ export function App() {
     <ThemeProvider theme={defaultTheme}>
       <RouterProvider router={router} />
       <GlobalStyle />
-      <Toaster
-        richColors
-        position="top-right"
-        theme="light"
-        toastOptions={{
-          style: {
-            padding: 16,
-            borderWidth: 1,
-          },
-        }}
-      />
+      <Toaster position="top-right" />
     </ThemeProvider>
   )
 }
