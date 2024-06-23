@@ -1,11 +1,20 @@
 import { createGlobalStyle } from 'styled-components'
 
+import montserrat from '../assets/fonts/montserrat.ttf'
+
 export const GlobalStyle = createGlobalStyle`
+   @font-face {
+    font-family: 'Montserrat';
+    src: url(${montserrat});
+    font-weight: 600 700;
+    font-style: normal;
+    font-display: fallback;
+  }
+
   * {
     margin: 0;
     padding: 0;
     border: 0;
-    outline: 0;
     box-sizing: border-box;
   }
 
@@ -19,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   img {
     max-width: 100%;
     height: auto;
+    display: block;
   }
 
   button {
@@ -33,6 +43,10 @@ export const GlobalStyle = createGlobalStyle`
 
   a:hover {
     color: ${(props) => props.theme['blue-400']};
+  }
+
+  a:focus {
+    outline: 2px solid ${(props) => props.theme['blue-400']}
   }
 
   li {
