@@ -2,13 +2,24 @@ import { forwardRef } from 'react'
 import { IMaskInputProps } from 'react-imask'
 import { InputMask } from '../../atoms/InputMask'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type InputMaskControlProps = { mask: any; id: string } & IMaskInputProps<HTMLInputElement>
+type InputMaskControlProps = {
+  mask: any
+  id: string
+  prefix?: string
+} & Omit<IMaskInputProps<HTMLInputElement>, 'id' | 'name' | 'autoComplete' | 'inputRef'>
 
 export const InputMaskControl = forwardRef<HTMLInputElement, InputMaskControlProps>(
-  ({ mask, id, ...rest }: InputMaskControlProps, ref) => {
-    return <InputMask mask={mask} id={id} name={id} autoComplete="off" inputRef={ref} {...rest} />
+  ({ mask, id, prefix, ...rest }: InputMaskControlProps, ref) => {
+    return (
+      <InputMask
+        mask={mask}
+        prefix={prefix}
+        id={id}
+        name={id}
+        autoComplete="off"
+        inputRef={ref}
+        {...rest}
+      />
+    )
   }
 )
-
-InputMaskControl.displayName = 'InputMaskControl'
