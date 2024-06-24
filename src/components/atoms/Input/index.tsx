@@ -1,8 +1,15 @@
-import { InputHTMLAttributes } from 'react'
-import { InputStyle } from './styles'
+import { InputHTMLAttributes, forwardRef } from 'react'
+import { Container, InputStyle, Prefix } from './styles'
 
-export type InputProps = { id: string } & InputHTMLAttributes<HTMLInputElement>
+type InputProps = { prefix?: string } & InputHTMLAttributes<HTMLInputElement>
 
-export function Input({ id, ...rest }: InputProps) {
-  return <InputStyle id={id} name={id} autoComplete="off" {...rest} />
-}
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ prefix, ...rest }: InputProps, ref) => {
+    return (
+      <Container>
+        {prefix && <Prefix>{prefix}</Prefix>}
+        <InputStyle ref={ref} {...rest} />
+      </Container>
+    )
+  }
+)
