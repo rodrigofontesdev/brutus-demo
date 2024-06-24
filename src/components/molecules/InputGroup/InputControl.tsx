@@ -1,7 +1,13 @@
-import { Input, InputProps } from '../../atoms/Input'
+import { InputHTMLAttributes, forwardRef } from 'react'
+import { Input } from '../../atoms/Input'
 
-type InputControlProps = InputProps
+type InputControlProps = { id: string; prefix?: string } & Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'id' | 'name' | 'autoComplete'
+>
 
-export function InputControl({ id, ...rest }: InputControlProps) {
-  return <Input id={id} {...rest} />
-}
+export const InputControl = forwardRef<HTMLInputElement, InputControlProps>(
+  ({ id, prefix, ...rest }: InputControlProps, ref) => {
+    return <Input id={id} name={id} prefix={prefix} autoComplete="off" ref={ref} {...rest} />
+  }
+)
