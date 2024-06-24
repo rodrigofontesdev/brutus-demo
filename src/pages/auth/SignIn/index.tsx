@@ -2,11 +2,11 @@ import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import { toast } from 'sonner'
 import { z } from 'zod'
 import { Button } from '../../../components/atoms/Button'
 import { Divider } from '../../../components/atoms/Divider'
 import { InputGroup } from '../../../components/molecules/InputGroup'
+import { toastify } from '../../../hooks/useToastify'
 import { Container, CreateAccount, SignInForm } from './styles'
 
 const signInFormSchema = z.object({
@@ -36,7 +36,7 @@ export function SignIn() {
   async function handleSignInForm(data: SignInForm) {
     await new Promise((resolve: unknown, reject) =>
       setTimeout(() => {
-        reject(toast.error('Tem certeza que digitou o CNPJ correto?'))
+        reject(toastify('Tem certeza que digitou o CNPJ correto?', 'error'))
       }, 1000)
     )
   }
