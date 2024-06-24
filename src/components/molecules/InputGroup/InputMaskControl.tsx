@@ -6,7 +6,7 @@ type InputMaskControlProps = {
   mask: any
   id: string
   prefix?: string
-} & Omit<IMaskInputProps<HTMLInputElement>, 'id' | 'name' | 'autoComplete' | 'inputRef'>
+} & IMaskInputProps<HTMLInputElement>
 
 export const InputMaskControl = forwardRef<HTMLInputElement, InputMaskControlProps>(
   ({ mask, id, prefix, ...rest }: InputMaskControlProps, ref) => {
