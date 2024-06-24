@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
 import { Divider } from '../../../components/atoms/Divider'
-import { Account, Container, SignUpForm } from './styles'
-import { Button } from '../../../components/atoms/Button'
-import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { InputGroup } from '../../../components/molecules/InputGroup'
+import { MultiStepControl } from '../../../components/organisms/MultiStepControl'
+import { MultiStepControlProvider } from '../../../contexts/MultiStepControlContext'
+import { BusinessCnpjStep } from './components/BusinessCnpjStep'
+import { CellPhoneStep } from './components/CellPhoneStep'
+import { EmailStep } from './components/EmailStep'
+import { FullNameStep } from './components/FullNameStep'
+import { Account, Container } from './styles'
 
 export function SignUp() {
   return (
@@ -16,42 +19,25 @@ export function SignUp() {
         </p>
       </header>
 
-      <SignUpForm>
-        <InputGroup.Root>
-          <InputGroup.Label inputId="businessCnpj" text="CNPJ" />
-          <InputGroup.MaskControl
-            mask="S1.S2.S3/S4-N1"
-            blocks={{
-              S1: {
-                mask: /^[0-9a-zA-Z]{0,2}$/,
-              },
-              S2: {
-                mask: /^[0-9a-zA-Z]{0,3}$/,
-              },
-              S3: {
-                mask: /^[0-9a-zA-Z]{0,3}$/,
-              },
-              S4: {
-                mask: /^[0-9a-zA-Z]{0,4}$/,
-              },
-              N1: {
-                mask: /^[0-9]{0,2}$/,
-              },
-            }}
-            prepareChar={(value) => value.toUpperCase()}
-            id="businessCnpj"
-            placeholder="Número do CNPJ"
-          />
-        </InputGroup.Root>
+      <MultiStepControlProvider>
+        <MultiStepControl.Root>
+          <MultiStepControl.Step step={1} disableAnimation>
+            <BusinessCnpjStep />
+          </MultiStepControl.Step>
 
-        <Button
-          type="submit"
-          icon={faAngleRight}
-          variant="success"
-          aria-label="Ir para próxima etapa"
-          //disabled={isSubmitting}
-        />
-      </SignUpForm>
+          <MultiStepControl.Step step={2}>
+            <FullNameStep />
+          </MultiStepControl.Step>
+
+          <MultiStepControl.Step step={3}>
+            <CellPhoneStep />
+          </MultiStepControl.Step>
+
+          <MultiStepControl.Step step={4}>
+            <EmailStep />
+          </MultiStepControl.Step>
+        </MultiStepControl.Root>
+      </MultiStepControlProvider>
 
       <Divider />
 

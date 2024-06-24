@@ -18,6 +18,10 @@ export const Container = styled.div`
     padding: 0 4.375rem;
     margin-bottom: 6.25rem;
 
+    @media (max-width: 640px) {
+      padding: 0;
+    }
+
     h1 {
       font: ${(props) => props.theme['title-lg']};
       text-align: center;
@@ -39,7 +43,7 @@ export const Container = styled.div`
   }
 `
 
-export const SignUpForm = styled.form`
+export const FormStep = styled.form`
   display: grid;
   grid-template-columns: 1fr 3.75rem;
   column-gap: 1.25rem;
