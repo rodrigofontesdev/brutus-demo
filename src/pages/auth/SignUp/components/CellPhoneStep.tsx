@@ -19,11 +19,11 @@ const stepSchema = z.object({
 type Step = z.infer<typeof stepSchema>
 
 export function CellPhoneStep() {
-  const { jumpToNextStep } = useMultiStepControl()
+  const { jumpToNextStep, saveData } = useMultiStepControl()
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<Step>({
     mode: 'onChange',
     resolver: zodResolver(stepSchema),
@@ -33,14 +33,8 @@ export function CellPhoneStep() {
   })
 
   function handleStepForm(data: Step) {
-    if (!isValid) {
-      return
-    }
-
-    // TODO: salvar dados no estado
-    console.log(data)
-
     jumpToNextStep()
+    saveData(data)
   }
 
   return (

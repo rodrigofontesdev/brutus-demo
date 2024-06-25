@@ -7,8 +7,10 @@ type FormData = {
 type MultiStepControlContextProps = {
   currentStep: number
   isLastStep: boolean
+  formData: FormData[]
   countSteps: (step: number) => void
   jumpToNextStep: () => void
+  saveData: (data: FormData) => void
 }
 
 type MultiStepControlProviderProps = {
@@ -22,6 +24,7 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
   const [nextStep, setNextStep] = useState(currentStep + 1)
   const [maxStep, setMaxStep] = useState(nextStep)
   const [isLastStep, setIsLastStep] = useState(false)
+  const [formData, setFormData] = useState<FormData[]>([])
 
   const countSteps = (step: number) => {
     setMaxStep(step)
@@ -38,6 +41,10 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
     }
   }
 
+  const saveData = (data: FormData) => {
+    setFormData((state) => [...state, data])
+  }
+
   return (
     <MultiStepControlContext.Provider
       value={{
@@ -45,6 +52,8 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
         isLastStep,
         countSteps,
         jumpToNextStep,
+        formData,
+        saveData,
       }}
     >
       {children}

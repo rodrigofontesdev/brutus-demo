@@ -1,10 +1,12 @@
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { Button } from '../../../../components/atoms/Button'
 import { InputGroup } from '../../../../components/molecules/InputGroup'
 import { useMultiStepControl } from '../../../../hooks/useMultiStepControl'
+import { toastify } from '../../../../hooks/useToastify'
 import { FormStep } from '../styles'
 
 const stepSchema = z.object({
@@ -19,11 +21,11 @@ const stepSchema = z.object({
 type Step = z.infer<typeof stepSchema>
 
 export function EmailStep() {
-  const { jumpToNextStep } = useMultiStepControl()
+  const { saveData } = useMultiStepControl()
   const {
     handleSubmit,
     register,
-    formState: { errors, isValid, isSubmitting },
+    formState: { errors, isSubmitting },
   } = useForm<Step>({
     mode: 'onChange',
     resolver: zodResolver(stepSchema),
@@ -31,16 +33,22 @@ export function EmailStep() {
       email: '',
     },
   })
+  const navigate = useNavigate()
 
-  function handleStepForm(data: Step) {
-    if (!isValid) {
-      return
+  async function handleStepForm(data: Step) {
+    saveData(data)
+
+    try {
+      // TODO: fazer chamada para API
+
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          resolve(navigate('/email/confirm'))
+        }, 1000)
+      )
+    } catch {
+      toastify('Não foi possível criar sua conta, tente novamente dentro de instantes.', 'error')
     }
-
-    // TODO: salvar dados no estado
-    console.log(data)
-
-    jumpToNextStep()
   }
 
   return (
