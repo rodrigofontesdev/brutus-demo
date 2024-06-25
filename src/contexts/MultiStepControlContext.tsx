@@ -1,9 +1,13 @@
 import { ReactNode, createContext, useState } from 'react'
 
+type FormData = {
+  [key: string]: string | number
+}
+
 type MultiStepControlContextProps = {
   currentStep: number
   isLastStep: boolean
-  countMaxSteps: (step: number) => void
+  countSteps: (step: number) => void
   jumpToNextStep: () => void
 }
 
@@ -19,19 +23,18 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
   const [maxStep, setMaxStep] = useState(nextStep)
   const [isLastStep, setIsLastStep] = useState(false)
 
-  const countMaxSteps = (step: number) => {
+  const countSteps = (step: number) => {
     setMaxStep(step)
   }
 
   const jumpToNextStep = () => {
-    if (nextStep <= maxStep) {
-      setCurrentStep(nextStep)
-      setNextStep(nextStep + 1)
-      setIsLastStep(false)
+    if (nextStep === maxStep) {
+      setIsLastStep(true)
     }
 
-    if (currentStep === maxStep) {
-      setIsLastStep(true)
+    if (!isLastStep) {
+      setCurrentStep(nextStep)
+      setNextStep((state) => state + 1)
     }
   }
 
@@ -40,7 +43,7 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
       value={{
         currentStep,
         isLastStep,
-        countMaxSteps,
+        countSteps,
         jumpToNextStep,
       }}
     >

@@ -1,4 +1,4 @@
-import { easings, useSpring, animated } from '@react-spring/web'
+import { animated, easings, useSpring } from '@react-spring/web'
 import { ReactNode, useEffect } from 'react'
 import { useMultiStepControl } from '../../../hooks/useMultiStepControl'
 import { Step } from './styles'
@@ -14,7 +14,7 @@ export function MultiStepControlItem({
   disableAnimation = false,
   children,
 }: MultiStepControlItemProps) {
-  const { currentStep, countMaxSteps } = useMultiStepControl()
+  const { currentStep, countSteps } = useMultiStepControl()
   const [animations, api] = useSpring(() => ({
     from: { x: !disableAnimation ? '-25%' : '0%' },
   }))
@@ -27,9 +27,11 @@ export function MultiStepControlItem({
         config: { duration: 800, easing: easings.easeOutCirc },
       })
     }
+  }, [currentStep, disableAnimation, api])
 
-    countMaxSteps(step)
-  }, [disableAnimation, api, countMaxSteps, step])
+  useEffect(() => {
+    countSteps(step)
+  }, [countSteps, step])
 
   return (
     <animated.div style={{ ...animations }}>
