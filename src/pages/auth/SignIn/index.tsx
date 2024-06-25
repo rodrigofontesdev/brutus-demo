@@ -34,11 +34,17 @@ export function SignIn() {
   })
 
   async function handleSignInForm(data: SignInForm) {
-    await new Promise((resolve: unknown, reject) =>
-      setTimeout(() => {
-        reject(toastify('Tem certeza que digitou o CNPJ correto?', 'error'))
-      }, 1000)
-    )
+    try {
+      // TODO: fazer chamada para API
+
+      await new Promise((resolve) =>
+        setTimeout(() => {
+          resolve(toastify('O link de acesso foi enviado para o seu e-mail.', 'success'))
+        }, 1000)
+      )
+    } catch {
+      toastify('Tem certeza que digitou o CNPJ correto?', 'error')
+    }
   }
 
   return (
