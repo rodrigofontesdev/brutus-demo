@@ -72,6 +72,7 @@ export function BusinessCnpjStep() {
       <Button
         type="submit"
         icon={faAngleRight}
+        iconSize={40}
         variant="success"
         aria-label="Próximo"
         disabled={isSubmitting}
