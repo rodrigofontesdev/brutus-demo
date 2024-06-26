@@ -43,11 +43,11 @@ export function EmailStep() {
 
       await new Promise((resolve) =>
         setTimeout(() => {
-          resolve(navigate('/email/confirm'))
+          resolve(navigate(`/sign-up/confirm?user=${data.email}`))
         }, 1000)
       )
     } catch {
-      toastify('Não foi possível criar sua conta, tente novamente dentro de instantes.', 'error')
+      toastify('Não foi possível criar sua conta, tente novamente em instantes.', 'error')
     }
   }
 
@@ -68,6 +68,7 @@ export function EmailStep() {
       <Button
         type="submit"
         icon={faAngleRight}
+        iconSize={40}
         variant="success"
         aria-label="Próximo"
         disabled={isSubmitting}
