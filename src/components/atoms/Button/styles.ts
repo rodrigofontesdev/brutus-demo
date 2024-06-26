@@ -8,7 +8,6 @@ export const ButtonStyle = styled.button<{ $variant: buttonVariants }>`
   justify-content: center;
   align-items: center;
   color: ${(props) => props.theme['blue-50']};
-  font-size: 2.5rem;
   border-radius: 100%;
   box-shadow: ${(props) => props.theme['shadow-inner']};
   transition: filter 400ms;
