@@ -26,13 +26,12 @@ export const InputMaskStyle = styled(IMaskInput)`
     color: ${(props) => props.theme['blue-50']};
   }
 
-  &:not(:read-only):focus {
+  &:not(:disabled):focus {
     outline: ${(props) => props.theme['outline']};
   }
 
   &:read-only {
-    background: linear-gradient(0deg, rgb(255 255 255 / 20%) 0%, rgb(255 255 255 / 20%) 100%),
-      ${(props) => props.theme['blue-400']};
+    background: ${(props) => props.theme['blue-800']};
     cursor: default;
   }
 `
