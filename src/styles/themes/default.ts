@@ -1,6 +1,7 @@
 const fontFamily = '"Montserrat", sans-serif'
 
 export const defaultTheme = {
+  'blue-800': '#142133',
   'blue-700': '#1D314B',
   'blue-400': '#506BF1',
   'blue-50': '#F6F9FB',
