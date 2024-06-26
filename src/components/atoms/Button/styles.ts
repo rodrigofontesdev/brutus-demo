@@ -15,7 +15,6 @@ export const ButtonStyle = styled.button<{ $variant: buttonVariants }>`
   @media (max-width: 640px) {
     width: 3.125rem;
     height: 3.125rem;
-    font-size: 2rem;
   }
 
   ${(props) => {
