@@ -88,6 +88,7 @@ export function SignIn() {
         <Button
           type="submit"
           icon={faAngleRight}
+          iconSize={40}
           variant="success"
           aria-label="Fazer login"
           disabled={isSubmitting}
