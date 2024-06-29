@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { NotFound } from '../pages/NotFound'
 import { Confirm } from '../pages/auth/Confirm'
 import { ExpiredLink } from '../pages/auth/ExpiredLink'
 import { InvalidLink } from '../pages/auth/InvalidLink'
@@ -18,5 +19,9 @@ export const router = createBrowserRouter([
       { path: '/sign-up', element: <SignUp /> },
       { path: '/sign-up/confirm', element: <Confirm /> },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ])
