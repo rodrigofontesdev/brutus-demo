@@ -17,7 +17,7 @@ type ComboboxProps<
   Group extends GroupBase<Option> = GroupBase<Option>
 > = {
   id: string
-  size?: 'normal' | 'large'
+  variant?: 'normal' | 'large'
 } & Omit<
   Props<Option, IsMulti, Group>,
   'id' | 'instanceId' | 'classNamePrefix' | 'noOptionsMessage' | 'components'
@@ -42,9 +42,9 @@ const ClearIndicator = ({ ...rest }: ClearIndicatorProps) => {
 export const Combobox = forwardRef<
   SelectInstance,
   ComboboxProps<unknown, false, GroupBase<unknown>>
->(({ id, size, ...rest }: ComboboxProps<unknown, false, GroupBase<unknown>>, ref) => {
+>(({ id, variant, ...rest }: ComboboxProps<unknown, false, GroupBase<unknown>>, ref) => {
   return (
-    <ComboboxStyle $size={size}>
+    <ComboboxStyle $variant={variant}>
       <Select
         id={id}
         instanceId={id}

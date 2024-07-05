@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 
-export const ComboboxStyle = styled.div<{ $size?: 'normal' | 'large' }>`
+export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
   .selectControl__control {
     width: 100%;
-    height: ${(props) => (!props.$size || props.$size === 'normal' ? '38px' : '60px')};
+    height: ${(props) => (!props.$variant || props.$variant === 'normal' ? '38px' : '60px')};
     background-color: ${(props) => props.theme['blue-400']};
     color: ${(props) => props.theme['blue-50']};
     font: ${(props) =>
-      !props.$size || props.$size === 'normal' ? props.theme['input-sm'] : props.theme['input']};
+      !props.$variant || props.$variant === 'normal'
+        ? props.theme['input-sm']
+        : props.theme['input']};
     border: none;
     border-radius: 0.5rem;
     box-shadow: ${(props) => props.theme['shadow-inner']};
-    padding: ${(props) => (!props.$size || props.$size === 'normal' ? '0.625rem' : '1.25rem')};
+    padding: ${(props) =>
+      !props.$variant || props.$variant === 'normal' ? '0.625rem' : '1.25rem'};
     transition: none;
 
     .selectControl__value-container {
@@ -45,7 +48,8 @@ export const ComboboxStyle = styled.div<{ $size?: 'normal' | 'large' }>`
 
       .selectControl__indicator {
         color: ${(props) => props.theme['blue-50']};
-        font-size: ${(props) => (!props.$size || props.$size === 'normal' ? '1rem' : '1.25rem')};
+        font-size: ${(props) =>
+          !props.$variant || props.$variant === 'normal' ? '1rem' : '1.25rem'};
         padding: 0;
         margin-left: 0.75rem;
         cursor: pointer;
@@ -82,11 +86,11 @@ export const ComboboxStyle = styled.div<{ $size?: 'normal' | 'large' }>`
 
       .selectControl__option {
         font: ${(props) =>
-          !props.$size || props.$size === 'normal'
+          !props.$variant || props.$variant === 'normal'
             ? props.theme['input-sm']
             : props.theme['input']};
         padding: ${(props) =>
-          !props.$size || props.$size === 'normal' ? '0.625rem' : '0.875rem 1.25rem'};
+          !props.$variant || props.$variant === 'normal' ? '0.625rem' : '0.875rem 1.25rem'};
 
         &:hover {
           background: linear-gradient(0deg, rgb(0 0 0 / 25%) 0%, rgb(0 0 0 / 25%) 100%),
@@ -103,7 +107,7 @@ export const ComboboxStyle = styled.div<{ $size?: 'normal' | 'large' }>`
       .selectControl__menu-notice {
         color: ${(props) => props.theme['blue-50']};
         font: ${(props) =>
-          !props.$size || props.$size === 'normal'
+          !props.$variant || props.$variant === 'normal'
             ? props.theme['input-sm']
             : props.theme['input']};
       }
