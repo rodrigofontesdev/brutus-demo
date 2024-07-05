@@ -1,6 +1,6 @@
 import { Input } from '../../atoms/Input'
 import { InputMask } from '../../atoms/InputMask'
-import { InputValidationMessage } from '../../atoms/InputValidationMessage'
+import { InputError } from '../../atoms/InputError'
 import { Label } from '../../atoms/Label'
 import { InputRoot } from './InputRoot'
 
@@ -9,5 +9,5 @@ export const InputGroup = {
   Label: Label,
   Control: Input,
   MaskControl: InputMask,
-  Error: InputValidationMessage,
+  Error: InputError,
 }
