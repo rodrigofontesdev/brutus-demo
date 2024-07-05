@@ -56,7 +56,7 @@ export function SignIn() {
 
       <SignInForm onSubmit={handleSubmit(handleSignInForm)}>
         <InputGroup.Root>
-          <InputGroup.Label inputId="businessCnpj" text="CNPJ" />
+          <InputGroup.Label inputId="businessCnpj" text="CNPJ" variant="large" />
           <InputGroup.MaskControl
             mask="S1.S2.S3/S4-N1"
             blocks={{
@@ -79,6 +79,7 @@ export function SignIn() {
             prepareChar={(value) => value.toUpperCase()}
             id="businessCnpj"
             placeholder="Número do CNPJ"
+            variant="large"
             {...register('businessCnpj')}
           />
 

@@ -54,11 +54,12 @@ export function EmailStep() {
   return (
     <FormStep onSubmit={handleSubmit(handleStepForm)}>
       <InputGroup.Root>
-        <InputGroup.Label inputId="email" text="E-mail" />
+        <InputGroup.Label inputId="email" text="E-mail" variant="large" />
         <InputGroup.Control
           id="email"
           type="email"
           placeholder="Seu melhor e-mail"
+          variant="large"
           {...register('email')}
         />
 

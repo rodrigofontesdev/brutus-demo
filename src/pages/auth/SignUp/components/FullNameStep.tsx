@@ -35,10 +35,11 @@ export function FullNameStep() {
   return (
     <FormStep onSubmit={handleSubmit(handleStepForm)}>
       <InputGroup.Root>
-        <InputGroup.Label inputId="fullName" text="Nome completo" />
+        <InputGroup.Label inputId="fullName" text="Nome completo" variant="large" />
         <InputGroup.Control
           id="fullName"
           placeholder="Seu nome completo"
+          variant="large"
           {...register('fullName')}
         />
 

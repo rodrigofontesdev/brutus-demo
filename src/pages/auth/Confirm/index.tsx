@@ -52,10 +52,11 @@ export function Confirm() {
 
         <ConfirmForm>
           <InputGroup.Root>
-            <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" />
+            <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" variant="large" />
             <InputGroup.Control
               id="email"
               defaultValue={userEmail ? format.email(userEmail) : ''}
+              variant="large"
               disabled
             />
           </InputGroup.Root>

@@ -40,12 +40,13 @@ export function CellPhoneStep() {
   return (
     <FormStep onSubmit={handleSubmit(handleStepForm)}>
       <InputGroup.Root>
-        <InputGroup.Label inputId="cellPhone" text="Celular" />
+        <InputGroup.Label inputId="cellPhone" text="Celular" variant="large" />
         <InputGroup.MaskControl
           mask="(00) 00000-0000"
           prefix="+55"
           id="cellPhone"
           placeholder="Número de celular"
+          variant="large"
           {...register('cellPhone')}
         />
 
