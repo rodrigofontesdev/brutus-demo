@@ -1,13 +1,13 @@
-import { InputControl } from './InputControl'
-import { InputError } from './InputError'
-import { InputLabel } from './InputLabel'
-import { InputMaskControl } from './InputMaskControl'
+import { Input } from '../../atoms/Input'
+import { InputMask } from '../../atoms/InputMask'
+import { InputValidationMessage } from '../../atoms/InputValidationMessage'
+import { Label } from '../../atoms/Label'
 import { InputRoot } from './InputRoot'
 
 export const InputGroup = {
   Root: InputRoot,
-  Label: InputLabel,
-  Control: InputControl,
-  MaskControl: InputMaskControl,
-  Error: InputError,
+  Label: Label,
+  Control: Input,
+  MaskControl: InputMask,
+  Error: InputValidationMessage,
 }
