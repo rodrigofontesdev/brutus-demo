@@ -14,7 +14,7 @@ type ButtonProps = {
 export function Button({ icon, iconSize, variant = 'default', ...rest }: ButtonProps) {
   return (
     <ButtonStyle $variant={variant} {...rest}>
-      <FontAwesomeIcon icon={icon} fontSize={iconSize ?? 30} fixedWidth />
+      <FontAwesomeIcon icon={icon} fontSize={iconSize ?? 32} />
     </ButtonStyle>
   )
 }
