@@ -5,21 +5,18 @@ export const Container = styled.div`
   position: relative;
 `
 
-export const InputStyle = styled.input`
+export const InputStyle = styled.input<{ $variant?: 'normal' | 'large' }>`
   width: 100%;
-  height: 60px;
-  position: relative;
+  height: ${(props) => (!props.$variant || props.$variant === 'normal' ? '38px' : '60px')};
   background-color: ${(props) => props.theme['blue-400']};
   color: ${(props) => props.theme['blue-50']};
-  font: ${(props) => props.theme['input']};
-  padding: 1.25rem;
+  font: ${(props) =>
+    !props.$variant || props.$variant === 'normal'
+      ? props.theme['input-sm']
+      : props.theme['input']};
+  padding: ${(props) => (!props.$variant || props.$variant === 'normal' ? '0.625rem' : '1.25rem')};
   box-shadow: ${(props) => props.theme['shadow-inner']};
   border-radius: 0.5rem;
-
-  @media (max-width: 640px) {
-    height: 50px;
-    font: ${(props) => props.theme['input-sm']};
-  }
 
   &::placeholder {
     color: ${(props) => props.theme['blue-50']};
@@ -35,28 +32,27 @@ export const InputStyle = styled.input`
   }
 `
 
-export const Prefix = styled.span`
+export const Prefix = styled.span<{ $variant?: 'normal' | 'large' }>`
   position: absolute;
   top: 50%;
   left: 0;
-  background-color: ${(props) => props.theme['blue-400']};
-  color: ${(props) => props.theme['blue-50']};
-  font: ${(props) => props.theme.input};
-  padding: 0 0.625rem 0 1.25rem;
-  border-right: 2px solid rgb(246 249 251 / 15%);
   transform: translateY(-50%);
   z-index: 1;
+  background-color: ${(props) => props.theme['blue-400']};
+  color: ${(props) => props.theme['blue-50']};
+  font: ${(props) =>
+    !props.$variant || props.$variant === 'normal'
+      ? props.theme['input-sm']
+      : props.theme['input']};
+  padding: ${(props) =>
+    !props.$variant || props.$variant === 'normal'
+      ? '0 0.3125rem 0 0.625rem'
+      : '0 0.625rem 0 1.25rem'};
+  border-right: 2px solid rgb(246 249 251 / 15%);
   pointer-events: none;
 
-  @media (max-width: 640px) {
-    font: ${(props) => props.theme['input-sm']};
-  }
-
   & + ${InputStyle} {
-    padding-left: 4.375rem;
-
-    @media (max-width: 640px) {
-      padding-left: 4.125rem;
-    }
+    padding-left: ${(props) =>
+      !props.$variant || props.$variant === 'normal' ? '3rem' : '4.375rem'};
   }
 `
