@@ -39,8 +39,8 @@ export const Actions = styled.div`
   height: 40px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  position: relative;
   column-gap: 1px;
+  position: relative;
 
   :first-child {
     border-bottom-left-radius: 0.5rem;
@@ -62,6 +62,10 @@ export const Actions = styled.div`
     &:hover {
       background-color: ${(props) => props.theme['blue-400']};
       color: ${(props) => props.theme['blue-50']};
+    }
+
+    &:focus {
+      outline: 2px solid ${(props) => props.theme['blue-400']};
     }
   }
 `
