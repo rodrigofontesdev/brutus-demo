@@ -1,5 +1,5 @@
 import { ExternalToast, toast } from 'sonner'
-import { Toastify, ToastifyTypes } from '../components/atoms/Toastify'
+import { Toastify, ToastifyTypes } from '../components/molecules/Toastify'
 
 type Options = ExternalToast
 
