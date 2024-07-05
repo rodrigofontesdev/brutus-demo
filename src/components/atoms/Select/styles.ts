@@ -59,7 +59,7 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
         transition: filter 400ms;
 
         &:hover {
-          filter: brightness(90%);
+          filter: brightness(80%);
         }
       }
 
