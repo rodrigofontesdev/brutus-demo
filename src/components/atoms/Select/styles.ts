@@ -17,14 +17,17 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
       !props.$variant || props.$variant === 'normal' ? '0.625rem' : '1.25rem'};
     transition: none;
 
+    &.selectControl__control--is-focused {
+      outline: ${(props) => props.theme['outline']} !important;
+    }
+
+    &.selectControl__control--is-disabled {
+      background: ${(props) => props.theme['blue-800']};
+      cursor: default;
+    }
+
     .selectControl__value-container {
       padding: 0;
-
-      &:hover,
-      &:focus,
-      &.selectControl__control--is-focused {
-        outline: ${(props) => props.theme['outline']} !important;
-      }
 
       .selectControl__placeholder,
       .selectControl__single-value,
@@ -39,12 +42,12 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
       }
     }
 
-    .selectControl__indicator-separator {
-      display: none;
-    }
-
     .selectControl__indicators {
       align-items: flex-start;
+
+      .selectControl__indicator-separator {
+        display: none;
+      }
 
       .selectControl__indicator {
         color: ${(props) => props.theme['blue-50']};
@@ -65,11 +68,6 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
         padding-top: 1px;
       }
     }
-  }
-
-  .selectControl__control--is-disabled {
-    background: ${(props) => props.theme['blue-800']};
-    cursor: default;
   }
 
   .selectControl__menu {
