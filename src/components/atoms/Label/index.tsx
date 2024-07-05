@@ -4,12 +4,12 @@ import { LabelStyle } from './styles'
 export type LabelProps = {
   text: string
   inputId: string
-  size?: 'normal' | 'large'
+  variant?: 'normal' | 'large'
 } & LabelHTMLAttributes<HTMLLabelElement>
 
-export function Label({ text, inputId, size, ...rest }: LabelProps) {
+export function Label({ text, inputId, variant, ...rest }: LabelProps) {
   return (
-    <LabelStyle htmlFor={inputId} {...rest} $size={size}>
+    <LabelStyle htmlFor={inputId} {...rest} $variant={variant}>
       {text}
     </LabelStyle>
   )
