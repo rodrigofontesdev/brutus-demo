@@ -12,11 +12,6 @@ export const ButtonStyle = styled.button<{ $variant: buttonVariants }>`
   box-shadow: ${(props) => props.theme['shadow-inner']};
   transition: filter 400ms;
 
-  @media (max-width: 640px) {
-    width: 3.125rem;
-    height: 3.125rem;
-  }
-
   ${(props) => {
     switch (props.$variant) {
       case 'success':
