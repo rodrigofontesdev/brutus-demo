@@ -1,7 +1,7 @@
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { ButtonLink } from '../../components/atoms/ButtonLink'
 import { Footer } from '../../components/organisms/Footer'
-import { HeaderAuth } from '../../components/organisms/HeaderAuth'
+import { Header } from '../../components/organisms/Header'
 import { Container, IllustrationColumn, MessageColumn } from './styles'
 
 import illustrationImg from '../../assets/404.svg'
@@ -9,7 +9,7 @@ import illustrationImg from '../../assets/404.svg'
 export function NotFound() {
   return (
     <>
-      <HeaderAuth />
+      <Header />
 
       <Container>
         <IllustrationColumn>
