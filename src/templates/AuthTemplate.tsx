@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom'
 import { Footer } from '../components/organisms/Footer'
-import { HeaderAuth } from '../components/organisms/HeaderAuth'
-import { ContainerAuth } from './styles'
+import { Header } from '../components/organisms/Header'
+import { AuthContainer } from './styles'
 
 export function AuthTemplate() {
   return (
     <>
-      <HeaderAuth />
+      <Header />
 
-      <ContainerAuth>
+      <AuthContainer>
         <Outlet />
-      </ContainerAuth>
+      </AuthContainer>
 
       <Footer />
     </>
