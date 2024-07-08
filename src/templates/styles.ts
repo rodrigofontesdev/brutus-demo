@@ -11,8 +11,14 @@ export const PanelGrid = styled.div`
   grid-template-columns: 21.875rem 1fr 12.5rem;
 `
 
-export const PanelContainer = styled.div`
-  max-width: 73.125rem;
+export const PanelCentral = styled.div`
   background-color: rgb(0 0 0 / 16%);
-  padding: 0 6.25rem 3.125rem;
+  padding-right: 1.5625rem;
+  padding-left: 1.5625rem;
+`
+
+export const PanelContainer = styled.div`
+  width: 73.125rem;
+  margin-right: auto;
+  margin-left: auto;
 `
