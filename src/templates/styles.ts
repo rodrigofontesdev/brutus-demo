@@ -18,7 +18,7 @@ export const PanelCentral = styled.div`
 `
 
 export const PanelContainer = styled.div`
-  width: 73.125rem;
+  max-width: 73.125rem;
   margin-right: auto;
   margin-left: auto;
 `
