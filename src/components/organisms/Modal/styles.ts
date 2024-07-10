@@ -45,6 +45,7 @@ export const Title = styled(Dialog.Title)`
 export const Close = styled(Dialog.Close)`
   background-color: transparent;
   color: ${(props) => props.theme['red-400']};
+  transition: filter 400ms;
 
   &:hover {
     filter: brightness(80%);
