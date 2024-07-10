@@ -44,7 +44,7 @@ export function History() {
 
       <ScrollableArea>
         <TitleWithSeparator>
-          <h3>2024</h3>
+          <h2>2024</h2>
         </TitleWithSeparator>
 
         <ReportsByYear>
@@ -56,7 +56,7 @@ export function History() {
         </ReportsByYear>
 
         <TitleWithSeparator>
-          <h3>2023</h3>
+          <h2>2023</h2>
         </TitleWithSeparator>
 
         <ReportsByYear>
