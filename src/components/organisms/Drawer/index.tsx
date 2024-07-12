@@ -41,19 +41,20 @@ export function Drawer({ children, priority, width }: DrawerProps) {
     if (innerRef.current) {
       const animation = innerRef.current.animate(slideIn, {
         duration: 500,
+        fill: 'forwards',
         direction: 'reverse',
         easing: 'ease',
       })
 
       await animation.finished
+      animation.commitStyles()
+      animation.cancel()
       closeDrawer()
     }
   }
 
   useEffect(() => {
-    if (open) {
-      openDrawer()
-    }
+    openDrawer()
   }, [open])
 
   if (!open) {
