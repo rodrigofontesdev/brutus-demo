@@ -1,16 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-import montserrat from '../assets/fonts/montserrat.ttf'
-
 export const GlobalStyle = createGlobalStyle`
-   @font-face {
-    font-family: 'Montserrat';
-    src: url(${montserrat});
-    font-weight: 600 700;
-    font-style: normal;
-    font-display: fallback;
-  }
-
   * {
     margin: 0;
     padding: 0;

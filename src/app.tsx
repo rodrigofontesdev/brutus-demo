@@ -8,8 +8,8 @@ import { defaultTheme } from './styles/themes/default'
 export function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <RouterProvider router={router} />
       <GlobalStyle />
+      <RouterProvider router={router} />
       <Toaster position="top-right" />
     </ThemeProvider>
   )

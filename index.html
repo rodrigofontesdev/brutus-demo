@@ -4,8 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="favicon.svg" />
-
     <title>Brutus Demo</title>
+
+    <style>
+      @font-face {
+        font-family: 'Montserrat';
+        src: local('Montserrat'), url('/src/assets/fonts/montserrat.woff2') format('woff2');
+        font-weight: 600 700;
+        font-style: normal;
+        font-display: fallback;
+      }
+
+      @font-face {
+        font-family: montserrat-fallback;
+        src: local('Arial');
+        font-style: normal;
+        ascent-override: 85.79%;
+        descent-override: 22.25%;
+        line-gap-override: 0%;
+        size-adjust: 112.83%;
+      }
+    </style>
   </head>
 
   <body>

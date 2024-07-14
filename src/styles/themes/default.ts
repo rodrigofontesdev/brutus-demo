@@ -1,4 +1,4 @@
-const fontFamily = '"Montserrat", sans-serif'
+const fontFamily = '"Montserrat", montserrat-fallback'
 
 export const defaultTheme = {
   'blue-800': '#142133',
