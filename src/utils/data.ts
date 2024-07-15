@@ -27,3 +27,31 @@ export const STATES = [
   { value: 'SE', label: 'Sergipe' },
   { value: 'TO', label: 'Tocantins' },
 ]
+
+export const MONTHS = [
+  { value: '01', label: 'Janeiro' },
+  { value: '02', label: 'Fevereiro' },
+  { value: '03', label: 'Março' },
+  { value: '04', label: 'Abril' },
+  { value: '05', label: 'Maio' },
+  { value: '06', label: 'Junho' },
+  { value: '07', label: 'Julho' },
+  { value: '08', label: 'Agosto' },
+  { value: '09', label: 'Setembro' },
+  { value: '10', label: 'Outubro' },
+  { value: '11', label: 'Novembro' },
+  { value: '12', label: 'Dezembro' },
+]
+
+const yearsUntilNow = (i: number) => {
+  const years = []
+  for (i; i <= new Date().getFullYear(); i++) {
+    years.unshift({ value: String(i), label: String(i) })
+  }
+  return years
+}
+
+export const YEARS = yearsUntilNow(2009)
+
+export type MonthInputType = (typeof MONTHS)[0]
+export type YearInputType = (typeof YEARS)[0]
