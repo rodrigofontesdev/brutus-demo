@@ -6,6 +6,16 @@ const blurEmail = (value: string) => {
   return `${firstChars}${name.substring(limit).replace(/[\s\S]/g, '*')}@${domain}`
 }
 
+const price = (amount: number) => {
+  const amountFormatted = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(amount)
+
+  return amountFormatted
+}
+
 export const format = {
   email: blurEmail,
+  price: price,
 }
