@@ -6,4 +6,8 @@ export const LabelStyle = styled.label<{ $variant?: 'normal' | 'large' }>`
     !props.$variant || props.$variant === 'normal'
       ? props.theme['input-sm']
       : props.theme['input']};
+
+  & > :first-child {
+    margin-top: 0.5rem;
+  }
 `
