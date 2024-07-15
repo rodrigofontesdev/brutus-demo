@@ -1,4 +1,4 @@
-import { faThumbsUp, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { Button } from '../../atoms/Button'
 import { InputGroup } from '../../molecules/InputGroup'
 import { Actions, ConfirmReportRemovalStyle } from './styles'
@@ -27,23 +27,20 @@ export function ConfirmReportRemoval({
       </InputGroup.Root>
 
       <Actions>
-        <p>Deseja continuar com essa ação?</p>
-        <div>
-          <Button
-            icon={faXmark}
-            iconSize={40}
-            variant="error"
-            aria-label="Cancelar"
-            onClick={onCancel}
-          ></Button>
-          <Button
-            icon={faThumbsUp}
-            iconSize={32}
-            variant="success"
-            aria-label="Confirmar"
-            onClick={onConfirm}
-          ></Button>
-        </div>
+        <Button
+          icon={faXmark}
+          iconSize={36}
+          variant="error"
+          aria-label="Cancelar"
+          onClick={onCancel}
+        />
+        <Button
+          icon={faCheck}
+          iconSize={36}
+          variant="success"
+          aria-label="Confirmar"
+          onClick={onConfirm}
+        />
       </Actions>
     </ConfirmReportRemovalStyle>
   )

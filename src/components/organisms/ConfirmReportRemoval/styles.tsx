@@ -12,16 +12,6 @@ export const ConfirmReportRemovalStyle = styled.div`
 
 export const Actions = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-end;
   column-gap: 1.5625rem;
-
-  > div {
-    display: flex;
-    column-gap: 1.5625rem;
-  }
-
-  > p {
-    font: ${(props) => props.theme['text-sm']};
-  }
 `
