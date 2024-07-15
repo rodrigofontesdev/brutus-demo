@@ -2,7 +2,8 @@ import { Outlet } from 'react-router-dom'
 import { Header } from '../components/organisms/Header'
 import { History } from '../components/organisms/History'
 import { Timeline } from '../components/organisms/Timeline'
-import { PanelContainer, PanelGrid, PanelCentral } from './styles'
+import { DrawerProvider } from '../contexts/DrawerContext'
+import { PanelCentral, PanelContainer, PanelGrid } from './styles'
 
 export function PanelTemplate() {
   return (
@@ -12,7 +13,10 @@ export function PanelTemplate() {
 
         <PanelCentral>
           <PanelContainer>
-            <Header />
+            <DrawerProvider>
+              <Header />
+            </DrawerProvider>
+
             <Outlet />
           </PanelContainer>
         </PanelCentral>
