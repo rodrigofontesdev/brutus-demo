@@ -120,11 +120,7 @@ export function AccountMenu() {
 
         <InputGroup.Root>
           <InputGroup.Label inputId="city" text="Cidade" />
-          <InputGroup.Control
-            id="city"
-            placeholder="Local do estabelecimento"
-            {...register('city')}
-          />
+          <InputGroup.Control id="city" placeholder="Sua cidade" {...register('city')} />
 
           {errors.city && <InputGroup.Error message={errors.city.message!} />}
         </InputGroup.Root>
