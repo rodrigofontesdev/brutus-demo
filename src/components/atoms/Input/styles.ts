@@ -1,58 +1,77 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { InputVariants } from '.'
 
-export const Container = styled.div`
-  width: 100%;
-  position: relative;
-`
+export const InputStyle = styled.input<{ $variant: InputVariants }>`
+  ${(props) => {
+    switch (props.$variant) {
+      case 'large':
+        return css`
+          height: 60px;
+          font: ${props.theme.input};
+          padding: 1.25rem;
+        `
+      default:
+        return css`
+          height: 38px;
+          font: ${props.theme['input-sm']};
+          padding: 0.625rem;
+        `
+    }
+  }}
 
-export const InputStyle = styled.input<{ $variant?: 'normal' | 'large' }>`
   width: 100%;
-  height: ${(props) => (!props.$variant || props.$variant === 'normal' ? '38px' : '60px')};
-  background-color: ${(props) => props.theme['blue-400']};
+  background-color: transparent;
   color: ${(props) => props.theme['blue-50']};
-  font: ${(props) =>
-    !props.$variant || props.$variant === 'normal'
-      ? props.theme['input-sm']
-      : props.theme['input']};
-  padding: ${(props) => (!props.$variant || props.$variant === 'normal' ? '0.625rem' : '1.25rem')};
-  box-shadow: ${(props) => props.theme['shadow-inner']};
-  border-radius: 0.5rem;
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
 
   &::placeholder {
     color: ${(props) => props.theme['blue-50']};
   }
 
-  &:not(:disabled):focus {
-    outline: ${(props) => props.theme['outline']};
+  &:read-only {
+    cursor: default;
   }
 
-  &:read-only {
-    background: ${(props) => props.theme['blue-800']};
-    cursor: default;
+  &:not(:disabled):focus {
+    outline: none;
   }
 `
 
-export const Prefix = styled.span<{ $variant?: 'normal' | 'large' }>`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-  z-index: 1;
-  background-color: ${(props) => props.theme['blue-400']};
+export const Prefix = styled.span<{ $variant: InputVariants }>`
+  ${(props) => {
+    switch (props.$variant) {
+      case 'large':
+        return css`
+          font: ${props.theme.input};
+          padding: 0 1.25rem;
+        `
+      default:
+        return css`
+          font: ${props.theme['input-sm']};
+          padding: 0 0.625rem;
+        `
+    }
+  }}
+
   color: ${(props) => props.theme['blue-50']};
-  font: ${(props) =>
-    !props.$variant || props.$variant === 'normal'
-      ? props.theme['input-sm']
-      : props.theme['input']};
-  padding: ${(props) =>
-    !props.$variant || props.$variant === 'normal'
-      ? '0 0.3125rem 0 0.625rem'
-      : '0 0.625rem 0 1.25rem'};
   border-right: 2px solid rgb(246 249 251 / 15%);
   pointer-events: none;
+`
 
-  & + ${InputStyle} {
-    padding-left: ${(props) =>
-      !props.$variant || props.$variant === 'normal' ? '3rem' : '4.375rem'};
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: ${(props) => props.theme['blue-400']};
+  border-radius: 0.5rem;
+  box-shadow: ${(props) => props.theme['shadow-inner']};
+
+  &:has(${InputStyle}:read-only) {
+    background-color: ${(props) => props.theme['blue-800']};
+  }
+
+  &:has(${InputStyle}:focus) {
+    outline: ${(props) => props.theme['outline']};
   }
 `

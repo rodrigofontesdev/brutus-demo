@@ -1,23 +1,23 @@
 import { InputHTMLAttributes, forwardRef } from 'react'
 import { Container, InputStyle, Prefix } from './styles'
 
+export type InputVariants = 'normal' | 'large'
+
 type InputProps = {
-  id: string
   prefix?: string
-  variant?: 'normal' | 'large'
-} & Omit<InputHTMLAttributes<HTMLInputElement>, 'id' | 'name' | 'autoComplete'>
+  variant?: InputVariants
+} & InputHTMLAttributes<HTMLInputElement>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, prefix, variant, ...rest }: InputProps, ref) => {
+  ({ id, name, autoComplete, prefix, variant, ...rest }: InputProps, ref) => {
     return (
       <Container>
-        {prefix && <Prefix $variant={variant}>{prefix}</Prefix>}
+        {!!prefix && <Prefix $variant={variant ?? 'normal'}>{prefix}</Prefix>}
         <InputStyle
           id={id}
-          name={id}
-          prefix={prefix}
-          $variant={variant}
-          autoComplete="off"
+          name={name ?? id}
+          autoComplete={autoComplete ?? 'off'}
+          $variant={variant ?? 'normal'}
           ref={ref}
           {...rest}
         />
