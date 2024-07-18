@@ -1,26 +1,30 @@
 import { forwardRef } from 'react'
-import { IMaskInputProps } from 'react-imask'
-import { Container, InputMaskStyle, Prefix } from './styles'
+import { IMaskInputProps, IMaskMixin } from 'react-imask'
+import { Container, InputStyle, Prefix } from './styles'
 
-type InputMaskProps = IMaskInputProps<HTMLInputElement> & {
-  mask: any
-  id: string
+export type InputMaskVariants = 'normal' | 'large'
+
+type InputMaskProps = {
   prefix?: string
-  variant?: 'normal' | 'large'
-}
+  variant?: InputMaskVariants
+} & IMaskInputProps<HTMLInputElement>
+
+type InputProps = Pick<InputMaskProps, 'variant'> & IMaskInputProps<HTMLInputElement>
+
+const Input = IMaskMixin<HTMLInputElement, InputProps>(({ variant, inputRef, ...rest }) => {
+  return <InputStyle $variant={variant!} ref={inputRef} {...rest} />
+})
 
 export const InputMask = forwardRef<HTMLInputElement, InputMaskProps>(
-  ({ mask, id, prefix, variant, ...rest }: InputMaskProps, ref) => {
+  ({ id, name, autoComplete, prefix, variant, ...rest }: InputMaskProps, ref) => {
     return (
       <Container>
-        {prefix && <Prefix $variant={variant}>{prefix}</Prefix>}
-        <InputMaskStyle
-          mask={mask}
-          prefix={prefix}
-          $variant={variant}
+        {!!prefix && <Prefix $variant={variant ?? 'normal'}>{prefix}</Prefix>}
+        <Input
           id={id}
-          name={id}
-          autoComplete="off"
+          name={name ?? id}
+          autoComplete={autoComplete ?? 'off'}
+          variant={variant ?? 'normal'}
           inputRef={ref}
           {...rest}
         />
