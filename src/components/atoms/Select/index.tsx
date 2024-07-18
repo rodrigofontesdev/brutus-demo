@@ -9,18 +9,20 @@ import Select, {
   SelectInstance,
   components,
 } from 'react-select'
-import { ComboboxStyle } from './styles'
+import { ComboBoxStyle } from './styles'
 
-type ComboboxProps<
+export type ComboBoxVariants = 'normal' | 'large'
+
+type ComboBoxProps<
   Option,
   IsMulti extends boolean = false,
   Group extends GroupBase<Option> = GroupBase<Option>
 > = {
   id: string
-  variant?: 'normal' | 'large'
+  variant?: ComboBoxVariants
 } & Omit<
   Props<Option, IsMulti, Group>,
-  'id' | 'instanceId' | 'classNamePrefix' | 'noOptionsMessage' | 'components'
+  'instanceId' | 'classNamePrefix' | 'noOptionsMessage' | 'components'
 >
 
 const DropdownIndicator = ({ ...rest }: DropdownIndicatorProps) => {
@@ -39,21 +41,22 @@ const ClearIndicator = ({ ...rest }: ClearIndicatorProps) => {
   )
 }
 
-export const Combobox = forwardRef<
+export const ComboBox = forwardRef<
   SelectInstance,
-  ComboboxProps<unknown, false, GroupBase<unknown>>
->(({ id, variant, ...rest }: ComboboxProps<unknown, false, GroupBase<unknown>>, ref) => {
+  ComboBoxProps<unknown, false, GroupBase<unknown>>
+>(({ id, name, variant, ...rest }: ComboBoxProps<unknown, false, GroupBase<unknown>>, ref) => {
   return (
-    <ComboboxStyle $variant={variant}>
+    <ComboBoxStyle $variant={variant ?? 'normal'}>
       <Select
         id={id}
         instanceId={id}
+        name={name ?? id}
         classNamePrefix="selectControl"
         noOptionsMessage={() => 'Sem opções'}
         components={{ DropdownIndicator, ClearIndicator }}
         ref={ref}
         {...rest}
       />
-    </ComboboxStyle>
+    </ComboBoxStyle>
   )
 })

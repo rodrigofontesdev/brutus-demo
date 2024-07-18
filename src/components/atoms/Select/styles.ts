@@ -1,20 +1,31 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { ComboBoxVariants } from '.'
 
-export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
+export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
   .selectControl__control {
+    ${(props) => {
+      switch (props.$variant) {
+        case 'large':
+          return css`
+            height: 60px;
+            font: ${props.theme.input};
+            padding: 1.25rem;
+          `
+        default:
+          return css`
+            height: 38px;
+            font: ${props.theme['input-sm']};
+            padding: 0.625rem;
+          `
+      }
+    }}
+
     width: 100%;
-    height: ${(props) => (!props.$variant || props.$variant === 'normal' ? '38px' : '60px')};
     background-color: ${(props) => props.theme['blue-400']};
     color: ${(props) => props.theme['blue-50']};
-    font: ${(props) =>
-      !props.$variant || props.$variant === 'normal'
-        ? props.theme['input-sm']
-        : props.theme['input']};
     border: none;
     border-radius: 0.5rem;
     box-shadow: ${(props) => props.theme['shadow-inner']};
-    padding: ${(props) =>
-      !props.$variant || props.$variant === 'normal' ? '0.625rem' : '1.25rem'};
     transition: none;
 
     &.selectControl__control--is-focused {
@@ -51,8 +62,7 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
 
       .selectControl__indicator {
         color: ${(props) => props.theme['blue-50']};
-        font-size: ${(props) =>
-          !props.$variant || props.$variant === 'normal' ? '1rem' : '1.25rem'};
+        font-size: ${(props) => (props.$variant === 'normal' ? '1rem' : '1.25rem')};
         padding: 0;
         margin-left: 0.75rem;
         cursor: pointer;
@@ -80,15 +90,12 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
     .selectControl__menu-list {
       padding: 0;
       scrollbar-width: thin;
-      scrollbar-color: rgb(0 0 0 / 55%) ${(props) => props.theme['blue-400']};
+      scrollbar-color: rgb(0 0 0 / 35%) ${(props) => props.theme['blue-400']};
 
       .selectControl__option {
         font: ${(props) =>
-          !props.$variant || props.$variant === 'normal'
-            ? props.theme['input-sm']
-            : props.theme['input']};
-        padding: ${(props) =>
-          !props.$variant || props.$variant === 'normal' ? '0.625rem' : '0.875rem 1.25rem'};
+          props.$variant === 'normal' ? props.theme['input-sm'] : props.theme.input};
+        padding: ${(props) => (props.$variant === 'normal' ? '0.625rem' : '0.875rem 1.25rem')};
 
         &:hover {
           background: linear-gradient(0deg, rgb(0 0 0 / 25%) 0%, rgb(0 0 0 / 25%) 100%),
@@ -105,9 +112,7 @@ export const ComboboxStyle = styled.div<{ $variant?: 'normal' | 'large' }>`
       .selectControl__menu-notice {
         color: ${(props) => props.theme['blue-50']};
         font: ${(props) =>
-          !props.$variant || props.$variant === 'normal'
-            ? props.theme['input-sm']
-            : props.theme['input']};
+          props.$variant === 'normal' ? props.theme['input-sm'] : props.theme.input};
       }
     }
   }
