@@ -64,7 +64,7 @@ export function Drawer({ children, priority, width }: DrawerProps) {
   return (
     <DrawerStyle $priority={priority ?? 25} $width={width ?? 360} ref={innerRef}>
       <CloseButton aria-label="Fechar menu" onClick={handleCloseDrawer}>
-        <FontAwesomeIcon icon={faXmark} fontSize={26} />
+        <FontAwesomeIcon icon={faXmark} fontSize={28} />
       </CloseButton>
 
       {children}

@@ -36,7 +36,7 @@ export function GrossIncomeCard({
         <Dialog.Root>
           <Dialog.Trigger asChild>
             <InfoButton>
-              <FontAwesomeIcon icon={faCircleInfo} fontSize={26} />
+              <FontAwesomeIcon icon={faCircleInfo} fontSize={24} />
             </InfoButton>
           </Dialog.Trigger>
 

@@ -55,7 +55,7 @@ export function ReportCard() {
 
       <Actions>
         <Link to={`/report/1/edit`} role="button" aria-label="Ver relatório de Maio de 2024">
-          <FontAwesomeIcon icon={faEye} fontSize={22} />
+          <FontAwesomeIcon icon={faEye} fontSize={24} />
         </Link>
 
         <button
@@ -63,13 +63,13 @@ export function ReportCard() {
           aria-label="Baixar o relatório de Maio de 2024"
           onClick={handleDownloadReport}
         >
-          <FontAwesomeIcon icon={faCloudArrowDown} fontSize={22} />
+          <FontAwesomeIcon icon={faCloudArrowDown} fontSize={24} />
         </button>
 
         <Dialog.Root open={isConfirmModalOpen} onOpenChange={setIsConfirmModalOpen}>
           <Dialog.Trigger asChild>
             <button type="button" aria-label="Excluir o relatório de Maio de 2024">
-              <FontAwesomeIcon icon={faTrashAlt} fontSize={22} />
+              <FontAwesomeIcon icon={faTrashAlt} fontSize={24} />
             </button>
           </Dialog.Trigger>
 

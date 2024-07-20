@@ -31,7 +31,7 @@ export function Modal({ title, hideCloseButton, disableOutsideClick, children }:
 
               {!hideCloseButton && (
                 <Close>
-                  <FontAwesomeIcon icon={faXmark} fontSize={26} />
+                  <FontAwesomeIcon icon={faXmark} fontSize={28} />
                 </Close>
               )}
             </Heading>
