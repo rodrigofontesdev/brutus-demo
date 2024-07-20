@@ -1,11 +1,12 @@
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { Box } from '../../../components/atoms/Box'
 import { Button } from '../../../components/atoms/Button'
 import { InputGroup } from '../../../components/molecules/InputGroup'
 import { toastify } from '../../../hooks/useToastify'
-import { Card, ConfirmForm, Container, Overlay } from './styles'
 import { format } from '../../../utils/formatter'
+import { Card, ConfirmForm, Container, Heading } from './styles'
 
 export function Confirm() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true)
@@ -31,7 +32,7 @@ export function Confirm() {
       if (isButtonDisabled) {
         setTimeout(() => {
           setIsButtonDisabled(false)
-        }, 2000 * 60) // after 2 minutes
+        }, 60 * 2 * 1000) // after 2 minutes
       }
     },
     [isButtonDisabled]
@@ -39,40 +40,40 @@ export function Confirm() {
 
   return (
     <Container>
-      <Card>
-        <Overlay></Overlay>
+      <Box>
+        <Card>
+          <Heading>
+            <h1>Verificar E-mail</h1>
+            <p>
+              Acesse a caixa de entrada ou spam do e-mail, uma mensagem foi enviada, dentro você
+              encontra um link para confirmar a criação da conta. É super rápido!
+            </p>
+          </Heading>
 
-        <header>
-          <h1>Verificar E-mail</h1>
-          <p>
-            Acesse a caixa de entrada ou spam do e-mail, uma mensagem foi enviada, dentro você
-            encontra um link para confirmar a criação da conta. É super rápido!
-          </p>
-        </header>
+          <ConfirmForm>
+            <InputGroup.Root>
+              <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" variant="large" />
+              <InputGroup.Control
+                id="email"
+                defaultValue={userEmail ? format.email(userEmail) : ''}
+                variant="large"
+                disabled
+              />
+            </InputGroup.Root>
 
-        <ConfirmForm>
-          <InputGroup.Root>
-            <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" variant="large" />
-            <InputGroup.Control
-              id="email"
-              defaultValue={userEmail ? format.email(userEmail) : ''}
-              variant="large"
-              disabled
+            <Button
+              type="button"
+              icon={faEnvelope}
+              variant="success"
+              aria-label="Reenviar e-mail"
+              onClick={() => handleSendEmail()}
+              disabled={isButtonDisabled}
             />
-          </InputGroup.Root>
 
-          <Button
-            type="button"
-            icon={faEnvelope}
-            variant="success"
-            aria-label="Reenviar e-mail"
-            onClick={() => handleSendEmail()}
-            disabled={isButtonDisabled}
-          />
-
-          <p>Se você não recebeu o e-mail podemos enviar outro dentro de 2 minutos.</p>
-        </ConfirmForm>
-      </Card>
+            <p>Se você não recebeu o e-mail podemos enviar outro dentro de 2 minutos.</p>
+          </ConfirmForm>
+        </Card>
+      </Box>
     </Container>
   )
 }
