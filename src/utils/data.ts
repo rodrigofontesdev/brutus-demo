@@ -52,6 +52,3 @@ const yearsUntilNow = (i: number) => {
 }
 
 export const YEARS = yearsUntilNow(2009)
-
-export type MonthInputType = (typeof MONTHS)[0]
-export type YearInputType = (typeof YEARS)[0]

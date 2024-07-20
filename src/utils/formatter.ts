@@ -7,12 +7,12 @@ const blurEmail = (value: string) => {
 }
 
 const price = (amount: number) => {
-  const amountFormatted = new Intl.NumberFormat('pt-BR', {
+  const formattedAmount = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(amount)
 
-  return amountFormatted
+  return formattedAmount
 }
 
 export const format = {
