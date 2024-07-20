@@ -25,13 +25,13 @@ export function Header() {
             <ButtonLink
               to="/report"
               icon={faPlus}
-              iconSize={36}
+              iconSize={40}
               aria-label="Criar novo relatório"
             />
           )}
           <Button
             icon={faUserCog}
-            iconSize={26}
+            iconSize={28}
             aria-label="Editar minha conta"
             onClick={openDrawer}
           />
