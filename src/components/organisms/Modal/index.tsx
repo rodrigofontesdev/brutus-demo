@@ -2,16 +2,17 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Dialog from '@radix-ui/react-dialog'
 import { ReactNode } from 'react'
+import { Box } from '../../atoms/Box'
 import { Body, Close, Content, Heading, Overlay, Title } from './styles'
 
 type ModalProps = {
   title: string
   children: ReactNode
-  disableCloseButton?: boolean
+  hideCloseButton?: boolean
   disableOutsideClick?: boolean
 }
 
-export function Modal({ title, disableCloseButton, disableOutsideClick, children }: ModalProps) {
+export function Modal({ title, hideCloseButton, disableOutsideClick, children }: ModalProps) {
   return (
     <Dialog.Portal>
       <Overlay />
@@ -22,18 +23,21 @@ export function Modal({ title, disableCloseButton, disableOutsideClick, children
         onEscapeKeyDown={disableOutsideClick ? (e) => e.preventDefault() : undefined}
       >
         <Content>
-          <Heading>
-            <Title asChild>
-              <h3>{title}</h3>
-            </Title>
-            {!disableCloseButton && (
-              <Close>
-                <FontAwesomeIcon icon={faXmark} fontSize={26} />
-              </Close>
-            )}
-          </Heading>
+          <Box>
+            <Heading>
+              <Title asChild>
+                <h3>{title}</h3>
+              </Title>
 
-          <Body>{children}</Body>
+              {!hideCloseButton && (
+                <Close>
+                  <FontAwesomeIcon icon={faXmark} fontSize={26} />
+                </Close>
+              )}
+            </Heading>
+
+            <Body>{children}</Body>
+          </Box>
         </Content>
       </Dialog.Content>
     </Dialog.Portal>
