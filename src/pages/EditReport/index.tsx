@@ -1,62 +1,32 @@
-import { faFloppyDisk, faPrint } from '@fortawesome/free-solid-svg-icons'
-import { ChangeEvent, useState } from 'react'
+import { faPrint } from '@fortawesome/free-solid-svg-icons'
+import { useContext } from 'react'
 import { Box } from '../../components/atoms/Box'
 import { Button } from '../../components/atoms/Button'
 import { InputGroup } from '../../components/molecules/InputGroup'
-import { format } from '../../utils/formatter'
-import {
-  EntrepreneurInfo,
-  MainStyle,
-  Report,
-  ReportBody,
-  ReportBodyItem,
-  ReportHeading,
-  ReportTotal,
-  Total,
-  TotalHeading,
-} from './styles'
-
-type Period = {
-  month: number
-  year: number
-}
-
-type MonthlyGrossRevenue = {
-  tradeWithoutInvoice?: number
-  tradeWithInvoice?: number
-  industryWithoutInvoice?: number
-  industryWithInvoice?: number
-  servicesWithoutInvoice?: number
-  servicesWithInvoice?: number
-}
+import { Total } from '../../components/molecules/Total'
+import { ReportContext } from '../../contexts/ReportContext'
+import { toastify } from '../../hooks/useToastify'
+import { ReportItem } from './components/ReportItem'
+import { Entrepreneur, MainStyle, Report, ReportBody, ReportHeading } from './styles'
 
 export function EditReport() {
-  const [grossRevenue, setGrossRevenue] = useState<MonthlyGrossRevenue>({
-    tradeWithoutInvoice: 0,
-    tradeWithInvoice: 0,
-    industryWithoutInvoice: 0,
-    industryWithInvoice: 0,
-    servicesWithoutInvoice: 0,
-    servicesWithInvoice: 0,
-  })
-  const total = Object.values(grossRevenue).reduce((acc, amount) => {
-    acc += amount
+  const { grossIncome, total } = useContext(ReportContext)
 
-    return acc
-  }, 0)
-
-  function handleAmountChange({ ...data }: MonthlyGrossRevenue) {
-    const updatedGrossRevenue = {
-      ...grossRevenue,
-      ...data,
-    }
-
-    setGrossRevenue(updatedGrossRevenue)
+  async function handleUpdateReport() {
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          toastify('Relatório atualizado com sucesso.', 'success', {
+            position: 'top-center',
+          })
+        )
+      }, 1000)
+    })
   }
 
   return (
     <MainStyle>
-      <EntrepreneurInfo>
+      <Entrepreneur>
         <h1>
           Período de apuração <span>Junho/2024</span>
         </h1>
@@ -80,210 +50,43 @@ export function EditReport() {
           <InputGroup.Label inputId="date" text="Data" />
           <InputGroup.Control id="date" value="20/07/2024" readOnly />
         </InputGroup.Root>
-      </EntrepreneurInfo>
+      </Entrepreneur>
 
       <Box>
         <Report>
           <ReportHeading>
             <h2>Editar Relatório</h2>
+
             <Button icon={faPrint} aria-label="Imprimir relatório" />
           </ReportHeading>
 
           <ReportBody>
-            <ReportBodyItem>
-              <h3>Comércio</h3>
+            <ReportItem
+              category="trade"
+              title="Comércio"
+              withInvoiceAmount={grossIncome.trade.withInvoice}
+              withoutInvoiceAmount={grossIncome.trade.withoutInvoice}
+              subtotal={grossIncome.trade.withInvoice + grossIncome.trade.withoutInvoice}
+            />
 
-              <InputGroup.Root>
-                <InputGroup.Label inputId="tradeWithoutInvoice" text="Sem nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="tradeWithoutInvoice"
-                  defaultValue={format.price(grossRevenue.tradeWithoutInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      tradeWithoutInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
+            <ReportItem
+              category="industry"
+              title="Indústria"
+              withInvoiceAmount={grossIncome.industry.withInvoice}
+              withoutInvoiceAmount={grossIncome.industry.withoutInvoice}
+              subtotal={grossIncome.industry.withInvoice + grossIncome.industry.withoutInvoice}
+            />
 
-              <InputGroup.Root>
-                <InputGroup.Label inputId="tradeWithInvoice" text="Com nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="tradeWithInvoice"
-                  defaultValue={format.price(grossRevenue.tradeWithInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      tradeWithInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
-
-              <InputGroup.Root>
-                <InputGroup.Label text="Total das receitas">
-                  <input
-                    type="text"
-                    name="tradeSubtotal"
-                    value={format.price(
-                      grossRevenue.tradeWithoutInvoice! + grossRevenue.tradeWithInvoice!
-                    )}
-                    readOnly
-                  />
-                </InputGroup.Label>
-              </InputGroup.Root>
-            </ReportBodyItem>
-
-            <ReportBodyItem>
-              <h3>Indústria</h3>
-
-              <InputGroup.Root>
-                <InputGroup.Label inputId="industryWithoutInvoice" text="Sem nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="industryWithoutInvoice"
-                  defaultValue={format.price(grossRevenue.industryWithoutInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      industryWithoutInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
-
-              <InputGroup.Root>
-                <InputGroup.Label inputId="industryWithInvoice" text="Com nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="industryWithInvoice"
-                  defaultValue={format.price(grossRevenue.industryWithInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      industryWithInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
-
-              <InputGroup.Root>
-                <InputGroup.Label text="Total das receitas">
-                  <input
-                    type="text"
-                    name="industrySubtotal"
-                    value={format.price(
-                      grossRevenue.industryWithoutInvoice! + grossRevenue.industryWithInvoice!
-                    )}
-                    readOnly
-                  />
-                </InputGroup.Label>
-              </InputGroup.Root>
-            </ReportBodyItem>
-
-            <ReportBodyItem>
-              <h3>Serviços</h3>
-
-              <InputGroup.Root>
-                <InputGroup.Label inputId="servicesWithoutInvoice" text="Sem nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="servicesWithoutInvoice"
-                  defaultValue={format.price(grossRevenue.servicesWithoutInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      servicesWithoutInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
-
-              <InputGroup.Root>
-                <InputGroup.Label inputId="servicesWithInvoice" text="Com nota fiscal" />
-                <InputGroup.MaskControl
-                  mask="R$ amount"
-                  blocks={{
-                    amount: {
-                      mask: Number,
-                      scale: 2,
-                      thousandsSeparator: '.',
-                      padFractionalZeros: true,
-                    },
-                  }}
-                  id="servicesWithInvoice"
-                  defaultValue={format.price(grossRevenue.servicesWithInvoice!)}
-                  onChange={(amount: ChangeEvent<HTMLInputElement>) => {
-                    handleAmountChange({
-                      servicesWithInvoice: Number(amount.target.value.replace(/\D/g, '')) / 100,
-                    })
-                  }}
-                />
-              </InputGroup.Root>
-
-              <InputGroup.Root>
-                <InputGroup.Label text="Total das receitas">
-                  <input
-                    type="text"
-                    name="servicesSubtotal"
-                    value={format.price(
-                      grossRevenue.servicesWithoutInvoice! + grossRevenue.servicesWithInvoice!
-                    )}
-                    readOnly
-                  />
-                </InputGroup.Label>
-              </InputGroup.Root>
-            </ReportBodyItem>
+            <ReportItem
+              category="services"
+              title="Serviços"
+              withInvoiceAmount={grossIncome.services.withInvoice}
+              withoutInvoiceAmount={grossIncome.services.withoutInvoice}
+              subtotal={grossIncome.services.withInvoice + grossIncome.services.withoutInvoice}
+            />
           </ReportBody>
 
-          <ReportTotal>
-            <TotalHeading>
-              <p>Total</p>
-              <p>Receitas brutas no mês</p>
-            </TotalHeading>
-            <Total>
-              <span>{format.price(total)}</span>
-            </Total>
-            <Button icon={faFloppyDisk} variant="success" aria-label="Salvar alterações" />
-          </ReportTotal>
+          <Total amount={total} onSave={() => handleUpdateReport()} />
         </Report>
       </Box>
     </MainStyle>
