@@ -12,12 +12,7 @@ export const Container = styled.div`
 `
 
 export const Card = styled.section`
-  width: 100%;
-  position: relative;
-  background-color: ${(props) => props.theme['blue-700']};
   padding: 3.125rem;
-  border-radius: 0.5rem;
-  box-shadow: ${(props) => props.theme.shadow};
 
   @media (max-width: 640px) {
     padding: 1.5625rem;
@@ -28,7 +23,6 @@ export const Card = styled.section`
     flex-direction: column;
     align-items: center;
     row-gap: 1.5625rem;
-    position: relative;
     margin-bottom: 1.5625rem;
 
     h1 {
@@ -50,18 +44,9 @@ export const Card = styled.section`
         font: ${(props) => props.theme['text-sm']};
       }
     }
-  }
 
-  header + a {
-    position: relative;
-    margin: 1.5625rem auto 0;
+    & + a {
+      margin: 1.5625rem auto 0;
+    }
   }
-`
-
-export const Overlay = styled.div`
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: rgb(0 0 0 / 12%);
-  border-radius: 0.5rem;
 `
