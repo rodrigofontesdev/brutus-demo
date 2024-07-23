@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useState } from 'react'
+import { createContext, type ReactElement, useState } from 'react'
 
 type DrawerContextProps = {
   open: boolean

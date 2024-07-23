@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, type ReactNode, useState } from 'react'
 
 export type ReportCategories = 'trade' | 'industry' | 'services'
 
@@ -35,16 +35,16 @@ export function ReportProvider({ children }: ReportProvider) {
   const [grossIncome, setGrossIncome] = useState<MonthlyGrossIncome>({
     trade: {
       withInvoice: 0,
-      withoutInvoice: 0,
+      withoutInvoice: 0
     },
     industry: {
       withInvoice: 0,
-      withoutInvoice: 0,
+      withoutInvoice: 0
     },
     services: {
       withInvoice: 0,
-      withoutInvoice: 0,
-    },
+      withoutInvoice: 0
+    }
   })
 
   function handleAmountChange({ category, amount, invoice = false }: GrossIncomeCategory) {
@@ -53,8 +53,8 @@ export function ReportProvider({ children }: ReportProvider) {
         ...grossIncome,
         trade: {
           withInvoice: invoice ? amount : grossIncome.trade.withInvoice,
-          withoutInvoice: invoice ? grossIncome.trade.withoutInvoice : amount,
-        },
+          withoutInvoice: invoice ? grossIncome.trade.withoutInvoice : amount
+        }
       })
     }
 
@@ -63,8 +63,8 @@ export function ReportProvider({ children }: ReportProvider) {
         ...grossIncome,
         industry: {
           withInvoice: invoice ? amount : grossIncome.industry.withInvoice,
-          withoutInvoice: invoice ? grossIncome.industry.withoutInvoice : amount,
-        },
+          withoutInvoice: invoice ? grossIncome.industry.withoutInvoice : amount
+        }
       })
     }
 
@@ -73,8 +73,8 @@ export function ReportProvider({ children }: ReportProvider) {
         ...grossIncome,
         services: {
           withInvoice: invoice ? amount : grossIncome.services.withInvoice,
-          withoutInvoice: invoice ? grossIncome.services.withoutInvoice : amount,
-        },
+          withoutInvoice: invoice ? grossIncome.services.withoutInvoice : amount
+        }
       })
     }
   }

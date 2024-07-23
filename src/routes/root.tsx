@@ -21,8 +21,8 @@ export const router = createBrowserRouter([
       { path: '/sign-in/invalid-link', element: <InvalidLink />, id: 'auth.invalid-link' },
       { path: '/sign-in/expired-link', element: <ExpiredLink />, id: 'auth.expired-link' },
       { path: '/sign-up', element: <SignUp />, id: 'auth.sign-up' },
-      { path: '/sign-up/confirm', element: <Confirm />, id: 'auth.confirm' },
-    ],
+      { path: '/sign-up/confirm', element: <Confirm />, id: 'auth.confirm' }
+    ]
   },
   {
     path: '/report',
@@ -30,11 +30,11 @@ export const router = createBrowserRouter([
     id: 'report',
     children: [
       { index: true, element: <NewReport />, id: 'report.new' },
-      { path: '/report/:reportId/edit', element: <EditReport />, id: 'report.edit' },
-    ],
+      { path: '/report/:reportId/edit', element: <EditReport />, id: 'report.edit' }
+    ]
   },
   {
     path: '*',
-    element: <NotFound />,
-  },
+    element: <NotFound />
+  }
 ])

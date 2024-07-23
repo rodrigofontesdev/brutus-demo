@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import { type ReactNode, createContext, useState } from 'react'
 
 type FormData = {
   [key: string]: string | number
@@ -53,7 +53,7 @@ export function MultiStepControlProvider({ children }: MultiStepControlProviderP
         countSteps,
         jumpToNextStep,
         formData,
-        saveData,
+        saveData
       }}
     >
       {children}

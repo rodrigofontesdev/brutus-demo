@@ -25,7 +25,7 @@ export const STATES = [
   { value: 'SC', label: 'Santa Catarina' },
   { value: 'SP', label: 'São Paulo' },
   { value: 'SE', label: 'Sergipe' },
-  { value: 'TO', label: 'Tocantins' },
+  { value: 'TO', label: 'Tocantins' }
 ]
 
 export const MONTHS = [
@@ -40,7 +40,7 @@ export const MONTHS = [
   { value: '09', label: 'Setembro' },
   { value: '10', label: 'Outubro' },
   { value: '11', label: 'Novembro' },
-  { value: '12', label: 'Dezembro' },
+  { value: '12', label: 'Dezembro' }
 ]
 
 const yearsUntilNow = (i: number) => {

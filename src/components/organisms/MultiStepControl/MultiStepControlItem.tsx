@@ -12,11 +12,11 @@ interface MultiStepControlItemProps {
 export function MultiStepControlItem({
   step,
   disableAnimation = false,
-  children,
+  children
 }: MultiStepControlItemProps) {
   const { currentStep, countSteps } = useMultiStepControl()
   const [animations, api] = useSpring(() => ({
-    from: { x: !disableAnimation ? '-25%' : '0%' },
+    from: { x: !disableAnimation ? '-25%' : '0%' }
   }))
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export function MultiStepControlItem({
       api.start({
         from: { x: '-25%' },
         to: { x: '0%' },
-        config: { duration: 800, easing: easings.easeOutCirc },
+        config: { duration: 800, easing: easings.easeOutCirc }
       })
     }
   }, [currentStep, disableAnimation, api])

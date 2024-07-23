@@ -12,11 +12,11 @@ type DrawerProps = {
 
 const slideIn = [
   {
-    transform: 'translateX(100%)',
+    transform: 'translateX(100%)'
   },
   {
-    transform: 'translateX(0%)',
-  },
+    transform: 'translateX(0%)'
+  }
 ]
 
 export function Drawer({ children, priority, width }: DrawerProps) {
@@ -28,7 +28,7 @@ export function Drawer({ children, priority, width }: DrawerProps) {
       const animation = innerRef.current.animate(slideIn, {
         duration: 500,
         fill: 'forwards',
-        easing: 'ease',
+        easing: 'ease'
       })
 
       await animation.finished
@@ -43,7 +43,7 @@ export function Drawer({ children, priority, width }: DrawerProps) {
         duration: 500,
         fill: 'forwards',
         direction: 'reverse',
-        easing: 'ease',
+        easing: 'ease'
       })
 
       await animation.finished
