@@ -10,7 +10,7 @@ const shrink = keyframes`
 `
 
 export const ToastifyStyle = styled.div<{ $type: ToastifyTypes }>`
-  width: 100%;
+  min-width: 356px; // sonner default width
   position: relative;
   overflow: hidden;
   padding: 1.5625rem;
