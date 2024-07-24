@@ -18,14 +18,14 @@ export function ReportCard() {
         setTimeout(() => {
           resolve(
             toastify('Baixando o relatório do período de apuração de Maio de 2024.', 'success', {
-              position: 'bottom-left',
+              position: 'top-center',
             })
           )
         }, 1000)
       })
     } catch {
       toastify('Ocorreu um problema ao baixar o relatório, tente novamente.', 'error', {
-        position: 'bottom-left',
+        position: 'top-center',
       })
     }
   }
@@ -37,7 +37,7 @@ export function ReportCard() {
 
         resolve(
           toastify('O relatório foi removido com sucesso.', 'success', {
-            position: 'bottom-left',
+            position: 'top-center',
           })
         )
       }, 1000)
