@@ -8,7 +8,7 @@ import { toastify } from '../../../hooks/useToastify'
 import { format } from '../../../utils/formatter'
 import { Card, ConfirmForm, Container, Heading } from './styles'
 
-export function Confirm() {
+export function ConfirmAccount() {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true)
   const [searchParams] = useSearchParams()
   const userEmail = searchParams.get('user')

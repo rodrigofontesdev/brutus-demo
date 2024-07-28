@@ -43,7 +43,7 @@ export function EmailStep() {
 
       await new Promise((resolve) =>
         setTimeout(() => {
-          resolve(navigate(`/sign-up/confirm?user=${data.email}`))
+          resolve(navigate(`/cadastrar/confirmar?user=${data.email}`))
         }, 1000)
       )
     } catch {

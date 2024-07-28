@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import { EditReport } from '../pages/EditReport'
 import { NewReport } from '../pages/NewReport'
 import { NotFound } from '../pages/NotFound'
-import { Confirm } from '../pages/auth/Confirm'
+import { ConfirmAccount } from '../pages/auth/ConfirmAccount'
 import { ExpiredLink } from '../pages/auth/ExpiredLink'
 import { InvalidLink } from '../pages/auth/InvalidLink'
 import { SignIn } from '../pages/auth/SignIn'
@@ -16,25 +16,24 @@ export const router = createBrowserRouter([
     element: <AuthTemplate />,
     id: 'auth',
     children: [
-      { index: true, element: <SignIn />, id: 'auth.index' },
-      { path: '/sign-in', element: <SignIn />, id: 'auth.sign-in' },
-      { path: '/sign-in/invalid-link', element: <InvalidLink />, id: 'auth.invalid-link' },
-      { path: '/sign-in/expired-link', element: <ExpiredLink />, id: 'auth.expired-link' },
-      { path: '/sign-up', element: <SignUp />, id: 'auth.sign-up' },
-      { path: '/sign-up/confirm', element: <Confirm />, id: 'auth.confirm' }
-    ]
+      { path: '/entrar', element: <SignIn />, id: 'auth.sign-in' },
+      { path: '/cadastrar', element: <SignUp />, id: 'auth.sign-up' },
+      { path: '/cadastrar/confirmar', element: <ConfirmAccount />, id: 'auth.confirm-account' },
+      { path: '/link-invalido', element: <InvalidLink />, id: 'auth.invalid-link' },
+      { path: '/link-expirado', element: <ExpiredLink />, id: 'auth.expired-link' },
+    ],
   },
   {
-    path: '/report',
+    path: '/',
     element: <PanelTemplate />,
-    id: 'report',
+    id: 'dashboard',
     children: [
       { index: true, element: <NewReport />, id: 'report.new' },
-      { path: '/report/:reportId/edit', element: <EditReport />, id: 'report.edit' }
-    ]
+      { path: '/relatorio/:id/editar', element: <EditReport />, id: 'report.edit' },
+    ],
   },
   {
     path: '*',
-    element: <NotFound />
-  }
+    element: <NotFound />,
+  },
 ])

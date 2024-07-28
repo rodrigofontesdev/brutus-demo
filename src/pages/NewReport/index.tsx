@@ -33,7 +33,7 @@ export function NewReport() {
   async function handleCreateReport() {
     await new Promise((resolve) => {
       setTimeout(() => {
-        resolve(navigate('/report/2/edit'))
+        resolve(navigate('/relatorio/2/editar'))
       }, 1000)
     })
   }

@@ -14,7 +14,7 @@ export function ExpiredLink() {
           </header>
 
           <ButtonLink
-            to="/sign-in"
+            to="/entrar"
             icon={faHome}
             variant="success"
             aria-label="Solicitar novo link"

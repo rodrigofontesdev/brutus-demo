@@ -1,6 +1,7 @@
 import { faPlus, faUserCog } from '@fortawesome/free-solid-svg-icons'
-import { Link, useMatches } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDrawer } from '../../../hooks/useDrawer'
+import { useRouter } from '../../../hooks/useRouter'
 import { Button } from '../../atoms/Button'
 import { ButtonLink } from '../../atoms/ButtonLink'
 import { AccountMenu } from '../AccountMenu'
@@ -10,24 +11,19 @@ import { Actions, HeaderStyle } from './styles'
 import logoImg from '../../../assets/brutus-logo.svg'
 
 export function Header() {
+  const { isRoute } = useRouter()
   const { openDrawer } = useDrawer()
-  const route = useMatches()[1]
 
-  if (route && route.id.includes('report.')) {
+  if (isRoute('dashboard')) {
     return (
       <HeaderStyle>
-        <Link to="/report">
+        <Link to="/">
           <img src={logoImg} alt="Brutus" width={207} height={50} />
         </Link>
 
         <Actions>
-          {route.id.includes('report.edit') && (
-            <ButtonLink
-              to="/report"
-              icon={faPlus}
-              iconSize={40}
-              aria-label="Criar novo relatório"
-            />
+          {isRoute('report.edit') && (
+            <ButtonLink to="/" icon={faPlus} iconSize={40} aria-label="Criar novo relatório" />
           )}
           <Button
             icon={faUserCog}

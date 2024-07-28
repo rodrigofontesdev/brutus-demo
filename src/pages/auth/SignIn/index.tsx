@@ -99,7 +99,7 @@ export function SignIn() {
       <Divider />
 
       <CreateAccount>
-        <Link to="/sign-up">Não tem uma conta? Clique aqui.</Link>
+        <Link to="/cadastrar">Não tem uma conta? Clique aqui.</Link>
       </CreateAccount>
     </Container>
   )

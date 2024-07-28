@@ -16,7 +16,7 @@ export function InvalidLink() {
           </header>
 
           <ButtonLink
-            to="/sign-in"
+            to="/entrar"
             icon={faHome}
             variant="success"
             aria-label="Solicitar novo link"

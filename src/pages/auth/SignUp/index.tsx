@@ -42,7 +42,7 @@ export function SignUp() {
       <Divider />
 
       <Account>
-        <Link to="/sign-in">Já possui uma conta? Clique aqui.</Link>
+        <Link to="/entrar">Já possui uma conta? Clique aqui.</Link>
       </Account>
     </Container>
   )

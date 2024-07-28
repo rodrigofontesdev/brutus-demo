@@ -54,7 +54,7 @@ export function ReportCard() {
       </Title>
 
       <Actions>
-        <Link to={`/report/1/edit`} role="button" aria-label="Ver relatório de Maio de 2024">
+        <Link to={`/relatorio/1/editar`} role="button" aria-label="Ver relatório de Maio de 2024">
           <FontAwesomeIcon icon={faEye} fontSize={24} />
         </Link>
 
