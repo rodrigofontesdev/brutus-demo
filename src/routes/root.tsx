@@ -8,7 +8,7 @@ import { InvalidLink } from '../pages/auth/InvalidLink'
 import { SignIn } from '../pages/auth/SignIn'
 import { SignUp } from '../pages/auth/SignUp'
 import { AuthTemplate } from '../templates/AuthTemplate'
-import { PanelTemplate } from '../templates/PanelTemplate'
+import { DashboardTemplate } from '../templates/DashboardTemplate'
 
 export const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <PanelTemplate />,
+    element: <DashboardTemplate />,
     id: 'dashboard',
     children: [
       { index: true, element: <NewReport />, id: 'report.new' },

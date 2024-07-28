@@ -5,19 +5,19 @@ export const AuthContainer = styled.main`
   padding: 0 1.5625rem;
 `
 
-export const PanelGrid = styled.div`
+export const DashboardGrid = styled.div`
   height: 100vh;
   display: grid;
   grid-template-columns: 21.875rem 1fr 12.5rem;
 `
 
-export const PanelCentral = styled.div`
+export const DashboardApp = styled.div`
   background-color: rgb(0 0 0 / 16%);
   padding-right: 1.5625rem;
   padding-left: 1.5625rem;
 `
 
-export const PanelContainer = styled.div`
+export const DashboardContainer = styled.div`
   max-width: 73.125rem;
   margin-right: auto;
   margin-left: auto;
