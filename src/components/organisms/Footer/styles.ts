@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 export const MainFooter = styled.footer`
-  min-height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.75rem 1.5625rem;
 `
 
-export const FooterLinks = styled.div`
+export const Links = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

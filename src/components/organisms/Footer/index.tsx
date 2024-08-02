@@ -1,12 +1,12 @@
-import { FooterLinks, MainFooter } from './styles'
+import { Links, MainFooter } from './styles'
+
+const currentYear = new Date().getFullYear()
+const appName = import.meta.env.VITE_APP_NAME
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
-  const appName = import.meta.env.VITE_APP_NAME
-
   return (
     <MainFooter>
-      <FooterLinks>
+      <Links>
         <p>
           &copy; {currentYear} - {appName}. Developed by{' '}
           <a href="https://rodrigofontes.dev" target="_blank">
@@ -21,7 +21,7 @@ export function Footer() {
         <a href="#" target="_blank">
           Termos de uso
         </a>
-      </FooterLinks>
+      </Links>
     </MainFooter>
   )
 }
