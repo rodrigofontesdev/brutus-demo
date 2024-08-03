@@ -27,6 +27,7 @@ export const defaultTheme = {
 
   white: {
     alpha: {
+      5: 'rgb(255 255 255 / 0.05)',
       20: 'rgb(255 255 255 / 0.20)',
     },
   },
@@ -45,9 +46,9 @@ export const defaultTheme = {
   },
 
   line: {
-    sm: '1',
-    md: '1.25',
-    lg: '1.625',
+    md: '1',
+    lg: '1.25',
+    xl: '1.625',
   },
 
   space: {
@@ -61,6 +62,7 @@ export const defaultTheme = {
     8: '2.5rem',
     9: '2.8125rem',
     10: '3.125rem',
+    15: '4.6875rem',
     20: '6.25rem',
     30: '9.375rem',
     40: '12.5rem',
@@ -78,6 +80,7 @@ export const defaultTheme = {
   },
 
   blur: {
+    sm: 'blur(3px)',
     md: 'blur(5px)',
   },
 
