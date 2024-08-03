@@ -13,42 +13,42 @@ export const ToastifyStyle = styled.div<{ $type: ToastifyTypes }>`
   min-width: 356px; // sonner default width
   position: relative;
   overflow: hidden;
-  padding: 1.5625rem;
-  border-radius: 0.5rem;
-  box-shadow: ${(props) => props.theme.shadow};
+  padding: ${({ theme }) => theme.space[5]};
+  border-radius: ${({ theme }) => theme.radii.md};
+  box-shadow: ${({ theme }) => theme.shadow.outer.md};
 
   ${(props) => {
     switch (props.$type) {
       case 'success':
         return css`
-          background-color: ${(props) => props.theme['green-400']};
+          background-color: ${({ theme }) => theme.green[400]};
         `
       case 'error':
         return css`
-          background-color: ${(props) => props.theme['red-400']};
+          background-color: ${({ theme }) => theme.red[400]};
         `
       default:
         return css`
-          background-color: ${(props) => props.theme['blue-400']};
+          background-color: ${({ theme }) => theme.blue[400]};
         `
     }
   }}
 `
 
 export const Message = styled.p`
-  color: ${(props) => props.theme['blue-50']};
-  font: ${(props) => props.theme['text-sm']};
+  color: ${({ theme }) => theme.blue[50]};
+  font-size: ${({ theme }) => theme.font.sm};
+  line-height: ${({ theme }) => theme.line.md};
 `
 
 export const TimerBar = styled.span<{ $duration: number }>`
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 6px;
+  height: 5px;
   display: block;
-  background-color: rgb(0 0 0 / 30%);
+  background-color: ${({ theme }) => theme.black.alpha[25]};
+  border-radius: ${({ theme }) => theme.radii.md};
   border-top-left-radius: 0;
-  border-top-right-radius: 6px;
-  border-bottom-right-radius: 6px;
-  animation: ${shrink} ${(props) => props.$duration}ms linear;
+  animation: ${shrink} ${({ $duration }) => $duration}ms linear;
 `

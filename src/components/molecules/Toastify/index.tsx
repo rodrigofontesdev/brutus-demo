@@ -12,7 +12,6 @@ export function Toastify({ message, durationInMilliseconds, type = 'default' }: 
   return (
     <ToastifyStyle $type={type}>
       <Message>{message}</Message>
-
       {durationInMilliseconds !== Infinity && <TimerBar $duration={durationInMilliseconds} />}
     </ToastifyStyle>
   )
