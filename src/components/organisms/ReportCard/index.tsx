@@ -5,9 +5,10 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toastify } from '../../../hooks/useToastify'
+import { Box } from '../../atoms/Box'
 import { ConfirmReportRemoval } from '../ConfirmReportRemoval'
 import { Modal } from '../Modal'
-import { Actions, Card, Overlay, Title } from './styles'
+import { Card, Title } from './styles'
 
 export function ReportCard() {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
@@ -45,15 +46,13 @@ export function ReportCard() {
   }
 
   return (
-    <Card>
-      <Overlay></Overlay>
+    <Box>
+      <Card>
+        <Title>
+          <h3>Maio/2024</h3>
+          <p>R$ 6.250,00</p>
+        </Title>
 
-      <Title>
-        <h3>Maio/2024</h3>
-        <p>R$ 6.250,00</p>
-      </Title>
-
-      <Actions>
         <Link to={`/relatorio/1/editar`} role="button" aria-label="Ver relatório de Maio de 2024">
           <FontAwesomeIcon icon={faEye} fontSize={24} />
         </Link>
@@ -81,7 +80,7 @@ export function ReportCard() {
             />
           </Modal>
         </Dialog.Root>
-      </Actions>
-    </Card>
+      </Card>
+    </Box>
   )
 }

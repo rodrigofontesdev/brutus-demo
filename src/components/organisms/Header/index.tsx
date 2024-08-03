@@ -14,16 +14,22 @@ export function Header() {
   const { isRoute } = useRouter()
   const { openDrawer } = useDrawer()
 
-  if (isRoute('dashboard')) {
-    return (
-      <HeaderStyle>
-        <Link to="/">
-          <img src={logoImg} alt="Brutus" width={207} height={50} />
-        </Link>
+  return (
+    <HeaderStyle>
+      <Link to="/">
+        <img src={logoImg} alt="Brutus" width={207} height={50} />
+      </Link>
 
+      {isRoute('dashboard') && (
         <Actions>
           {isRoute('report.edit') && (
-            <ButtonLink to="/" icon={faPlus} iconSize={40} aria-label="Criar novo relatório" />
+            <ButtonLink
+              to="/"
+              icon={faPlus}
+              iconSize={40}
+              aria-label="Criar novo relatório"
+              role="button"
+            />
           )}
           <Button
             icon={faUserCog}
@@ -31,20 +37,12 @@ export function Header() {
             aria-label="Editar minha conta"
             onClick={openDrawer}
           />
+
+          <Drawer>
+            <AccountMenu />
+          </Drawer>
         </Actions>
-
-        <Drawer>
-          <AccountMenu />
-        </Drawer>
-      </HeaderStyle>
-    )
-  }
-
-  return (
-    <HeaderStyle>
-      <Link to="/">
-        <img src={logoImg} alt="Brutus" width={207} height={50} />
-      </Link>
+      )}
     </HeaderStyle>
   )
 }

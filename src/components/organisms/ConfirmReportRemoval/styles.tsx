@@ -3,15 +3,16 @@ import styled from 'styled-components'
 export const ConfirmReportRemovalStyle = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 1.5625rem;
+  row-gap: ${({ theme }) => theme.space[5]};
 
   > p {
-    font: ${(props) => props.theme['text-sm']};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
   }
 `
 
 export const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
-  column-gap: 1.5625rem;
+  column-gap: ${({ theme }) => theme.space[5]};
 `

@@ -5,14 +5,18 @@ export const TimelineStyle = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 0.625rem;
-  background-color: rgb(0 0 0 / 25%);
-  padding: 3.125rem 1.5625rem 4.6875rem;
+  row-gap: ${({ theme }) => theme.space[2]};
+  background-color: ${({ theme }) => theme.black.alpha[25]};
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[15]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
   overflow-y: auto;
   scrollbar-width: none;
 
   > span {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['title-xs']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.lg};
+    font-weight: ${({ theme }) => theme.font.bold};
   }
 `

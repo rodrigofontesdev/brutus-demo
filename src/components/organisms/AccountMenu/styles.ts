@@ -3,44 +3,45 @@ import styled from 'styled-components'
 export const AccountMenuStyle = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 3.125rem;
+  row-gap: ${({ theme }) => theme.space[10]};
 `
 
 export const AccountForm = styled.form`
   display: flex;
   flex-direction: column;
-  row-gap: 1.5625rem;
+  row-gap: ${({ theme }) => theme.space[5]};
 
   h2 {
-    font: ${(props) => props.theme['title-sm']};
-    color: ${(props) => props.theme['blue-400']};
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font.xl};
   }
 `
 
 export const DeleteAccount = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 1.5625rem;
+  row-gap: ${({ theme }) => theme.space[5]};
 
   h2 {
-    font: ${(props) => props.theme['title-sm']};
-    color: ${(props) => props.theme['blue-400']};
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font.xl};
   }
 `
 
 export const DeleteAccountButton = styled.button`
   all: unset;
   width: max-content;
-  color: ${(props) => props.theme['blue-50']};
-  font: ${(props) => props.theme['text-sm']};
+  color: ${({ theme }) => theme.blue[50]};
+  font-size: ${({ theme }) => theme.font.sm};
+  line-height: ${({ theme }) => theme.line.lg};
   cursor: pointer;
-  transition: color 400ms;
+  transition: color ${({ theme }) => theme.duration.normal};
 
   &:hover {
-    color: ${(props) => props.theme['red-400']};
+    color: ${({ theme }) => theme.red[400]};
   }
 
   &:focus {
-    outline: 2px solid ${(props) => props.theme['blue-400']};
+    outline: ${({ theme }) => theme.outline.blue[400]};
   }
 `

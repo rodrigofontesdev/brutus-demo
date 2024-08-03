@@ -10,12 +10,15 @@ export const DrawerStyle = styled.section<DrawerProps>`
   top: 0;
   right: 0;
   transform: translateX(100%);
-  z-index: ${(props) => props.$priority};
-  width: ${(props) => props.$width}px;
-  height: 100vh;
-  background-color: ${(props) => props.theme['blue-700']};
-  padding: 4.6875rem 1.5625rem 3.125rem;
-  box-shadow: -4px 0 4px 0 rgb(0 0 0 / 10%);
+  z-index: ${({ $priority }) => $priority};
+  width: ${({ $width }) => $width / 16}rem;
+  height: 100%;
+  background-color: ${({ theme }) => theme.blue[700]};
+  padding-top: ${({ theme }) => theme.space[15]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
+  box-shadow: -4px 0 4px 0 ${({ theme }) => theme.black.alpha[10]};
   overflow-y: auto;
   scrollbar-width: none;
 `
@@ -23,20 +26,20 @@ export const DrawerStyle = styled.section<DrawerProps>`
 export const CloseButton = styled.button`
   all: unset;
   position: absolute;
-  top: 1.5625rem;
-  right: 1.5625rem;
+  top: ${({ theme }) => theme.space[5]};
+  right: ${({ theme }) => theme.space[5]};
   cursor: pointer;
-  transition: filter 400ms;
+  transition: filter ${({ theme }) => theme.duration.normal};
 
   &:hover {
     filter: brightness(80%);
   }
 
   &:focus {
-    outline: 2px solid ${(props) => props.theme['blue-400']};
+    outline: ${({ theme }) => theme.outline.blue[400]};
   }
 
   > svg {
-    color: ${(props) => props.theme['red-400']};
+    color: ${({ theme }) => theme.red[400]};
   }
 `
