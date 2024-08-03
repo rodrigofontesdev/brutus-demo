@@ -18,7 +18,7 @@ export const Heading = styled.div`
   p:last-of-type {
     color: ${({ theme }) => theme.blue[50]};
     font-size: ${({ theme }) => theme.font.sm};
-    line-height: ${({ theme }) => theme.line.md};
+    line-height: ${({ theme }) => theme.line.lg};
   }
 `
 
