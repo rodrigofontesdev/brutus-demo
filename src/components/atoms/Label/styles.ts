@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 
 export const LabelStyle = styled.label<{ $variant?: 'normal' | 'large' }>`
-  color: ${(props) => props.theme['blue-50']};
-  font: ${(props) =>
-    !props.$variant || props.$variant === 'normal'
-      ? props.theme['input-sm']
-      : props.theme['input']};
+  color: ${({ theme }) => theme.blue[50]};
+  font-size: ${({ $variant, theme }) => ($variant === 'normal' ? theme.font.sm : theme.font.md)};
 
   & > :first-child {
-    margin-top: 0.5rem;
+    margin-top: ${({ theme }) => theme.space[2]};
   }
 `
