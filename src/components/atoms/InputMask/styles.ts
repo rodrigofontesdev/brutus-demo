@@ -55,7 +55,7 @@ export const Prefix = styled.span<{ $variant: InputMaskVariants }>`
   }}
 
   color: ${({ theme }) => theme.blue[50]};
-  border-right: 2px solid rgb(255 255 255 / 5%);
+  border-right: 2px solid ${({ theme }) => theme.white.alpha[5]};
   pointer-events: none;
 `
 
