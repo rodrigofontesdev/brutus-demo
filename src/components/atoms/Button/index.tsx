@@ -11,10 +11,10 @@ type ButtonProps = {
   variant?: buttonVariants
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export function Button({ icon, iconSize, variant = 'default', ...rest }: ButtonProps) {
+export function Button({ icon, iconSize = 32, variant = 'default', ...rest }: ButtonProps) {
   return (
     <ButtonStyle $variant={variant} {...rest}>
-      <FontAwesomeIcon icon={icon} fontSize={iconSize ?? 32} />
+      <FontAwesomeIcon icon={icon} fontSize={iconSize} />
     </ButtonStyle>
   )
 }
