@@ -4,45 +4,47 @@ export const TotalStyle = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  gap: 1.5625rem;
+  gap: ${({ theme }) => theme.space[5]};
 `
 
 export const Heading = styled.div`
   p:first-of-type {
-    color: ${(props) => props.theme['blue-400']};
-    font: ${(props) => props.theme.title};
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font['2xl']};
+    font-weight: ${({ theme }) => theme.font.bold};
     text-transform: uppercase;
   }
 
   p:last-of-type {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.md};
   }
 `
 
 export const Amount = styled.div`
   max-width: 22.5rem;
-  height: 3.75rem;
   display: flex;
   align-items: center;
   flex-grow: 1;
   position: relative;
-  background-color: ${(props) => props.theme['blue-400']};
-  padding: 1.25rem;
-  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.blue[400]};
+  padding: ${({ theme }) => theme.space[4]};
+  border-radius: ${({ theme }) => theme.radii.md};
 
   &::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgb(255 255 255 / 20%);
-    border-radius: 0.5rem;
-    box-shadow: ${(props) => props.theme['shadow-inner']};
+    background-color: ${({ theme }) => theme.white.alpha[20]};
+    border-radius: ${({ theme }) => theme.radii.md};
+    box-shadow: ${({ theme }) => theme.shadow.inner.md};
   }
 
   span {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['title-sm']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.xl};
+    font-weight: ${({ theme }) => theme.font.bold};
     z-index: 1;
   }
 `
