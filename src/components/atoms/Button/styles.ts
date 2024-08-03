@@ -42,7 +42,7 @@ export const ButtonStyle = styled.button<{ $variant: buttonVariants }>`
           `
         default:
           return css`
-            outline: ${theme.outline.blue[400]};
+            outline: ${theme.outline.blue.alpha[30]};
           `
       }
     }}
