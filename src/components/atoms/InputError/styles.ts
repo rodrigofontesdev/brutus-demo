@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const InputErrorStyle = styled.div`
-  font: ${(props) => props.theme['input-sm']};
-  color: ${(props) => props.theme['red-400']};
+  min-height: 1.125rem;
+  color: ${({ theme }) => theme.red[400]};
+  font-size: ${({ theme }) => theme.font.sm};
 `
