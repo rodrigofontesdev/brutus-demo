@@ -11,10 +11,10 @@ type ButtonLinkProps = {
   variant?: buttonVariants
 } & LinkProps
 
-export function ButtonLink({ icon, iconSize, variant = 'default', ...rest }: ButtonLinkProps) {
+export function ButtonLink({ icon, iconSize = 32, variant = 'default', ...rest }: ButtonLinkProps) {
   return (
     <ButtonLinkStyle $variant={variant} {...rest}>
-      <FontAwesomeIcon icon={icon} fontSize={iconSize ?? 32} />
+      <FontAwesomeIcon icon={icon} fontSize={iconSize} />
     </ButtonLinkStyle>
   )
 }

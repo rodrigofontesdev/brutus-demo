@@ -8,49 +8,49 @@ export const ButtonLinkStyle = styled(Link)<{ $variant: buttonVariants }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${(props) => props.theme['blue-50']};
-  border-radius: 100%;
-  box-shadow: ${(props) => props.theme['shadow-inner']};
-  transition: filter 400ms;
+  color: ${({ theme }) => theme.blue[50]};
+  border-radius: ${({ theme }) => theme.radii.full};
+  box-shadow: ${({ theme }) => theme.shadow.inner.md};
+  transition: filter ${({ theme }) => theme.duration.normal};
 
-  ${(props) => {
-    switch (props.$variant) {
+  ${({ $variant, theme }) => {
+    switch ($variant) {
       case 'success':
         return css`
-          background-color: ${(props) => props.theme['green-400']};
+          background-color: ${theme.green[400]};
         `
       case 'error':
         return css`
-          background-color: ${(props) => props.theme['red-400']};
+          background-color: ${theme.red[400]};
         `
       default:
         return css`
-          background-color: ${(props) => props.theme['blue-400']};
+          background-color: ${theme.blue[400]};
         `
     }
   }}
 
   &:not(:disabled):focus {
-    ${(props) => {
-      switch (props.$variant) {
+    ${({ $variant, theme }) => {
+      switch ($variant) {
         case 'success':
           return css`
-            outline: ${(props) => props.theme['outline-success']};
+            background-color: ${theme.green[400]};
           `
         case 'error':
           return css`
-            outline: ${(props) => props.theme['outline-error']};
+            background-color: ${theme.red[400]};
           `
         default:
           return css`
-            outline: ${(props) => props.theme['outline']};
+            background-color: ${theme.blue[400]};
           `
       }
     }}
   }
 
   &:hover {
-    color: ${(props) => props.theme['blue-50']};
+    color: ${({ theme }) => theme.blue[50]};
     filter: brightness(80%);
   }
 
