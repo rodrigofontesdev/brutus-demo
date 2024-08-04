@@ -52,7 +52,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a:focus {
-    outline: ${({ theme }) => theme.outline.blue}
+    outline: ${({ theme }) => theme.outline.blue[400]}
   }
 
   li {
