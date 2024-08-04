@@ -18,6 +18,8 @@ export const HeaderStyle = styled.header`
   &:has(${Actions}) {
     position: relative;
     justify-content: end;
+    padding-left: 0;
+    padding-right: 0;
 
     > a {
       position: absolute;
