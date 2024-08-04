@@ -16,15 +16,18 @@ const Input = IMaskMixin<HTMLInputElement, InputProps>(({ variant, inputRef, ...
 })
 
 export const InputMask = forwardRef<HTMLInputElement, InputMaskProps>(
-  ({ id, name, autoComplete, prefix, variant, ...rest }: InputMaskProps, ref) => {
+  (
+    { id, name, prefix, autoComplete = 'off', variant = 'normal', ...rest }: InputMaskProps,
+    ref
+  ) => {
     return (
       <Container>
-        {!!prefix && <Prefix $variant={variant ?? 'normal'}>{prefix}</Prefix>}
+        {!!prefix && <Prefix $variant={variant}>{prefix}</Prefix>}
         <Input
           id={id}
           name={name ?? id}
-          autoComplete={autoComplete ?? 'off'}
-          variant={variant ?? 'normal'}
+          autoComplete={autoComplete}
+          variant={variant}
           inputRef={ref}
           {...rest}
         />

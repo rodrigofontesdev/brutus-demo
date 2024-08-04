@@ -9,15 +9,15 @@ type InputProps = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ id, name, autoComplete, prefix, variant, ...rest }: InputProps, ref) => {
+  ({ id, name, prefix, autoComplete = 'off', variant = 'normal', ...rest }: InputProps, ref) => {
     return (
       <Container>
-        {!!prefix && <Prefix $variant={variant ?? 'normal'}>{prefix}</Prefix>}
+        {!!prefix && <Prefix $variant={variant}>{prefix}</Prefix>}
         <InputStyle
           id={id}
           name={name ?? id}
-          autoComplete={autoComplete ?? 'off'}
-          $variant={variant ?? 'normal'}
+          autoComplete={autoComplete}
+          $variant={variant}
           ref={ref}
           {...rest}
         />

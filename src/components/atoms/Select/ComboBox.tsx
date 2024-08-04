@@ -19,9 +19,9 @@ type ComboBoxProps<
 >
 
 export const ComboBox = forwardRef<SelectInstance, ComboBoxProps>(
-  ({ id, name, variant, ...rest }: ComboBoxProps, ref) => {
+  ({ id, name, variant = 'normal', ...rest }: ComboBoxProps, ref) => {
     return (
-      <ComboBoxStyle $variant={variant ?? 'normal'}>
+      <ComboBoxStyle $variant={variant}>
         <Select
           id={id}
           instanceId={id}
