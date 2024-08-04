@@ -61,7 +61,7 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
       .selectControl__indicator {
         color: ${({ theme }) => theme.blue[50]};
         font-size: ${({ $variant, theme }) =>
-          $variant === 'normal' ? theme.font.md : theme.font.xl};
+          $variant === 'large' ? theme.font.xl : theme.font.md};
         padding: 0;
         margin-left: ${({ theme }) => theme.space[3]};
         cursor: pointer;
@@ -93,9 +93,9 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
 
       .selectControl__option {
         font-size: ${({ $variant, theme }) =>
-          $variant === 'normal' ? theme.font.sm : theme.font.md};
+          $variant === 'large' ? theme.font.md : theme.font.sm};
         padding: ${({ $variant, theme }) =>
-          $variant === 'normal' ? theme.space[2] : `${theme.space[3]} ${theme.space[4]}`};
+          $variant === 'large' ? `${theme.space[3]} ${theme.space[4]}` : theme.space[2]};
 
         &:hover {
           background: linear-gradient(
@@ -120,7 +120,7 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
       .selectControl__menu-notice {
         color: ${({ theme }) => theme.blue[50]};
         font-size: ${({ $variant, theme }) =>
-          $variant === 'normal' ? theme.font.sm : theme.font.md};
+          $variant === 'large' ? theme.font.md : theme.font.sm};
       }
     }
   }
