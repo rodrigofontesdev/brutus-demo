@@ -36,14 +36,17 @@ export const ButtonLinkStyle = styled(Link)<{ $variant: buttonVariants }>`
         case 'success':
           return css`
             background-color: ${theme.green[400]};
+            outline: ${theme.outline.green.alpha[30]};
           `
         case 'error':
           return css`
             background-color: ${theme.red[400]};
+            outline: ${theme.outline.red.alpha[30]};
           `
         default:
           return css`
             background-color: ${theme.blue[400]};
+            outline: ${theme.outline.blue.alpha[30]};
           `
       }
     }}
