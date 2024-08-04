@@ -4,47 +4,32 @@ export const Container = styled.div`
   max-width: 50rem;
   margin-right: auto;
   margin-left: auto;
-  padding: 6.25rem 0;
-
-  @media (max-width: 640px) {
-    padding: 3.125rem 0;
-  }
+  padding-top: ${({ theme }) => theme.space[20]};
+  padding-bottom: ${({ theme }) => theme.space[20]};
 `
 
 export const Card = styled.section`
-  width: 100%;
-  padding: 3.125rem;
-
-  @media (max-width: 640px) {
-    padding: 1.5625rem;
-  }
+  padding: ${({ theme }) => theme.space[10]};
 `
 
 export const Heading = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 1.5625rem;
-  margin-bottom: 3.125rem;
+  row-gap: ${({ theme }) => theme.space[5]};
+  margin-bottom: ${({ theme }) => theme.space[10]};
 
   h1 {
-    color: ${(props) => props.theme['blue-400']};
-    font: ${(props) => props.theme['title-lg']};
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font['3xl']};
     text-align: center;
     text-transform: uppercase;
-
-    @media (max-width: 640px) {
-      font-size: 1.875rem;
-    }
   }
 
   p {
-    font: ${(props) => props.theme.text};
+    font-size: ${({ theme }) => theme.font.md};
+    line-height: ${({ theme }) => theme.line.xl};
     text-align: center;
-
-    @media (max-width: 640px) {
-      font: ${(props) => props.theme['text-sm']};
-    }
   }
 `
 
@@ -52,21 +37,16 @@ export const ConfirmForm = styled.form`
   display: grid;
   grid-template-columns: 1fr 3.75rem;
   grid-template-rows: 1fr auto;
-  column-gap: 1.25rem;
-  row-gap: 1.5625rem;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr 3.125rem;
-    column-gap: 0.625rem;
-  }
+  column-gap: ${({ theme }) => theme.space[4]};
+  row-gap: ${({ theme }) => theme.space[5]};
 
   button {
     align-self: flex-end;
   }
 
   p {
-    font: ${(props) => props.theme['text-xs']};
-    color: ${(props) => props.theme['blue-50']};
+    font-size: ${({ theme }) => theme.font.xs};
+    color: ${({ theme }) => theme.blue[50]};
     grid-column: 1 / -1;
   }
 `

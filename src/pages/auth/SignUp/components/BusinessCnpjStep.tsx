@@ -67,7 +67,7 @@ export function BusinessCnpjStep() {
           {...register('businessCnpj')}
         />
 
-        {errors.businessCnpj && <InputGroup.Error message={errors.businessCnpj.message!} />}
+        <InputGroup.Error message={errors.businessCnpj ? errors.businessCnpj.message! : ''} />
       </InputGroup.Root>
 
       <Button

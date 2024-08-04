@@ -1,28 +1,23 @@
 import styled from 'styled-components'
 
 export const FilterByPeriod = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 3.125rem;
-  margin-bottom: 1.5625rem;
+  display: grid;
+  justify-content: end;
+  margin-top: ${({ theme }) => theme.space[10]};
+  margin-bottom: ${({ theme }) => theme.space[5]};
 
   > div {
-    min-width: 20rem;
-    flex-direction: row;
-    align-items: flex-end;
-    column-gap: 0.5rem;
-
-    > :first-child,
-    > :last-child {
-      width: 9.375rem;
-      flex-grow: 1;
-    }
+    width: 20rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    column-gap: ${({ theme }) => theme.space[2]};
   }
 `
 
 export const Cards = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 1.5625rem;
-  margin-bottom: 3.125rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: ${({ theme }) => theme.space[5]};
+  margin-bottom: ${({ theme }) => theme.space[10]};
 `

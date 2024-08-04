@@ -4,41 +4,38 @@ export const Container = styled.div`
   max-width: 42.5rem;
   margin-right: auto;
   margin-left: auto;
-  padding: 6.25rem 0;
+  padding-top: ${({ theme }) => theme.space[20]};
+  padding-bottom: ${({ theme }) => theme.space[20]};
+`
 
-  @media (max-width: 640px) {
-    padding: 3.125rem 0;
+export const Heading = styled.header`
+  display: grid;
+  gap: ${({ theme }) => theme.space[5]};
+  text-align: center;
+  padding-left: ${({ theme }) => theme.space[15]};
+  padding-right: ${({ theme }) => theme.space[15]};
+  margin-bottom: ${({ theme }) => theme.space[20]};
+
+  h1 {
+    font-size: ${({ theme }) => theme.font['2xl']};
+    text-transform: uppercase;
   }
 
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1.5625rem;
-    padding: 0 4.375rem;
-    margin-bottom: 6.25rem;
+  p {
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
+  }
 
-    @media (max-width: 640px) {
-      padding: 0;
-    }
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    margin-bottom: ${({ theme }) => theme.space[10]};
 
     h1 {
-      font: ${(props) => props.theme['title-lg']};
-      text-align: center;
-      text-transform: uppercase;
-
-      @media (max-width: 640px) {
-        font-size: 1.875rem;
-      }
+      font-size: ${({ theme }) => theme.font['3xl']};
     }
 
     p {
-      font: ${(props) => props.theme['text']};
-      text-align: center;
-
-      @media (max-width: 640px) {
-        font: ${(props) => props.theme['text-sm']};
-      }
+      font-size: ${({ theme }) => theme.font.md};
+      line-height: ${({ theme }) => theme.line.xl};
     }
   }
 `
@@ -46,23 +43,17 @@ export const Container = styled.div`
 export const FormStep = styled.form`
   display: grid;
   grid-template-columns: 1fr 3.75rem;
-  column-gap: 1.25rem;
-  margin-bottom: 3.125rem;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr 3.125rem;
-    column-gap: 0.625rem;
-  }
-
-  > button[type='submit'] {
-    margin-top: 1.75rem;
-  }
+  align-items: center;
+  column-gap: ${({ theme }) => theme.space[4]};
+  margin-bottom: ${({ theme }) => theme.space[10]};
 `
+
 export const Account = styled.div`
-  padding: 0.625rem;
   text-align: center;
+  padding: ${({ theme }) => theme.space[2]};
 
   a {
-    font: ${(props) => props.theme['text-sm']};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
   }
 `

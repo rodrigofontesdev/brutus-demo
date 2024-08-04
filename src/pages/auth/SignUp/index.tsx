@@ -6,18 +6,18 @@ import { BusinessCnpjStep } from './components/BusinessCnpjStep'
 import { CellPhoneStep } from './components/CellPhoneStep'
 import { EmailStep } from './components/EmailStep'
 import { FullNameStep } from './components/FullNameStep'
-import { Account, Container } from './styles'
+import { Account, Container, Heading } from './styles'
 
 export function SignUp() {
   return (
     <Container>
-      <header>
+      <Heading>
         <h1>Criar Conta</h1>
         <p>
           Crie sua conta grátis em três minutos, diga adeus à planilha e fique em dia com a Receita
           Federal.
         </p>
-      </header>
+      </Heading>
 
       <MultiStepControlProvider>
         <MultiStepControl.Root>

@@ -1,67 +1,50 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
-  width: 100%;
   max-width: calc(61.25rem + 3.125rem);
-  min-height: calc(100vh - 200px);
-  display: flex;
+  min-height: calc(100vh - 9.0625rem);
+  display: grid;
+  grid-template-columns: 50% 50%;
   align-items: center;
-  gap: 3.125rem;
-  padding: 3.125rem 1.5625rem;
-  margin: 0 auto;
-
-  @media (max-width: 640px) {
-    justify-content: center;
-    flex-direction: column;
-  }
+  gap: ${({ theme }) => theme.space[10]};
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export const IllustrationColumn = styled.div`
-  width: 50%;
   display: flex;
   justify-content: center;
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
 `
 
 export const MessageColumn = styled.div`
-  width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 1.5625rem;
-
-  @media (max-width: 640px) {
-    width: 100%;
-  }
+  gap: ${({ theme }) => theme.space[5]};
 
   header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5625rem;
+    gap: ${({ theme }) => theme.space[5]};
 
     h1 {
-      font: ${(props) => props.theme['title-lg']};
+      font-size: ${({ theme }) => theme.font['3xl']};
       text-align: center;
-
-      @media (max-width: 640px) {
-        font-size: 1.875rem;
-      }
     }
 
     p {
-      font: ${(props) => props.theme['text']};
+      font-size: ${({ theme }) => theme.font.md};
+      line-height: ${({ theme }) => theme.line.xl};
       text-align: center;
-
-      @media (max-width: 640px) {
-        font: ${(props) => props.theme['text-sm']};
-      }
     }
   }
 
   a {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 `

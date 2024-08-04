@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 export const CompleteProfileForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5625rem;
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[5]};
 
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
   }
 
   button {

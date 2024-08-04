@@ -50,7 +50,7 @@ export function CellPhoneStep() {
           {...register('cellPhone')}
         />
 
-        {errors.cellPhone && <InputGroup.Error message={errors.cellPhone.message!} />}
+        <InputGroup.Error message={errors.cellPhone ? errors.cellPhone.message! : ''} />
       </InputGroup.Root>
 
       <Button

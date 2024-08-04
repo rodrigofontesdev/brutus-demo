@@ -1,58 +1,60 @@
 import styled from 'styled-components'
 
 export const Card = styled.article`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3.125rem;
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[10]};
   position: relative;
-  padding: 3.125rem 1.5625rem;
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
 `
 
 export const InfoButton = styled.button`
   all: unset;
   position: absolute;
-  top: 0.9375rem;
-  right: 0.9375rem;
-  color: ${(props) => props.theme['blue-50']};
+  top: ${({ theme }) => theme.space[3]};
+  right: ${({ theme }) => theme.space[3]};
+  color: ${({ theme }) => theme.blue[50]};
   cursor: pointer;
-  transition: filter 400ms;
+  transition: filter ${({ theme }) => theme.duration.normal};
 
   &:hover > svg {
     filter: brightness(80%);
   }
 
   &:focus {
-    outline: 2px solid ${(props) => props.theme['blue-400']};
+    outline: ${({ theme }) => theme.outline.blue[400]};
   }
 `
 
 export const CardHeader = styled.header`
   h2 {
-    color: ${(props) => props.theme['blue-400']};
-    font: ${(props) => props.theme['title-sm']};
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font.xl};
   }
 
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-xs']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.xs};
   }
 `
 
 export const CardBody = styled.header`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5625rem;
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[5]};
 `
 
 export const CardFooter = styled.header`
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['title-xs']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.lg};
+    font-weight: ${({ theme }) => theme.font.bold};
   }
 
   span {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme.title};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font['2xl']};
+    font-weight: ${({ theme }) => theme.font.bold};
   }
 `

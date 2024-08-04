@@ -2,32 +2,35 @@ import styled from 'styled-components'
 
 export const HelpModal = styled.div`
   max-height: 31.25rem;
-  padding-right: 0.75rem;
+  padding-right: ${({ theme }) => theme.space[3]};
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: ${(props) => props.theme['blue-400']} ${(props) => props.theme['blue-800']};
+  scrollbar-color: ${({ theme }) => theme.blue[400]} ${({ theme }) => theme.blue[800]};
 `
 
 export const TradeHelpStyle = styled(HelpModal)`
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
-    margin-bottom: 1.5625rem;
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
+    margin-bottom: ${({ theme }) => theme.space[5]};
   }
 `
 
 export const IndustryHelpStyle = styled(HelpModal)`
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
-    margin-bottom: 1.5625rem;
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
+    margin-bottom: ${({ theme }) => theme.space[5]};
   }
 `
 
 export const ServicesHelpStyle = styled(HelpModal)`
   p {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
-    margin-bottom: 1.5625rem;
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
+    margin-bottom: ${({ theme }) => theme.space[5]};
   }
 `

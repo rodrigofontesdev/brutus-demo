@@ -43,7 +43,7 @@ export function FullNameStep() {
           {...register('fullName')}
         />
 
-        {errors.fullName && <InputGroup.Error message={errors.fullName.message!} />}
+        <InputGroup.Error message={errors.fullName ? errors.fullName.message! : ''} />
       </InputGroup.Root>
 
       <Button

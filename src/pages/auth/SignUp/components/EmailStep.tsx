@@ -63,7 +63,7 @@ export function EmailStep() {
           {...register('email')}
         />
 
-        {errors.email && <InputGroup.Error message={errors.email.message!} />}
+        <InputGroup.Error message={errors.email ? errors.email.message! : ''} />
       </InputGroup.Root>
 
       <Button

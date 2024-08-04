@@ -1,53 +1,50 @@
 import styled from 'styled-components'
 
 export const MainStyle = styled.main`
-  display: flex;
+  display: grid;
+  grid-template-columns: 22.5rem minmax(0, 42.375rem);
   justify-content: space-between;
-  margin-top: 3.125rem;
+  margin-top: ${({ theme }) => theme.space[10]};
 `
 
 export const Entrepreneur = styled.section`
-  width: 100%;
-  max-width: 22.5rem;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5625rem;
-  padding-top: 3.125rem;
+  display: grid;
+  grid-auto-rows: min-content;
+  row-gap: ${({ theme }) => theme.space[5]};
+  padding-top: ${({ theme }) => theme.space[10]};
 
   h1 {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['text-sm']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.lg};
 
     span {
       display: block;
-      color: ${(props) => props.theme['blue-400']};
-      font: ${(props) => props.theme['title']};
+      color: ${({ theme }) => theme.blue[400]};
+      font-size: ${({ theme }) => theme.font['2xl']};
     }
   }
 `
 
 export const Report = styled.section`
-  width: 42.375rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 3.125rem;
-  padding: 3.125rem;
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[10]};
+  padding: ${({ theme }) => theme.space[10]};
 `
 
 export const ReportHeading = styled.header`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
   justify-content: space-between;
   align-items: center;
 
   h2 {
-    color: ${(props) => props.theme['blue-50']};
-    font: ${(props) => props.theme['title']};
+    color: ${({ theme }) => theme.blue[50]};
+    font-size: ${({ theme }) => theme.font['2xl']};
   }
 `
 
 export const ReportBody = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5625rem;
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[5]};
 `
