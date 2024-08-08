@@ -1,42 +1,14 @@
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { Box } from '../../../components/atoms/Box'
 import { Button } from '../../../components/atoms/Button'
 import { InputGroup } from '../../../components/molecules/InputGroup'
-import { toastify } from '../../../hooks/useToastify'
+import { useConfirmAccount } from '../../../hooks/useConfirmAccount'
 import { format } from '../../../utils/formatter'
 import { Card, ConfirmForm, Container, Heading } from './styles'
 
 export function ConfirmAccount() {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true)
-  const [searchParams] = useSearchParams()
-  const userEmail = searchParams.get('user')
-
-  async function handleSendEmail() {
-    try {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(toastify('E-mail enviado, acesse sua caixa de entrada.', 'success'))
-        }, 1000)
-      })
-
-      setIsButtonDisabled(true)
-    } catch {
-      toastify('Não foi possível enviar o e-mail, tente novamente.', 'error')
-    }
-  }
-
-  useEffect(
-    function enableButton() {
-      if (isButtonDisabled) {
-        setTimeout(() => {
-          setIsButtonDisabled(false)
-        }, 60 * 2 * 1000) // after 2 minutes
-      }
-    },
-    [isButtonDisabled]
-  )
+  const { handleSendEmail, userEmail, canSendEmail } = useConfirmAccount()
+  const isButtonDisabled = !canSendEmail
 
   return (
     <Container>
@@ -66,7 +38,7 @@ export function ConfirmAccount() {
               icon={faEnvelope}
               variant="success"
               aria-label="Reenviar e-mail"
-              onClick={() => handleSendEmail()}
+              onClick={handleSendEmail}
               disabled={isButtonDisabled}
             />
 
