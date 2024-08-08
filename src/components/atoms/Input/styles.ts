@@ -44,12 +44,14 @@ export const Prefix = styled.span<{ $variant: InputVariants }>`
       case 'large':
         return css`
           font-size: ${theme.font.md};
-          padding: 0 ${theme.space[4]};
+          padding-left: ${({ theme }) => theme.space[4]};
+          padding-right: ${({ theme }) => theme.space[4]};
         `
       default:
         return css`
           font-size: ${theme.font.sm};
-          padding: 0 ${theme.space[2]};
+          padding-left: ${({ theme }) => theme.space[2]};
+          padding-right: ${({ theme }) => theme.space[2]};
         `
     }
   }}
