@@ -2,13 +2,13 @@ import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { ButtonLink } from '../../components/atoms/ButtonLink'
 import { Footer } from '../../components/organisms/Footer'
 import { Header } from '../../components/organisms/Header'
-import { Container, IllustrationColumn, MessageColumn } from './styles'
+import { Container, Heading, IllustrationColumn, MessageColumn, PageGrid } from './styles'
 
 import illustrationImg from '../../assets/404.svg'
 
 export function NotFound() {
   return (
-    <>
+    <PageGrid>
       <Header />
 
       <Container>
@@ -22,12 +22,12 @@ export function NotFound() {
         </IllustrationColumn>
 
         <MessageColumn>
-          <header>
+          <Heading>
             <h1>Página não encontrada</h1>
             <p>
               Ops! A página que você está procurando não existe ou foi desativada temporariamente.
             </p>
-          </header>
+          </Heading>
 
           <ButtonLink
             to="/"
@@ -39,6 +39,6 @@ export function NotFound() {
       </Container>
 
       <Footer />
-    </>
+    </PageGrid>
   )
 }
