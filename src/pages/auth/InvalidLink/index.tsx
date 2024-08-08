@@ -1,19 +1,19 @@
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { Box } from '../../../components/atoms/Box'
 import { ButtonLink } from '../../../components/atoms/ButtonLink'
-import { Card, Container } from './styles'
+import { Card, Container, Heading } from './styles'
 
 export function InvalidLink() {
   return (
     <Container>
       <Box>
         <Card>
-          <header>
+          <Heading>
             <h1>Link Inválido</h1>
             <p>
               Não é mais possível utilizar esse link, para continuar acessando solicite um novo.
             </p>
-          </header>
+          </Heading>
 
           <ButtonLink
             to="/entrar"
