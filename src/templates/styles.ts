@@ -1,20 +1,30 @@
 import styled from 'styled-components'
 
+export const AuthGrid = styled.div`
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  grid-template-rows: min-content 1fr min-content;
+`
+
 export const AuthContainer = styled.main`
-  min-height: calc(100vh - 200px); // minus header and footer height
-  padding: 0 1.5625rem;
+  display: grid;
+  align-items: center;
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
 `
 
 export const DashboardGrid = styled.div`
   height: 100vh;
+  height: 100svh;
   display: grid;
   grid-template-columns: 21.875rem 1fr 12.5rem;
 `
 
 export const DashboardApp = styled.div`
-  background-color: rgb(0 0 0 / 16%);
-  padding-right: 1.5625rem;
-  padding-left: 1.5625rem;
+  background-color: ${({ theme }) => theme.black.alpha[15]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
 `
 
 export const DashboardContainer = styled.div`
