@@ -10,10 +10,7 @@ export const Actions = styled.div`
 export const HeaderStyle = styled.header`
   display: grid;
   justify-content: center;
-  padding-top: ${({ theme }) => theme.space[5]};
-  padding-bottom: ${({ theme }) => theme.space[5]};
-  padding-left: ${({ theme }) => theme.space[10]};
-  padding-right: ${({ theme }) => theme.space[10]};
+  padding: ${({ theme }) => theme.space[5]};
 
   &:has(${Actions}) {
     position: relative;
