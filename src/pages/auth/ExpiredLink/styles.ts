@@ -4,37 +4,56 @@ export const Container = styled.div`
   max-width: 50rem;
   margin-right: auto;
   margin-left: auto;
-  padding-top: ${({ theme }) => theme.space[20]};
-  padding-bottom: ${({ theme }) => theme.space[20]};
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    padding-top: ${({ theme }) => theme.space[20]};
+    padding-bottom: ${({ theme }) => theme.space[20]};
+  }
 `
 
 export const Card = styled.section`
-  padding: ${({ theme }) => theme.space[10]};
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
+  padding-left: ${({ theme }) => theme.space[5]};
+  padding-right: ${({ theme }) => theme.space[5]};
 
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: ${({ theme }) => theme.space[5]};
-    margin-bottom: ${({ theme }) => theme.space[5]};
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    padding: ${({ theme }) => theme.space[10]};
+  }
+`
 
+export const Heading = styled.header`
+  display: grid;
+  row-gap: ${({ theme }) => theme.space[5]};
+  margin-bottom: ${({ theme }) => theme.space[10]};
+
+  h1 {
+    color: ${({ theme }) => theme.blue[400]};
+    font-size: ${({ theme }) => theme.font['3xl']};
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  p {
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.xl};
+    text-align: center;
+  }
+
+  + a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
     h1 {
-      color: ${({ theme }) => theme.blue[400]};
-      font-size: ${({ theme }) => theme.font['3xl']};
-      text-align: center;
-      text-transform: uppercase;
+      font-size: ${({ theme }) => theme.font['5xl']};
     }
 
     p {
       font-size: ${({ theme }) => theme.font.md};
-      line-height: ${({ theme }) => theme.line.xl};
-      text-align: center;
-    }
-
-    & + a {
-      margin-top: ${({ theme }) => theme.space[5]};
-      margin-left: auto;
-      margin-right: auto;
     }
   }
 `

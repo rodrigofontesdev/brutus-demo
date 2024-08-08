@@ -1,17 +1,17 @@
 import { faHome } from '@fortawesome/free-solid-svg-icons'
 import { Box } from '../../../components/atoms/Box'
 import { ButtonLink } from '../../../components/atoms/ButtonLink'
-import { Card, Container } from './styles'
+import { Card, Container, Heading } from './styles'
 
 export function ExpiredLink() {
   return (
     <Container>
       <Box>
         <Card>
-          <header>
+          <Heading>
             <h1>Link Expirado</h1>
             <p>O seu link encontra-se expirado, para continuar acessando solicite um novo.</p>
-          </header>
+          </Heading>
 
           <ButtonLink
             to="/entrar"
