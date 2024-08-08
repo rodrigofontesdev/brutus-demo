@@ -14,7 +14,7 @@ type ButtonLinkProps = {
 export function ButtonLink({ icon, iconSize = 32, variant = 'default', ...rest }: ButtonLinkProps) {
   return (
     <ButtonLinkStyle $variant={variant} {...rest}>
-      <FontAwesomeIcon icon={icon} fontSize={iconSize} />
+      <FontAwesomeIcon icon={icon} fontSize={`${iconSize / 16}rem`} />
     </ButtonLinkStyle>
   )
 }
