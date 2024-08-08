@@ -1,63 +1,54 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  max-width: 42.5rem;
-  margin-right: auto;
+  width: min(42.5rem, 100%);
+  padding-top: ${({ theme }) => theme.space[10]};
+  padding-bottom: ${({ theme }) => theme.space[10]};
   margin-left: auto;
-  padding: 6.25rem 0;
+  margin-right: auto;
 
-  @media (max-width: 640px) {
-    padding: 3.125rem 0;
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    padding-top: ${({ theme }) => theme.space[20]};
+    padding-bottom: ${({ theme }) => theme.space[20]};
+  }
+`
+
+export const Heading = styled.header`
+  display: grid;
+  gap: ${({ theme }) => theme.space[5]};
+  margin-bottom: ${({ theme }) => theme.space[10]};
+
+  h1 {
+    font-size: ${({ theme }) => theme.font['3xl']};
+    text-transform: uppercase;
+    text-align: center;
   }
 
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1.5625rem;
-    margin-bottom: 6.25rem;
+  p {
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.xl};
+    text-align: center;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    margin-bottom: ${({ theme }) => theme.space[20]};
 
     h1 {
-      font: ${(props) => props.theme['title-lg']};
-      text-align: center;
-      text-transform: uppercase;
-
-      @media (max-width: 640px) {
-        font-size: 1.875rem;
-      }
+      font-size: ${({ theme }) => theme.font['5xl']};
     }
 
     p {
-      font: ${(props) => props.theme['text']};
-      text-align: center;
-
-      @media (max-width: 640px) {
-        font: ${(props) => props.theme['text-sm']};
-      }
+      font-size: ${({ theme }) => theme.font.md};
     }
   }
 `
 
-export const SignInForm = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 3.75rem;
-  column-gap: 1.25rem;
-  margin-bottom: 3.125rem;
-
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr 3.125rem;
-    column-gap: 0.625rem;
-  }
-
-  > button[type='submit'] {
-    margin-top: 1.75rem;
-  }
-`
 export const CreateAccount = styled.div`
-  padding: 0.625rem;
   text-align: center;
+  padding: ${({ theme }) => theme.space[2]};
 
   a {
-    font: ${(props) => props.theme['text-sm']};
+    font-size: ${({ theme }) => theme.font.sm};
+    line-height: ${({ theme }) => theme.line.xl};
   }
 `
