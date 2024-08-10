@@ -10,7 +10,9 @@ export const Overlay = styled(Dialog.Overlay)`
 `
 
 export const Content = styled.div`
-  width: 40rem;
+  width: calc(100% - ${({ theme }) => theme.space[10]});
+  max-height: calc(100% - ${({ theme }) => theme.space[10]});
+  display: flex;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -18,19 +20,29 @@ export const Content = styled.div`
   z-index: 9999;
   background-color: ${({ theme }) => theme.blue[700]};
   border-radius: ${({ theme }) => theme.radii.md};
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    width: 40rem;
+  }
 `
 
 export const Heading = styled.div`
   display: flex;
+  flex-wrap: wrap-reverse;
   justify-content: space-between;
   align-items: center;
+  gap: ${({ theme }) => theme.space[2]};
   padding: ${({ theme }) => theme.space[5]};
   border-bottom: 1px solid ${({ theme }) => theme.white.alpha[5]};
 `
 
 export const Title = styled(Dialog.Title)`
   color: ${({ theme }) => theme.blue[400]};
-  font-size: ${({ theme }) => theme.font.xl};
+  font-size: ${({ theme }) => theme.font.lg};
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    font-size: ${({ theme }) => theme.font.xl};
+  }
 `
 
 export const Close = styled(Dialog.Close)`
@@ -49,5 +61,7 @@ export const Close = styled(Dialog.Close)`
 `
 
 export const Body = styled.div`
+  height: calc(100% - 4.6875rem); // minus header height
   padding: ${({ theme }) => theme.space[5]};
+  overflow-y: auto;
 `

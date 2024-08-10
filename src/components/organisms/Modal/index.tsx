@@ -12,34 +12,40 @@ type ModalProps = {
   disableOutsideClick?: boolean
 }
 
-export function Modal({ title, hideCloseButton, disableOutsideClick, children }: ModalProps) {
+export function Modal({
+  title,
+  children,
+  hideCloseButton = false,
+  disableOutsideClick = false,
+}: ModalProps) {
   return (
     <Dialog.Portal>
-      <Overlay />
-      <Dialog.Content
-        aria-describedby={undefined}
-        asChild
-        onPointerDownOutside={disableOutsideClick ? (e) => e.preventDefault() : undefined}
-        onEscapeKeyDown={disableOutsideClick ? (e) => e.preventDefault() : undefined}
-      >
-        <Content>
-          <Box>
-            <Heading>
-              <Title asChild>
-                <h3>{title}</h3>
-              </Title>
+      <Overlay>
+        <Dialog.Content
+          aria-describedby={undefined}
+          onPointerDownOutside={disableOutsideClick ? (e) => e.preventDefault() : undefined}
+          onEscapeKeyDown={disableOutsideClick ? (e) => e.preventDefault() : undefined}
+          asChild
+        >
+          <Content>
+            <Box>
+              <Heading>
+                <Title asChild>
+                  <h3>{title}</h3>
+                </Title>
 
-              {!hideCloseButton && (
-                <Close>
-                  <FontAwesomeIcon icon={faXmark} fontSize={28} />
-                </Close>
-              )}
-            </Heading>
+                {!hideCloseButton && (
+                  <Close>
+                    <FontAwesomeIcon icon={faXmark} fontSize="1.75rem" />
+                  </Close>
+                )}
+              </Heading>
 
-            <Body>{children}</Body>
-          </Box>
-        </Content>
-      </Dialog.Content>
+              <Body>{children}</Body>
+            </Box>
+          </Content>
+        </Dialog.Content>
+      </Overlay>
     </Dialog.Portal>
   )
 }
