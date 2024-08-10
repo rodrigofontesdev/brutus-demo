@@ -27,6 +27,7 @@ export const InputStyle = styled.input<{ $variant: InputMaskVariants }>`
 
   &::placeholder {
     color: ${({ theme }) => theme.blue[50]};
+    opacity: 1;
   }
 
   &:read-only {
