@@ -15,7 +15,7 @@ type ComboBoxProps<
   variant?: ComboBoxVariants
 } & Omit<
   Props<Option, IsMulti, Group>,
-  'instanceId' | 'classNamePrefix' | 'noOptionsMessage' | 'components'
+  'id' | 'instanceId' | 'classNamePrefix' | 'noOptionsMessage' | 'components'
 >
 
 export const ComboBox = forwardRef<SelectInstance, ComboBoxProps>(
@@ -23,7 +23,7 @@ export const ComboBox = forwardRef<SelectInstance, ComboBoxProps>(
     return (
       <ComboBoxStyle $variant={variant}>
         <Select
-          id={id}
+          inputId={id}
           instanceId={id}
           name={name ?? id}
           classNamePrefix="selectControl"
