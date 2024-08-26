@@ -20,6 +20,7 @@ export const defaultTheme = {
       15: 'rgb(0 0 0 / 0.15)',
       20: 'rgb(0 0 0 / 0.20)',
       25: 'rgb(0 0 0 / 0.25)',
+      30: 'rgb(0 0 0 / 0.30)',
       50: 'rgb(0 0 0 / 0.50)',
       75: 'rgb(0 0 0 / 0.75)',
     },
@@ -70,6 +71,7 @@ export const defaultTheme = {
     10: '3.125rem',
     15: '4.6875rem',
     20: '6.25rem',
+    25: '7.8125rem',
     30: '9.375rem',
     40: '12.5rem',
     50: '15.625rem',
@@ -119,7 +121,7 @@ export const defaultTheme = {
   },
 
   screen: {
-    md: '47.5rem',
-    lg: '85rem',
+    md: '48rem',
+    lg: '87.5rem',
   },
 } as const

@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     scrollbar-width: thin;
-    scrollbar-color: ${({ theme }) => theme.blue[700]} ${({ theme }) => theme.black.alpha[50]};
+    scrollbar-color: ${({ theme }) => `${theme.blue[700]} ${theme.black.alpha[50]}`};
   }
 
   body {
