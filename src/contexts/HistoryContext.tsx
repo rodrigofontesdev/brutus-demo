@@ -1,35 +1,33 @@
 import { createContext, ReactNode, RefObject, useRef, useState } from 'react'
 
-type DrawerContextProps = {
+type HistoryContextProps = {
   isOpen: boolean
   innerRef: RefObject<HTMLDivElement>
-  toggleVisibility: () => void
-  animateOnOpen: () => void
-  animateOnClose: () => void
+  toggleHistoryVisibility: () => void
 }
 
-type DrawerProviderProps = {
+type HistoryProviderProps = {
   children: ReactNode
 }
 
-const slideIn = [
+const bottomToUp = [
   {
-    transform: 'translateX(100%)',
+    transform: 'translateY(100%)',
   },
   {
-    transform: 'translateX(0%)',
+    transform: 'translateY(0%)',
   },
 ]
 
-export const DrawerContext = createContext({} as DrawerContextProps)
+export const HistoryContext = createContext({} as HistoryContextProps)
 
-export function DrawerProvider({ children }: DrawerProviderProps) {
+export function HistoryProvider({ children }: HistoryProviderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const innerRef = useRef<HTMLDivElement>(null)
 
   async function animateOnOpen() {
     if (innerRef.current) {
-      const animation = innerRef.current.animate(slideIn, {
+      const animation = innerRef.current.animate(bottomToUp, {
         duration: 400,
         fill: 'forwards',
         easing: 'ease',
@@ -45,7 +43,7 @@ export function DrawerProvider({ children }: DrawerProviderProps) {
 
   async function animateOnClose() {
     if (innerRef.current) {
-      const animation = innerRef.current.animate(slideIn, {
+      const animation = innerRef.current.animate(bottomToUp, {
         duration: 400,
         fill: 'forwards',
         easing: 'ease',
@@ -60,7 +58,7 @@ export function DrawerProvider({ children }: DrawerProviderProps) {
     setIsOpen(false)
   }
 
-  function toggleVisibility() {
+  function toggleHistoryVisibility() {
     if (isOpen) {
       animateOnClose()
     } else {
@@ -69,10 +67,8 @@ export function DrawerProvider({ children }: DrawerProviderProps) {
   }
 
   return (
-    <DrawerContext.Provider
-      value={{ animateOnOpen, animateOnClose, innerRef, isOpen, toggleVisibility }}
-    >
+    <HistoryContext.Provider value={{ isOpen, innerRef, toggleHistoryVisibility }}>
       {children}
-    </DrawerContext.Provider>
+    </HistoryContext.Provider>
   )
 }
