@@ -39,6 +39,7 @@ export const Card = styled.article`
 
 export const Title = styled.div`
   grid-column: 1 / -1;
+  justify-self: center;
   padding: ${({ theme }) => theme.space[10]};
 
   h3 {
@@ -50,7 +51,7 @@ export const Title = styled.div`
 
   p {
     color: ${({ theme }) => theme.blue[50]};
-    font-family: ${({ theme }) => theme.font.md};
+    font-size: ${({ theme }) => theme.font.md};
     line-height: ${({ theme }) => theme.line.xl};
     text-align: center;
   }

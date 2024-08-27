@@ -19,6 +19,7 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
     }}
 
     width: 100%;
+    min-height: auto;
     background-color: ${({ theme }) => theme.blue[400]};
     color: ${({ theme }) => theme.blue[50]};
     border: none;
@@ -52,7 +53,7 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
     }
 
     .selectControl__indicators {
-      align-items: flex-start;
+      align-items: center;
 
       .selectControl__indicator-separator {
         display: none;
@@ -89,7 +90,7 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
     .selectControl__menu-list {
       padding: 0;
       scrollbar-width: thin;
-      scrollbar-color: ${({ theme }) => theme.black.alpha[50]} ${({ theme }) => theme.blue[400]};
+      scrollbar-color: ${({ theme }) => `${theme.black.alpha[50]} ${theme.blue[400]}`};
 
       .selectControl__option {
         font-size: ${({ $variant, theme }) =>
