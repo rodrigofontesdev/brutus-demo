@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
 export const AccountMenuStyle = styled.div`
-  display: flex;
-  flex-direction: column;
+  max-width: 25rem;
+  display: grid;
   row-gap: ${({ theme }) => theme.space[10]};
+  margin-left: auto;
+  margin-right: auto;
 `
 
 export const AccountForm = styled.form`
-  display: flex;
-  flex-direction: column;
+  display: grid;
   row-gap: ${({ theme }) => theme.space[5]};
 
   h2 {
@@ -18,8 +19,7 @@ export const AccountForm = styled.form`
 `
 
 export const DeleteAccount = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
   row-gap: ${({ theme }) => theme.space[5]};
 
   h2 {
@@ -30,7 +30,7 @@ export const DeleteAccount = styled.div`
 
 export const DeleteAccountButton = styled.button`
   all: unset;
-  width: max-content;
+  width: fit-content;
   color: ${({ theme }) => theme.blue[50]};
   font-size: ${({ theme }) => theme.font.sm};
   line-height: ${({ theme }) => theme.line.lg};

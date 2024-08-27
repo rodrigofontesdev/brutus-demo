@@ -1,10 +1,8 @@
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
-import { zodResolver } from '@hookform/resolvers/zod'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
-import { Controller, useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { toastify } from '../../../hooks/useToastify'
+import { Controller } from 'react-hook-form'
+import { useProfile } from '../../../hooks/useProfile'
 import { STATES } from '../../../utils/data'
 import { Button } from '../../atoms/Button'
 import { InputGroup } from '../../molecules/InputGroup'
@@ -13,68 +11,19 @@ import { ConfirmAccountRemoval } from '../ConfirmAccountRemoval'
 import { Modal } from '../Modal'
 import { AccountForm, AccountMenuStyle, DeleteAccount, DeleteAccountButton } from './styles'
 
-const accountFormSchema = z.object({
-  fullName: z.string().trim().min(1, { message: 'O campo nome completo é obrigatório.' }),
-  email: z
-    .string()
-    .trim()
-    .toLowerCase()
-    .min(1, { message: 'O campo e-mail é obrigatório.' })
-    .email({ message: 'O e-mail é inválido.' }),
-  cellPhone: z
-    .string()
-    .min(1, { message: 'O campo celular é obrigatório.' })
-    .regex(/^\([0-9]{2}\)\s[0-9]{5}-[0-9]{4}$/i, {
-      message: 'O formato do celular é inválido.',
-    }),
-  city: z.string().trim().min(1, { message: 'O campo cidade é obrigatório.' }),
-  state: z
-    .object({ value: z.string(), label: z.string() })
-    .nullable()
-    .refine((data) => (data ? 'value' in data : false), {
-      message: 'O campo estado é obrigatório.',
-    }),
-})
-
-type AccountForm = z.infer<typeof accountFormSchema>
-
 export function AccountMenu() {
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   const {
-    handleSubmit,
+    handleUpdateAccount,
     register,
     control,
-    formState: { errors, isSubmitting, isDirty },
-  } = useForm<AccountForm>({
-    resolver: zodResolver(accountFormSchema),
-    defaultValues: {
-      fullName: 'Rodrigo Fontes Santos',
-      email: 'oi@rodrigofontes.dev',
-      cellPhone: '(11) 99988-1234',
-      city: 'Ribeirão Pires',
-      state: STATES[24],
-    },
-  })
-
-  async function handleAccountForm(data: AccountForm) {
-    if (isDirty) {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(
-            toastify('Os dados da conta foram atualizados.', 'success', {
-              position: 'top-center',
-            })
-          )
-        }, 1000)
-      })
-    }
-  }
-
+    formState: { errors, isDirty, isSubmitting },
+  } = useProfile()
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   const isSubmitButtonDisabled = isSubmitting || !isDirty
 
   return (
     <AccountMenuStyle>
-      <AccountForm onSubmit={handleSubmit(handleAccountForm)}>
+      <AccountForm onSubmit={handleUpdateAccount}>
         <h2>Dados do empreendedor</h2>
 
         <InputGroup.Root>
