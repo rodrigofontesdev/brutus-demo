@@ -10,7 +10,6 @@ const shrink = keyframes`
 `
 
 export const ToastifyStyle = styled.div<{ $type: ToastifyTypes }>`
-  min-width: 356px; // sonner default width
   position: relative;
   overflow: hidden;
   padding: ${({ theme }) => theme.space[5]};
@@ -33,6 +32,10 @@ export const ToastifyStyle = styled.div<{ $type: ToastifyTypes }>`
         `
     }
   }}
+
+  @media(min-width: ${({ theme }) => theme.screen.md}) {
+    min-width: 356px; // sonner default width
+  }
 `
 
 export const Message = styled.p`

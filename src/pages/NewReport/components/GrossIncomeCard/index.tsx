@@ -16,7 +16,7 @@ type GrossIncomeCard = {
   withoutInvoiceAmount: number
   withInvoiceAmount: number
   subtotal: number
-  help: () => ReactElement
+  help: ReactElement
 }
 
 export function GrossIncomeCard({
@@ -36,11 +36,11 @@ export function GrossIncomeCard({
         <Dialog.Root>
           <Dialog.Trigger asChild>
             <InfoButton>
-              <FontAwesomeIcon icon={faCircleInfo} fontSize={24} />
+              <FontAwesomeIcon icon={faCircleInfo} fontSize="1.5rem" />
             </InfoButton>
           </Dialog.Trigger>
 
-          <Modal title="Precisando de ajuda?">{help()}</Modal>
+          <Modal title="Precisando de ajuda?">{help}</Modal>
         </Dialog.Root>
 
         <CardHeader>

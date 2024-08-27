@@ -5,7 +5,7 @@ export const HelpModal = styled.div`
   padding-right: ${({ theme }) => theme.space[3]};
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: ${({ theme }) => theme.blue[400]} ${({ theme }) => theme.blue[800]};
+  scrollbar-color: ${({ theme }) => `${theme.blue[700]} ${theme.black.alpha[50]}`};
 `
 
 export const TradeHelpStyle = styled(HelpModal)`

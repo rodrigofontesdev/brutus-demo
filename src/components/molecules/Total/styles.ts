@@ -1,13 +1,37 @@
 import styled from 'styled-components'
 
 export const TotalStyle = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  align-items: end;
   gap: ${({ theme }) => theme.space[5]};
+
+  button {
+    position: fixed;
+    bottom: ${({ theme }) => theme.space[20]};
+    right: ${({ theme }) => theme.space[5]};
+    z-index: 25;
+  }
+
+  @media (min-width: ${({ theme }) => theme.screen.md}) {
+    button {
+      position: relative;
+      bottom: auto;
+      right: auto;
+      z-index: 0;
+    }
+  }
+
+  @media (min-width: ${({ theme }) => theme.screen.lg}) {
+    justify-content: end;
+    margin-left: auto;
+  }
 `
 
 export const Heading = styled.div`
+  flex: 1 0 auto;
+
   p:first-of-type {
     color: ${({ theme }) => theme.blue[400]};
     font-size: ${({ theme }) => theme.font['2xl']};
@@ -23,11 +47,14 @@ export const Heading = styled.div`
 `
 
 export const Amount = styled.div`
-  max-width: 22.5rem;
   display: flex;
-  align-items: center;
-  flex-grow: 1;
+  flex: 1 1 18.75rem;
+  gap: ${({ theme }) => theme.space[5]};
+`
+
+export const Input = styled.div`
   position: relative;
+  flex: 1;
   background-color: ${({ theme }) => theme.blue[400]};
   padding: ${({ theme }) => theme.space[4]};
   border-radius: ${({ theme }) => theme.radii.md};
@@ -45,6 +72,6 @@ export const Amount = styled.div`
     color: ${({ theme }) => theme.blue[50]};
     font-size: ${({ theme }) => theme.font.xl};
     font-weight: ${({ theme }) => theme.font.bold};
-    z-index: 1;
+    line-height: 0;
   }
 `

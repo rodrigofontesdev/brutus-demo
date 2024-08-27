@@ -5,12 +5,11 @@ export const CompleteProfileForm = styled.form`
   row-gap: ${({ theme }) => theme.space[5]};
 
   p {
-    color: ${({ theme }) => theme.blue[50]};
     font-size: ${({ theme }) => theme.font.sm};
-    line-height: ${({ theme }) => theme.line.lg};
+    line-height: ${({ theme }) => theme.line.xl};
   }
 
   button {
-    margin-left: auto;
+    justify-self: end;
   }
 `

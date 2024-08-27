@@ -1,7 +1,7 @@
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
 import { format } from '../../../utils/formatter'
 import { Button } from '../../atoms/Button'
-import { Amount, Heading, TotalStyle } from './styles'
+import { Amount, Heading, Input, TotalStyle } from './styles'
 
 type TotalProps = {
   amount: number
@@ -16,14 +16,16 @@ export function Total({ amount, onSave }: TotalProps) {
         <p>Receitas brutas no mês</p>
       </Heading>
       <Amount>
-        <span>{format.price(amount / 100)}</span>
+        <Input>
+          <span>{format.price(amount / 100)}</span>
+        </Input>
+        <Button
+          icon={faFloppyDisk}
+          variant="success"
+          aria-label="Salvar relatório"
+          onClick={onSave}
+        />
       </Amount>
-      <Button
-        icon={faFloppyDisk}
-        variant="success"
-        aria-label="Salvar relatório"
-        onClick={onSave}
-      />
     </TotalStyle>
   )
 }

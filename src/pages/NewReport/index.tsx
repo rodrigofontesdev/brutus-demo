@@ -1,34 +1,22 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { SelectGroup } from '../../components/molecules/SelectGroup'
 import { Total } from '../../components/molecules/Total'
 import { ReportContext } from '../../contexts/ReportContext'
-import { MONTHS, YEARS } from '../../utils/data'
+import { useViewport } from '../../hooks/useViewport'
 import { CompleteProfileModal } from './components/CompleteProfileModal'
+import { FilterByPeriod } from './components/FilterByPeriod'
 import { GrossIncomeCard } from './components/GrossIncomeCard'
 import { IndustryHelp } from './components/Help/IndustryHelp'
 import { ServicesHelp } from './components/Help/ServicesHelp'
 import { TradeHelp } from './components/Help/TradeHelp'
-import { Cards, FilterByPeriod } from './styles'
-
-type Period = {
-  month: number
-  year: number
-}
-
-type SelectOption = {
-  value: string
-  label: string
-}
+import { Progress } from './components/Progress'
+import { Cards, Main, TotalWrapper } from './styles'
 
 export function NewReport() {
   const { grossIncome, total } = useContext(ReportContext)
+  const { checkViewport } = useViewport()
   const navigate = useNavigate()
-
-  const [period, setPeriod] = useState<Period>({
-    month: new Date().getMonth(),
-    year: new Date().getFullYear(),
-  })
+  const isProfileIncomplete = false
 
   async function handleCreateReport() {
     await new Promise((resolve) => {
@@ -38,57 +26,13 @@ export function NewReport() {
     })
   }
 
-  const availableMonths = () => {
-    const selectedYear = period.year
-    const currentYear = new Date().getFullYear()
-    const currentMonth = new Date().getMonth()
-
-    if (selectedYear === currentYear && currentMonth > 0) {
-      return MONTHS.filter((_, index) => index < currentMonth).reverse()
-    }
-
-    return [...MONTHS].reverse()
-  }
-
-  const availableYears = () => {
-    const currentMonth = new Date().getMonth()
-    return currentMonth === 0 ? YEARS.filter((_, index) => index > 0) : YEARS
-  }
-
-  const years = availableYears()
-  const months = availableMonths()
-  const isProfileCompleted = true
-
   return (
-    <main>
-      {!isProfileCompleted && <CompleteProfileModal />}
+    <Main>
+      {isProfileIncomplete && <CompleteProfileModal />}
 
-      <FilterByPeriod>
-        <SelectGroup.Root>
-          <SelectGroup.Label text="Período de apuração">
-            <SelectGroup.Control
-              id="period[month]"
-              placeholder="Selecionar mês"
-              options={months}
-              defaultValue={months[0]}
-              isSearchable={false}
-              onChange={(option) =>
-                setPeriod({ ...period, month: Number((option as SelectOption).value) })
-              }
-            />
-          </SelectGroup.Label>
-          <SelectGroup.Control
-            id="period[year]"
-            placeholder="Selecionar ano"
-            options={years}
-            defaultValue={years[0]}
-            isSearchable={false}
-            onChange={(option) =>
-              setPeriod({ ...period, year: Number((option as SelectOption).value) })
-            }
-          />
-        </SelectGroup.Root>
-      </FilterByPeriod>
+      <FilterByPeriod />
+
+      {(checkViewport('mobile') || checkViewport('tablet')) && <Progress />}
 
       <Cards>
         <GrossIncomeCard
@@ -98,7 +42,7 @@ export function NewReport() {
           withInvoiceAmount={grossIncome.trade.withInvoice}
           withoutInvoiceAmount={grossIncome.trade.withoutInvoice}
           subtotal={grossIncome.trade.withInvoice + grossIncome.trade.withoutInvoice}
-          help={() => <TradeHelp />}
+          help={<TradeHelp />}
         />
 
         <GrossIncomeCard
@@ -108,7 +52,7 @@ export function NewReport() {
           withInvoiceAmount={grossIncome.industry.withInvoice}
           withoutInvoiceAmount={grossIncome.industry.withoutInvoice}
           subtotal={grossIncome.industry.withInvoice + grossIncome.industry.withoutInvoice}
-          help={() => <IndustryHelp />}
+          help={<IndustryHelp />}
         />
 
         <GrossIncomeCard
@@ -118,11 +62,13 @@ export function NewReport() {
           withInvoiceAmount={grossIncome.services.withInvoice}
           withoutInvoiceAmount={grossIncome.services.withoutInvoice}
           subtotal={grossIncome.services.withInvoice + grossIncome.services.withoutInvoice}
-          help={() => <ServicesHelp />}
+          help={<ServicesHelp />}
         />
       </Cards>
 
-      <Total amount={total} onSave={() => handleCreateReport()} />
-    </main>
+      <TotalWrapper>
+        <Total amount={total} onSave={() => handleCreateReport()} />
+      </TotalWrapper>
+    </Main>
   )
 }

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const Overlay = styled(Dialog.Overlay)`
   position: fixed;
   inset: 0;
-  z-index: 9998;
+  z-index: 499;
   background-color: ${({ theme }) => theme.black.alpha[75]};
   backdrop-filter: ${({ theme }) => theme.blur.sm};
 `
@@ -17,7 +17,7 @@ export const Content = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 9999;
+  z-index: 500;
   background-color: ${({ theme }) => theme.blue[700]};
   border-radius: ${({ theme }) => theme.radii.md};
 

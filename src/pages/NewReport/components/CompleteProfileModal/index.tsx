@@ -47,6 +47,8 @@ export function CompleteProfileModal() {
   })
 
   async function handleCompleteProfile(data: CompleteProfileForm) {
+    console.log(data)
+
     if (isValid) {
       // TODO: consume API only if form is valid
       await new Promise((resolve) => {
