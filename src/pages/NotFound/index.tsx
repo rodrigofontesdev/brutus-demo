@@ -4,7 +4,7 @@ import { Footer } from '../../components/organisms/Footer'
 import { Header } from '../../components/organisms/Header'
 import { Container, Heading, IllustrationColumn, MessageColumn, PageGrid } from './styles'
 
-import illustrationImg from '../../assets/404.svg'
+import illustrationImg from '../../static/images/404.svg'
 
 export function NotFound() {
   return (

@@ -11,7 +11,7 @@ import { AccountMenu } from '../AccountMenu'
 import { Drawer } from '../Drawer'
 import { Actions, HeaderStyle } from './styles'
 
-import logoImg from '../../../assets/brutus-logo.svg'
+import logoImg from '../../../static/images/brutus-logo.svg'
 
 export function Header() {
   const { isRoute } = useRouter()
