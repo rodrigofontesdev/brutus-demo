@@ -9,13 +9,18 @@ const blurEmail = (value: string) => {
 const price = (amount: number) => {
   const formattedAmount = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
-    currency: 'BRL'
+    currency: 'BRL',
   }).format(amount)
 
   return formattedAmount
 }
 
+const digits = (value: string) => {
+  return value.replace(/[^0-9]/g, '')
+}
+
 export const format = {
   email: blurEmail,
-  price: price
+  price,
+  digits,
 }
