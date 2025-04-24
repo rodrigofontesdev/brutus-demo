@@ -52,33 +52,3 @@ export const Heading = styled.header`
     }
   }
 `
-
-export const ConfirmForm = styled.form`
-  display: grid;
-  gap: ${({ theme }) => theme.space[4]};
-
-  > button {
-    justify-self: center;
-  }
-
-  > p {
-    grid-column: 1 / -1;
-    color: ${({ theme }) => theme.blue[50]};
-    font-size: ${({ theme }) => theme.font.xs};
-    line-height: ${({ theme }) => theme.line.xl};
-    text-align: center;
-  }
-
-  @media (min-width: ${({ theme }) => theme.screen.md}) {
-    grid-template-columns: 1fr 3.75rem;
-    row-gap: ${({ theme }) => theme.space[5]};
-
-    > button {
-      align-self: end;
-    }
-
-    > p {
-      text-align: left;
-    }
-  }
-`

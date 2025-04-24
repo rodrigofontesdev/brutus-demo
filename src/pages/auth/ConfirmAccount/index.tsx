@@ -1,14 +1,12 @@
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { Box } from '../../../components/atoms/Box'
-import { Button } from '../../../components/atoms/Button'
-import { InputGroup } from '../../../components/molecules/InputGroup'
-import { useConfirmAccount } from '../../../hooks/useConfirmAccount'
-import { format } from '../../../utils/formatter'
-import { Card, ConfirmForm, Container, Heading } from './styles'
+import { Box } from '@components/atoms/Box'
+import { InputGroup } from '@components/molecules/InputGroup'
+import { format } from '@utils/formatter'
+import { useSearchParams } from 'react-router-dom'
+import { Card, Container, Heading } from './styles'
 
 export function ConfirmAccount() {
-  const { handleSendEmail, userEmail, canSendEmail } = useConfirmAccount()
-  const isButtonDisabled = !canSendEmail
+  const [searchParams] = useSearchParams()
+  const userEmail = searchParams.get('user')
 
   return (
     <Container>
@@ -22,7 +20,7 @@ export function ConfirmAccount() {
             </p>
           </Heading>
 
-          <ConfirmForm>
+          <form>
             <InputGroup.Root>
               <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" variant="large" />
               <InputGroup.Control
@@ -32,18 +30,7 @@ export function ConfirmAccount() {
                 disabled
               />
             </InputGroup.Root>
-
-            <Button
-              type="button"
-              icon={faEnvelope}
-              variant="success"
-              aria-label="Reenviar e-mail"
-              onClick={handleSendEmail}
-              disabled={isButtonDisabled}
-            />
-
-            <p>Se você não recebeu o e-mail podemos enviar outro dentro de 2 minutos.</p>
-          </ConfirmForm>
+          </form>
         </Card>
       </Box>
     </Container>
