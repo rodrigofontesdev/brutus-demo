@@ -3,6 +3,7 @@ import { authService } from '@services/AuthService'
 import { useMutation } from '@tanstack/react-query'
 import { format } from '@utils/formatter'
 import { signUpSchema } from '@validation/SignUpSchema'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
@@ -14,17 +15,18 @@ type SignUpFields = keyof SignUpForm
 
 export function useSignUp() {
   const navigate = useNavigate()
-  const { currentStep, jumpToNextStep, jumpToStep } = useMultiStepControl()
-  const { handleSubmit, register, formState, trigger, getValues, setError } = useForm<SignUpForm>({
-    mode: 'onSubmit',
-    resolver: zodResolver(signUpSchema),
-    defaultValues: {
-      businessCnpj: '',
-      fullName: '',
-      mobilePhone: '',
-      email: '',
-    },
-  })
+  const { currentStep, isLastStep, jumpToNextStep, jumpToStep } = useMultiStepControl()
+  const { handleSubmit, register, formState, trigger, getValues, setError, setFocus } =
+    useForm<SignUpForm>({
+      mode: 'onSubmit',
+      resolver: zodResolver(signUpSchema),
+      defaultValues: {
+        businessCnpj: '',
+        fullName: '',
+        mobilePhone: '',
+        email: '',
+      },
+    })
 
   const signUpRequest = useMutation({
     mutationFn: authService.signUp,
@@ -77,6 +79,12 @@ export function useSignUp() {
       mobilePhone: format.digits(mobilePhone),
     })
   })
+
+  useEffect(() => {
+    if (signUpRequest.isError) {
+      setFocus('businessCnpj')
+    }
+  }, [isLastStep])
 
   return {
     handleStepValidation,
