@@ -1,11 +1,7 @@
+import { Divider } from '@components/atoms/Divider'
+import { MultiStepControlProvider } from '@contexts/MultiStepControlContext'
 import { Link } from 'react-router-dom'
-import { Divider } from '../../../components/atoms/Divider'
-import { MultiStepControl } from '../../../components/organisms/MultiStepControl'
-import { MultiStepControlProvider } from '../../../contexts/MultiStepControlContext'
-import { BusinessCnpjStep } from './components/BusinessCnpjStep'
-import { CellPhoneStep } from './components/CellPhoneStep'
-import { EmailStep } from './components/EmailStep'
-import { FullNameStep } from './components/FullNameStep'
+import { SignUpForm } from './components/SignUpForm'
 import { Account, Container, Heading } from './styles'
 
 export function SignUp() {
@@ -20,23 +16,7 @@ export function SignUp() {
       </Heading>
 
       <MultiStepControlProvider>
-        <MultiStepControl.Root>
-          <MultiStepControl.Step step={1} disableAnimation>
-            <BusinessCnpjStep />
-          </MultiStepControl.Step>
-
-          <MultiStepControl.Step step={2}>
-            <FullNameStep />
-          </MultiStepControl.Step>
-
-          <MultiStepControl.Step step={3}>
-            <CellPhoneStep />
-          </MultiStepControl.Step>
-
-          <MultiStepControl.Step step={4}>
-            <EmailStep />
-          </MultiStepControl.Step>
-        </MultiStepControl.Root>
+        <SignUpForm />
       </MultiStepControlProvider>
 
       <Divider />
