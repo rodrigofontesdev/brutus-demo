@@ -1,7 +1,7 @@
+import { Button } from '@components/atoms/Button'
+import { InputGroup } from '@components/molecules/InputGroup'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
-import { Button } from '../../../../../components/atoms/Button'
-import { InputGroup } from '../../../../../components/molecules/InputGroup'
-import { useSignIn } from '../../../../../hooks/useSignIn'
+import { useSignIn } from '@hooks/useSignIn'
 import { Form } from './styles'
 
 export function SignInForm() {

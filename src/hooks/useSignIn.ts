@@ -1,21 +1,16 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { authService } from '@services/AuthService'
+import { useMutation } from '@tanstack/react-query'
+import { format } from '@utils/formatter'
+import { signInSchema } from '@validation/SignInSchema'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { toastify } from './useToastify'
 
-const signInSchema = z.object({
-  businessCnpj: z
-    .string()
-    .min(1, { message: 'O campo CNPJ é obrigatório.' })
-    .regex(/^[0-9a-z]{2}\.[0-9a-z]{3}\.[0-9a-z]{3}\/[0-9a-z]{4}-[0-9]{2}$/i, {
-      message: 'O formato do CNPJ é inválido.',
-    }),
-})
-
-type SignIn = z.infer<typeof signInSchema>
+type SignInForm = z.infer<typeof signInSchema>
 
 export function useSignIn() {
-  const { handleSubmit, ...methods } = useForm<SignIn>({
+  const { handleSubmit, register, formState, setError, setFocus } = useForm<SignInForm>({
     mode: 'onChange',
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -23,22 +18,27 @@ export function useSignIn() {
     },
   })
 
-  const handleSignIn = handleSubmit(signIn)
+  const signInRequest = useMutation({
+    mutationFn: authService.signIn,
+    onSuccess() {
+      toastify('O link para acessar sua conta foi enviado para o seu e-mail.', 'success')
+    },
+    onError({ response }) {
+      if (response?.data.type === 'INVALID_REQUEST_ERROR') {
+        setError('businessCnpj', { message: response.data.errors?.at(0) })
+      } else {
+        toastify(response?.data.message ?? 'Ocorreu um erro desconhecido.', 'error')
+      }
 
-  return { handleSignIn, ...methods }
-}
+      setFocus('businessCnpj')
+    },
+  })
 
-async function signIn(data: SignIn) {
-  try {
-    console.log(data)
-
-    await new Promise((resolve) => {
-      setTimeout(
-        () => resolve(toastify('O link de acesso foi enviado para o seu e-mail.', 'success')),
-        1000
-      )
+  const handleSignIn = handleSubmit(async (data: SignInForm) => {
+    await signInRequest.mutateAsync({
+      cnpj: format.digits(data.businessCnpj),
     })
-  } catch {
-    toastify('Tem certeza que digitou o CNPJ correto?', 'error')
-  }
+  })
+
+  return { handleSignIn, register, formState }
 }

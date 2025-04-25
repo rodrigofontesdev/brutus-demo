@@ -34,28 +34,32 @@ export function useSignUp() {
       navigate(`/cadastrar/confirmar?user=${data.email}`)
     },
     onError({ response }) {
-      toastify('Não foi possível criar a sua conta, verifique os seus dados!', 'error')
-      jumpToStep(1)
+      if (response?.data.type === 'INVALID_REQUEST_ERROR') {
+        toastify('Não foi possível criar a sua conta, verifique os seus dados!', 'error')
+        jumpToStep(1)
 
-      response?.data.errors?.forEach((error) => {
-        const hasText = (value: string) => error.toLowerCase().includes(value)
+        response?.data.errors?.forEach((error) => {
+          const hasText = (value: string) => error.toLowerCase().includes(value)
 
-        if (hasText('cnpj')) {
-          setError('businessCnpj', { message: error })
-        }
+          if (hasText('cnpj')) {
+            setError('businessCnpj', { message: error })
+          }
 
-        if (hasText('full name') || hasText('nome completo')) {
-          setError('fullName', { message: error })
-        }
+          if (hasText('full name') || hasText('nome completo')) {
+            setError('fullName', { message: error })
+          }
 
-        if (hasText('mobile phone') || hasText('celular')) {
-          setError('mobilePhone', { message: error })
-        }
+          if (hasText('mobile phone') || hasText('celular')) {
+            setError('mobilePhone', { message: error })
+          }
 
-        if (hasText('email') || hasText('e-mail')) {
-          setError('email', { message: error })
-        }
-      })
+          if (hasText('email') || hasText('e-mail')) {
+            setError('email', { message: error })
+          }
+        })
+      } else {
+        toastify(response?.data.message ?? 'Ocorreu um erro desconhecido.', 'error')
+      }
     },
   })
 

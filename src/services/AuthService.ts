@@ -8,6 +8,10 @@ type SignUpBody = {
   email: string
 }
 
+type SignInBody = {
+  cnpj: string
+}
+
 class AuthService {
   async signUp({ cnpj, fullName, mobilePhone, email }: SignUpBody) {
     return await api.post<User>('/sign-up', {
@@ -15,6 +19,12 @@ class AuthService {
       email,
       full_name: fullName,
       mobile_phone: mobilePhone,
+    })
+  }
+
+  async signIn({ cnpj }: SignInBody) {
+    return await api.post('/sign-in', {
+      cnpj,
     })
   }
 }

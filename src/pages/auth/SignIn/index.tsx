@@ -1,5 +1,5 @@
+import { Divider } from '@components/atoms/Divider'
 import { Link } from 'react-router-dom'
-import { Divider } from '../../../components/atoms/Divider'
 import { SignInForm } from './components/SignInForm'
 import { Container, CreateAccount, Heading } from './styles'
 
