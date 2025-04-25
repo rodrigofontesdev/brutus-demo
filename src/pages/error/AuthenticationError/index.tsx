@@ -1,9 +1,9 @@
+import { Box } from '@components/atoms/Box'
+import { ButtonLink } from '@components/atoms/ButtonLink'
 import { faHome } from '@fortawesome/free-solid-svg-icons'
-import { Box } from '../../../components/atoms/Box'
-import { ButtonLink } from '../../../components/atoms/ButtonLink'
 import { Card, Container, Heading } from './styles'
 
-export function InvalidLink() {
+export function AuthenticationError() {
   return (
     <Container>
       <Box>
@@ -11,7 +11,8 @@ export function InvalidLink() {
           <Heading>
             <h1>Link Inválido</h1>
             <p>
-              Não é mais possível utilizar esse link, para continuar acessando solicite um novo.
+              O link que você está tentando utilizar para acessar a sua conta na plataforma expirou
+              ou já foi utilizado. Para continuar acessando solicite um novo.
             </p>
           </Heading>
 
