@@ -1,13 +1,13 @@
+import { Header } from '@components/organisms/Header'
+import { History } from '@components/organisms/History'
+import { MobileMenu } from '@components/organisms/MobileMenu'
+import { Timeline } from '@components/organisms/Timeline'
+import { DrawerProvider } from '@contexts/DrawerContext'
+import { HistoryProvider } from '@contexts/HistoryContext'
+import { ReportProvider } from '@contexts/ReportContext'
+import { TimelineProvider } from '@contexts/TimelineContext'
 import { Outlet } from 'react-router-dom'
-import { Header } from '../components/organisms/Header'
-import { History } from '../components/organisms/History'
-import { MobileMenu } from '../components/organisms/MobileMenu'
-import { Timeline } from '../components/organisms/Timeline'
-import { DrawerProvider } from '../contexts/DrawerContext'
-import { ReportProvider } from '../contexts/ReportContext'
-import { TimelineProvider } from '../contexts/TimelineContext'
-import { DashboardApp, DashboardInner, DashboardContainer, DashboardGrid } from './styles'
-import { HistoryProvider } from '../contexts/HistoryContext'
+import { DashboardApp, DashboardContainer, DashboardGrid, DashboardInner } from './styles'
 
 export function DashboardTemplate() {
   return (
