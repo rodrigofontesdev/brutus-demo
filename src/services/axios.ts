@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { authService } from './AuthService'
 
 const { VITE_API_URL } = import.meta.env
 
@@ -17,7 +18,7 @@ api.interceptors.response.use(
     const { status, config } = error.response
 
     if (status === 419) {
-      await api.get(`${VITE_API_URL}/sanctum/csrf-cookie`)
+      await authService.getCsrfToken()
 
       return api(config)
     }

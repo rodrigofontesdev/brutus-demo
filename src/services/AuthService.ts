@@ -22,7 +22,13 @@ type AuthenticateResponse = {
   redirect: string
 }
 
+const { VITE_API_URL } = import.meta.env
+
 class AuthService {
+  async getCsrfToken() {
+    return await api.get(`${VITE_API_URL}/sanctum/csrf-cookie`)
+  }
+
   async signUp({ cnpj, fullName, mobilePhone, email }: SignUpBody) {
     return await api.post<User>('/sign-up', {
       cnpj,
@@ -36,6 +42,10 @@ class AuthService {
     return await api.post('/sign-in', {
       cnpj,
     })
+  }
+
+  async signOut() {
+    return await api.post('/sign-out')
   }
 
   async authenticate({ token, redirect }: AuthenticateBody) {
