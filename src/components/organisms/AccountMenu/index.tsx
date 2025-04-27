@@ -1,15 +1,22 @@
+import { Button } from '@components/atoms/Button'
+import { InputGroup } from '@components/molecules/InputGroup'
+import { SelectGroup } from '@components/molecules/SelectGroup'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+import { useProfile } from '@hooks/useProfile'
+import { useSignOut } from '@hooks/useSignOut'
 import * as Dialog from '@radix-ui/react-dialog'
+import { STATES } from '@utils/data'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
-import { useProfile } from '../../../hooks/useProfile'
-import { STATES } from '../../../utils/data'
-import { Button } from '../../atoms/Button'
-import { InputGroup } from '../../molecules/InputGroup'
-import { SelectGroup } from '../../molecules/SelectGroup'
 import { ConfirmAccountRemoval } from '../ConfirmAccountRemoval'
 import { Modal } from '../Modal'
-import { AccountForm, AccountMenuStyle, DeleteAccount, DeleteAccountButton } from './styles'
+import {
+  AccountForm,
+  AccountMenuStyle,
+  DeleteAccount,
+  DeleteAccountButton,
+  SignOutButton,
+} from './styles'
 
 export function AccountMenu() {
   const {
@@ -18,6 +25,7 @@ export function AccountMenu() {
     control,
     formState: { errors, isDirty, isSubmitting },
   } = useProfile()
+  const { handleSignOut } = useSignOut()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
   const isSubmitButtonDisabled = isSubmitting || !isDirty
 
@@ -122,6 +130,8 @@ export function AccountMenu() {
           </Modal>
         </Dialog.Root>
       </DeleteAccount>
+
+      <SignOutButton onClick={handleSignOut}>Sair da conta</SignOutButton>
     </AccountMenuStyle>
   )
 }
