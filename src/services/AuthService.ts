@@ -44,6 +44,10 @@ class AuthService {
       redirect,
     })
   }
+
+  async getAuthenticatedUser() {
+    return await api.get<User>('/me')
+  }
 }
 
 export const authService = new AuthService()
