@@ -6,10 +6,15 @@ import { DrawerProvider } from '@contexts/DrawerContext'
 import { HistoryProvider } from '@contexts/HistoryContext'
 import { ReportProvider } from '@contexts/ReportContext'
 import { TimelineProvider } from '@contexts/TimelineContext'
-import { Outlet } from 'react-router-dom'
+import { useAuth } from '@hooks/useAuth'
+import { Navigate, Outlet } from 'react-router-dom'
 import { DashboardApp, DashboardContainer, DashboardGrid, DashboardInner } from './styles'
 
 export function DashboardTemplate() {
+  const { isAuthenticated } = useAuth()
+
+  if (!isAuthenticated) return <Navigate to="/entrar" replace />
+
   return (
     <DashboardGrid>
       <TimelineProvider>

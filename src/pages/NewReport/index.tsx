@@ -21,7 +21,7 @@ export function NewReport() {
   async function handleCreateReport() {
     await new Promise((resolve) => {
       setTimeout(() => {
-        resolve(navigate('/relatorio/2/editar'))
+        resolve(navigate('/relatorio/2', { replace: true }))
       }, 1000)
     })
   }

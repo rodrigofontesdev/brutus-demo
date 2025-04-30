@@ -31,7 +31,7 @@ export function useSignUp() {
   const signUpRequest = useMutation({
     mutationFn: authService.signUp,
     onSuccess({ data }) {
-      navigate(`/cadastrar/confirmar?user=${data.email}`)
+      navigate(`/cadastrar/confirmar?user=${data.email}`, { replace: true })
     },
     onError({ response }) {
       if (response?.data.type === 'INVALID_REQUEST_ERROR') {

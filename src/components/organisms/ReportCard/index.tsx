@@ -53,7 +53,7 @@ export function ReportCard() {
           <p>R$ 6.250,00</p>
         </Title>
 
-        <Link to={`/relatorio/1/editar`} role="button" aria-label="Ver relatório de Maio de 2024">
+        <Link to={`/relatorio/1`} role="button" aria-label="Ver relatório de Maio de 2024">
           <FontAwesomeIcon icon={faEye} fontSize="1.5rem" />
         </Link>
 
