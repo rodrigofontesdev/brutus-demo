@@ -30,7 +30,7 @@ export function useProfile() {
           resolve(
             toastify('Os dados da conta foram atualizados.', 'success', {
               position: 'top-center',
-            })
+            }),
           )
         }, 1000)
       })

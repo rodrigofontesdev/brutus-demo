@@ -22,8 +22,17 @@ export function ConfirmReportRemoval({
       </p>
 
       <InputGroup.Root>
-        <InputGroup.Label text="Período de apuração" inputId="report" variant="large" />
-        <InputGroup.Control id="report" defaultValue={reportName} variant="large" readOnly />
+        <InputGroup.Label
+          text="Período de apuração"
+          inputId="report"
+          variant="large"
+        />
+        <InputGroup.Control
+          id="report"
+          defaultValue={reportName}
+          variant="large"
+          readOnly
+        />
       </InputGroup.Root>
 
       <Actions>

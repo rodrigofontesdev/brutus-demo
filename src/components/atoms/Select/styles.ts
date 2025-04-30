@@ -99,7 +99,8 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
           $variant === 'large' ? `${theme.space[3]} ${theme.space[4]}` : theme.space[2]};
 
         &:hover {
-          background: linear-gradient(
+          background:
+            linear-gradient(
               0deg,
               ${({ theme }) => theme.black.alpha[25]} 0%,
               ${({ theme }) => theme.black.alpha[25]} 100%
@@ -110,7 +111,8 @@ export const ComboBoxStyle = styled.div<{ $variant: ComboBoxVariants }>`
 
       .selectControl__option--is-focused,
       .selectControl__option--is-selected {
-        background: linear-gradient(
+        background:
+          linear-gradient(
             0deg,
             ${({ theme }) => theme.black.alpha[25]} 0%,
             ${({ theme }) => theme.black.alpha[25]} 100%

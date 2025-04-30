@@ -10,11 +10,17 @@ export function Footer() {
         &copy; {currentYear} - {appName}.
       </p>
 
-      <a href="#" target="_blank">
+      <a
+        href="#"
+        target="_blank"
+      >
         Política de privacidade
       </a>
 
-      <a href="#" target="_blank">
+      <a
+        href="#"
+        target="_blank"
+      >
         Termos de uso
       </a>
     </MainFooter>

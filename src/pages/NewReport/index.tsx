@@ -67,7 +67,10 @@ export function NewReport() {
       </Cards>
 
       <TotalWrapper>
-        <Total amount={total} onSave={() => handleCreateReport()} />
+        <Total
+          amount={total}
+          onSave={() => handleCreateReport()}
+        />
       </TotalWrapper>
     </Main>
   )

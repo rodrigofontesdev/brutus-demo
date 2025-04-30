@@ -18,9 +18,16 @@ export function SignUpForm() {
   return (
     <FormStep onSubmit={handleSignUp}>
       <MultiStepControl.Root>
-        <MultiStepControl.Step step={1} disableAnimation>
+        <MultiStepControl.Step
+          step={1}
+          disableAnimation
+        >
           <InputGroup.Root>
-            <InputGroup.Label inputId="businessCnpj" text="CNPJ" variant="large" />
+            <InputGroup.Label
+              inputId="businessCnpj"
+              text="CNPJ"
+              variant="large"
+            />
             <InputGroup.MaskControl
               mask="S1.S2.S3/S4-N1"
               blocks={{
@@ -53,7 +60,11 @@ export function SignUpForm() {
 
         <MultiStepControl.Step step={2}>
           <InputGroup.Root>
-            <InputGroup.Label inputId="fullName" text="Nome completo" variant="large" />
+            <InputGroup.Label
+              inputId="fullName"
+              text="Nome completo"
+              variant="large"
+            />
             <InputGroup.Control
               id="fullName"
               placeholder="Seu nome completo"
@@ -67,7 +78,11 @@ export function SignUpForm() {
 
         <MultiStepControl.Step step={3}>
           <InputGroup.Root>
-            <InputGroup.Label inputId="mobilePhone" text="Celular" variant="large" />
+            <InputGroup.Label
+              inputId="mobilePhone"
+              text="Celular"
+              variant="large"
+            />
             <InputGroup.MaskControl
               mask="(00) 00000-0000"
               prefix="+55"
@@ -83,7 +98,11 @@ export function SignUpForm() {
 
         <MultiStepControl.Step step={4}>
           <InputGroup.Root>
-            <InputGroup.Label inputId="email" text="E-mail" variant="large" />
+            <InputGroup.Label
+              inputId="email"
+              text="E-mail"
+              variant="large"
+            />
             <InputGroup.Control
               id="email"
               type="email"

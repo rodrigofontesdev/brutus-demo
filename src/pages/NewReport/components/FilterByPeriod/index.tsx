@@ -13,7 +13,10 @@ export function FilterByPeriod() {
   return (
     <FilterByPeriodStyle>
       <SelectGroup.Root>
-        <SelectGroup.Label inputId="period[month]" text="Período de apuração" />
+        <SelectGroup.Label
+          inputId="period[month]"
+          text="Período de apuração"
+        />
         <SelectGroup.Control
           id="period[month]"
           placeholder="Selecionar mês"

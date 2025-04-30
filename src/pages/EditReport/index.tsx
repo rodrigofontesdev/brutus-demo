@@ -24,7 +24,7 @@ export function EditReport() {
   const { grossIncome, total } = useContext(ReportContext)
   const { checkViewport } = useViewport()
   const [showReportPeriodData, setShowReportPeriodData] = useState(() =>
-    checkViewport('mobile') ? false : true
+    checkViewport('mobile') ? false : true,
   )
 
   async function handleUpdateReport() {
@@ -33,7 +33,7 @@ export function EditReport() {
         resolve(
           toastify('Relatório atualizado com sucesso.', 'success', {
             position: 'top-center',
-          })
+          }),
         )
       }, 1000)
     })
@@ -50,12 +50,18 @@ export function EditReport() {
           <button onClick={() => setShowReportPeriodData(!showReportPeriodData)}>
             {showReportPeriodData ? (
               <>
-                <FontAwesomeIcon icon={faMinus} fontSize="0.875rem" />
+                <FontAwesomeIcon
+                  icon={faMinus}
+                  fontSize="0.875rem"
+                />
                 Ocultar detalhes
               </>
             ) : (
               <>
-                <FontAwesomeIcon icon={faPlus} fontSize="0.875rem" />
+                <FontAwesomeIcon
+                  icon={faPlus}
+                  fontSize="0.875rem"
+                />
                 Mostrar detalhes
               </>
             )}
@@ -65,23 +71,51 @@ export function EditReport() {
         <EntrepreneurForm $isHidden={!showReportPeriodData}>
           <EntrepreneurFormInner>
             <InputGroup.Root>
-              <InputGroup.Label inputId="businessCnpj" text="CNPJ" />
-              <InputGroup.Control id="businessCnpj" value="48.330.554/0001-37" readOnly />
+              <InputGroup.Label
+                inputId="businessCnpj"
+                text="CNPJ"
+              />
+              <InputGroup.Control
+                id="businessCnpj"
+                value="48.330.554/0001-37"
+                readOnly
+              />
             </InputGroup.Root>
 
             <InputGroup.Root>
-              <InputGroup.Label inputId="fullName" text="Empreendedor individual" />
-              <InputGroup.Control id="fullName" value="Rodrigo Fontes Santos" readOnly />
+              <InputGroup.Label
+                inputId="fullName"
+                text="Empreendedor individual"
+              />
+              <InputGroup.Control
+                id="fullName"
+                value="Rodrigo Fontes Santos"
+                readOnly
+              />
             </InputGroup.Root>
 
             <InputGroup.Root>
-              <InputGroup.Label inputId="address" text="Local" />
-              <InputGroup.Control id="address" value="Ribeirão Pires - São Paulo" readOnly />
+              <InputGroup.Label
+                inputId="address"
+                text="Local"
+              />
+              <InputGroup.Control
+                id="address"
+                value="Ribeirão Pires - São Paulo"
+                readOnly
+              />
             </InputGroup.Root>
 
             <InputGroup.Root>
-              <InputGroup.Label inputId="date" text="Data" />
-              <InputGroup.Control id="date" value="20/07/2024" readOnly />
+              <InputGroup.Label
+                inputId="date"
+                text="Data"
+              />
+              <InputGroup.Control
+                id="date"
+                value="20/07/2024"
+                readOnly
+              />
             </InputGroup.Root>
           </EntrepreneurFormInner>
         </EntrepreneurForm>
@@ -95,7 +129,10 @@ export function EditReport() {
             {(checkViewport('tablet') ||
               checkViewport('small-desktop') ||
               checkViewport('desktop')) && (
-              <Button icon={faPrint} aria-label="Imprimir relatório" />
+              <Button
+                icon={faPrint}
+                aria-label="Imprimir relatório"
+              />
             )}
           </ReportHeading>
 
@@ -125,7 +162,10 @@ export function EditReport() {
             />
           </ReportBody>
 
-          <Total amount={total} onSave={() => handleUpdateReport()} />
+          <Total
+            amount={total}
+            onSave={() => handleUpdateReport()}
+          />
         </Report>
       </Box>
     </Main>

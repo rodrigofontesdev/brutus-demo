@@ -20,9 +20,19 @@ export function Drawer({ children, priority = 450, width = 360 }: DrawerProps) {
   }, [isOpen, animateOnOpen])
 
   return isOpen ? (
-    <DrawerStyle $priority={priority} $width={width} ref={innerRef}>
-      <CloseButton aria-label="Fechar menu" onClick={animateOnClose}>
-        <FontAwesomeIcon icon={faXmark} fontSize="1.75rem" />
+    <DrawerStyle
+      $priority={priority}
+      $width={width}
+      ref={innerRef}
+    >
+      <CloseButton
+        aria-label="Fechar menu"
+        onClick={animateOnClose}
+      >
+        <FontAwesomeIcon
+          icon={faXmark}
+          fontSize="1.75rem"
+        />
       </CloseButton>
 
       {children}

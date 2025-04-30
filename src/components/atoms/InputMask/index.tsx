@@ -12,13 +12,19 @@ type InputMaskProps = {
 type InputProps = Pick<InputMaskProps, 'variant'> & IMaskInputProps<HTMLInputElement>
 
 const Input = IMaskMixin<HTMLInputElement, InputProps>(({ variant, inputRef, ...rest }) => {
-  return <InputStyle $variant={variant!} ref={inputRef} {...rest} />
+  return (
+    <InputStyle
+      $variant={variant!}
+      ref={inputRef}
+      {...rest}
+    />
+  )
 })
 
 export const InputMask = forwardRef<HTMLInputElement, InputMaskProps>(
   (
     { id, name, prefix, autoComplete = 'off', variant = 'normal', ...rest }: InputMaskProps,
-    ref
+    ref,
   ) => {
     return (
       <Container>
@@ -33,5 +39,5 @@ export const InputMask = forwardRef<HTMLInputElement, InputMaskProps>(
         />
       </Container>
     )
-  }
+  },
 )

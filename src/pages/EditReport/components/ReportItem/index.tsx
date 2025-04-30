@@ -71,7 +71,11 @@ export function ReportItem({
 
       <InputGroup.Root>
         <InputGroup.Label text="Total das receitas">
-          <input name={`subtotal${category}`} value={format.price(subtotal / 100)} readOnly />
+          <input
+            name={`subtotal${category}`}
+            value={format.price(subtotal / 100)}
+            readOnly
+          />
         </InputGroup.Label>
       </InputGroup.Root>
     </ReportItemStyle>

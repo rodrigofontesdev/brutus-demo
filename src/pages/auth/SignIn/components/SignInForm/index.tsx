@@ -14,7 +14,11 @@ export function SignInForm() {
   return (
     <Form onSubmit={handleSignIn}>
       <InputGroup.Root>
-        <InputGroup.Label inputId="businessCnpj" text="CNPJ" variant="large" />
+        <InputGroup.Label
+          inputId="businessCnpj"
+          text="CNPJ"
+          variant="large"
+        />
         <InputGroup.MaskControl
           mask="S1.S2.S3/S4-N1"
           blocks={{

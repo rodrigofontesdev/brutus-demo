@@ -15,7 +15,10 @@ export function TitleWithSeparator({
   separator = 'both',
 }: TitleWithSeparatorProps) {
   return (
-    <TitleContainer $orientation={orientation} $size={size}>
+    <TitleContainer
+      $orientation={orientation}
+      $size={size}
+    >
       <Separator $disabled={!['both', 'left'].includes(separator)}></Separator>
       {children}
       <Separator $disabled={!['both', 'right'].includes(separator)}></Separator>

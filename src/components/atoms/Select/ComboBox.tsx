@@ -9,7 +9,7 @@ export type ComboBoxVariants = 'normal' | 'large'
 type ComboBoxProps<
   Option = unknown,
   IsMulti extends boolean = false,
-  Group extends GroupBase<Option> = GroupBase<Option>
+  Group extends GroupBase<Option> = GroupBase<Option>,
 > = {
   id: string
   variant?: ComboBoxVariants
@@ -34,5 +34,5 @@ export const ComboBox = forwardRef<SelectInstance, ComboBoxProps>(
         />
       </ComboBoxStyle>
     )
-  }
+  },
 )

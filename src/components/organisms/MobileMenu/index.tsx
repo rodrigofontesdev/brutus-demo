@@ -22,7 +22,10 @@ export function MobileMenu() {
         $isActive={isHistoryOpen}
         onClick={toggleHistoryVisibility}
       >
-        <FontAwesomeIcon icon={faFileInvoiceDollar} fontSize="2rem" />
+        <FontAwesomeIcon
+          icon={faFileInvoiceDollar}
+          fontSize="2rem"
+        />
       </ActionButton>
 
       <ActionButton
@@ -31,7 +34,10 @@ export function MobileMenu() {
         $isActive={isTimelineOpen}
         onClick={toggleTimelineVisibility}
       >
-        <FontAwesomeIcon icon={faChartLine} fontSize="2rem" />
+        <FontAwesomeIcon
+          icon={faChartLine}
+          fontSize="2rem"
+        />
       </ActionButton>
 
       <ActionButton
@@ -40,7 +46,10 @@ export function MobileMenu() {
         $isActive={isOpen}
         onClick={toggleVisibility}
       >
-        <FontAwesomeIcon icon={faUserCog} fontSize="2rem" />
+        <FontAwesomeIcon
+          icon={faUserCog}
+          fontSize="2rem"
+        />
       </ActionButton>
     </MobileMenuStyle>
   ) : (

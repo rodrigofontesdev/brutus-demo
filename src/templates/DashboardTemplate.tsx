@@ -13,7 +13,13 @@ import { DashboardApp, DashboardContainer, DashboardGrid, DashboardInner } from 
 export function DashboardTemplate() {
   const { isAuthenticated } = useAuth()
 
-  if (!isAuthenticated) return <Navigate to="/entrar" replace />
+  if (!isAuthenticated)
+    return (
+      <Navigate
+        to="/entrar"
+        replace
+      />
+    )
 
   return (
     <DashboardGrid>

@@ -7,7 +7,13 @@ import { AuthContainer, AuthGrid } from './styles'
 export function AuthTemplate() {
   const { isAuthenticated } = useAuth()
 
-  if (isAuthenticated) return <Navigate to="/" replace />
+  if (isAuthenticated)
+    return (
+      <Navigate
+        to="/"
+        replace
+      />
+    )
 
   return (
     <AuthGrid>

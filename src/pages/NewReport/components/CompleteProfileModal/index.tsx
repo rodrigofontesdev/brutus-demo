@@ -56,7 +56,7 @@ export function CompleteProfileModal() {
           resolve(
             toastify('Seu perfil foi salvo com sucesso.', 'success', {
               position: 'top-center',
-            })
+            }),
           )
         }, 1000)
       })
@@ -66,8 +66,16 @@ export function CompleteProfileModal() {
   }
 
   return (
-    <Dialog.Root open={isModalOpen} onOpenChange={setIsModalOpen} defaultOpen>
-      <Modal title="Completar perfil" hideCloseButton disableOutsideClick>
+    <Dialog.Root
+      open={isModalOpen}
+      onOpenChange={setIsModalOpen}
+      defaultOpen
+    >
+      <Modal
+        title="Completar perfil"
+        hideCloseButton
+        disableOutsideClick
+      >
         <CompleteProfileForm onSubmit={handleSubmit(handleCompleteProfile)}>
           <p>
             A palavra secreta é um item importante para manter a sua segurança, ela estará em todos
@@ -78,7 +86,11 @@ export function CompleteProfileModal() {
           </p>
 
           <InputGroup.Root>
-            <InputGroup.Label inputId="secret" text="Palavra secreta" variant="large" />
+            <InputGroup.Label
+              inputId="secret"
+              text="Palavra secreta"
+              variant="large"
+            />
             <InputGroup.Control
               id="secret"
               placeholder="Digite sua palavra secreta"
@@ -92,7 +104,11 @@ export function CompleteProfileModal() {
           <p>Para criar seu relatório mensal preencha a localidade onde você mora.</p>
 
           <InputGroup.Root>
-            <InputGroup.Label inputId="city" text="Cidade" variant="large" />
+            <InputGroup.Label
+              inputId="city"
+              text="Cidade"
+              variant="large"
+            />
             <InputGroup.Control
               id="city"
               placeholder="Sua cidade"
@@ -104,7 +120,10 @@ export function CompleteProfileModal() {
           </InputGroup.Root>
 
           <SelectGroup.Root>
-            <SelectGroup.Label text="Estado" variant="large">
+            <SelectGroup.Label
+              text="Estado"
+              variant="large"
+            >
               <Controller
                 name="state"
                 control={control}

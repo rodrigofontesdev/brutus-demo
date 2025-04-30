@@ -7,7 +7,13 @@ export function toastify(message: string, type?: ToastifyTypes, options?: Option
   const duration = options?.duration ?? 5000
 
   return toast.custom(
-    () => <Toastify message={message} type={type} durationInMilliseconds={duration} />,
-    { ...options }
+    () => (
+      <Toastify
+        message={message}
+        type={type}
+        durationInMilliseconds={duration}
+      />
+    ),
+    { ...options },
   )
 }

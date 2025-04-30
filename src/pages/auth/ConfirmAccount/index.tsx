@@ -22,7 +22,11 @@ export function ConfirmAccount() {
 
           <form>
             <InputGroup.Root>
-              <InputGroup.Label inputId="email" text="Enviamos um e-mail para:" variant="large" />
+              <InputGroup.Label
+                inputId="email"
+                text="Enviamos um e-mail para:"
+                variant="large"
+              />
               <InputGroup.Control
                 id="email"
                 defaultValue={userEmail ? format.email(userEmail) : ''}

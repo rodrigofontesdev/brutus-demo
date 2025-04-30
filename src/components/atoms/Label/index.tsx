@@ -10,7 +10,11 @@ export type LabelProps = {
 
 export function Label({ text, inputId, children, variant, ...rest }: LabelProps) {
   return (
-    <LabelStyle htmlFor={inputId} $variant={variant} {...rest}>
+    <LabelStyle
+      htmlFor={inputId}
+      $variant={variant}
+      {...rest}
+    >
       {text}
       {children}
     </LabelStyle>

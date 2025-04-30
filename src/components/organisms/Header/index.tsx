@@ -22,7 +22,12 @@ export function Header() {
   return (
     <HeaderStyle>
       <Link to="/">
-        <img src={logoImg} alt="Brutus" width={207} height={50} />
+        <img
+          src={logoImg}
+          alt="Brutus"
+          width={207}
+          height={50}
+        />
       </Link>
 
       {isRoute('dashboard') && (
@@ -38,7 +43,10 @@ export function Header() {
           )}
 
           {isRoute('report.edit') && checkViewport('mobile') ? (
-            <Button icon={faPrint} aria-label="Imprimir relatório" />
+            <Button
+              icon={faPrint}
+              aria-label="Imprimir relatório"
+            />
           ) : null}
 
           {(checkViewport('tablet') || checkViewport('small-desktop')) && (

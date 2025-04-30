@@ -44,7 +44,7 @@ export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRem
           resolve(
             toastify('Sua conta foi excluida como solicitado.', 'success', {
               position: 'top-center',
-            })
+            }),
           )
         }, 1000)
       })

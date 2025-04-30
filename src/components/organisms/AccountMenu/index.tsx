@@ -35,12 +35,22 @@ export function AccountMenu() {
         <h2>Dados do empreendedor</h2>
 
         <InputGroup.Root>
-          <InputGroup.Label inputId="businessCnpj" text="CNPJ" />
-          <InputGroup.Control id="businessCnpj" value="48.330.554/0001-37" readOnly />
+          <InputGroup.Label
+            inputId="businessCnpj"
+            text="CNPJ"
+          />
+          <InputGroup.Control
+            id="businessCnpj"
+            value="48.330.554/0001-37"
+            readOnly
+          />
         </InputGroup.Root>
 
         <InputGroup.Root>
-          <InputGroup.Label inputId="fullName" text="Nome completo" />
+          <InputGroup.Label
+            inputId="fullName"
+            text="Nome completo"
+          />
           <InputGroup.Control
             id="fullName"
             placeholder="Seu nome completo"
@@ -51,7 +61,10 @@ export function AccountMenu() {
         </InputGroup.Root>
 
         <InputGroup.Root>
-          <InputGroup.Label inputId="email" text="E-mail" />
+          <InputGroup.Label
+            inputId="email"
+            text="E-mail"
+          />
           <InputGroup.Control
             id="email"
             type="email"
@@ -63,7 +76,10 @@ export function AccountMenu() {
         </InputGroup.Root>
 
         <InputGroup.Root>
-          <InputGroup.Label inputId="cellPhone" text="Celular" />
+          <InputGroup.Label
+            inputId="cellPhone"
+            text="Celular"
+          />
           <InputGroup.MaskControl
             mask="(00) 00000-0000"
             prefix="+55"
@@ -76,8 +92,15 @@ export function AccountMenu() {
         </InputGroup.Root>
 
         <InputGroup.Root>
-          <InputGroup.Label inputId="city" text="Cidade" />
-          <InputGroup.Control id="city" placeholder="Sua cidade" {...register('city')} />
+          <InputGroup.Label
+            inputId="city"
+            text="Cidade"
+          />
+          <InputGroup.Control
+            id="city"
+            placeholder="Sua cidade"
+            {...register('city')}
+          />
 
           {errors.city && <InputGroup.Error message={errors.city.message!} />}
         </InputGroup.Root>
@@ -117,7 +140,10 @@ export function AccountMenu() {
       <DeleteAccount>
         <h2>Remover conta</h2>
 
-        <Dialog.Root open={isConfirmModalOpen} onOpenChange={setIsConfirmModalOpen}>
+        <Dialog.Root
+          open={isConfirmModalOpen}
+          onOpenChange={setIsConfirmModalOpen}
+        >
           <Dialog.Trigger asChild>
             <DeleteAccountButton>Deseja remover sua conta?</DeleteAccountButton>
           </Dialog.Trigger>

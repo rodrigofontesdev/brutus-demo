@@ -20,7 +20,7 @@ export function ReportCard() {
           resolve(
             toastify('Baixando o relatório do período de apuração de Maio de 2024.', 'success', {
               position: 'top-center',
-            })
+            }),
           )
         }, 1000)
       })
@@ -39,7 +39,7 @@ export function ReportCard() {
         resolve(
           toastify('O relatório foi removido com sucesso.', 'success', {
             position: 'top-center',
-          })
+          }),
         )
       }, 1000)
     })
@@ -53,8 +53,15 @@ export function ReportCard() {
           <p>R$ 6.250,00</p>
         </Title>
 
-        <Link to={`/relatorio/1`} role="button" aria-label="Ver relatório de Maio de 2024">
-          <FontAwesomeIcon icon={faEye} fontSize="1.5rem" />
+        <Link
+          to={`/relatorio/1`}
+          role="button"
+          aria-label="Ver relatório de Maio de 2024"
+        >
+          <FontAwesomeIcon
+            icon={faEye}
+            fontSize="1.5rem"
+          />
         </Link>
 
         <button
@@ -62,13 +69,25 @@ export function ReportCard() {
           aria-label="Baixar o relatório de Maio de 2024"
           onClick={handleDownloadReport}
         >
-          <FontAwesomeIcon icon={faCloudArrowDown} fontSize="1.5rem" />
+          <FontAwesomeIcon
+            icon={faCloudArrowDown}
+            fontSize="1.5rem"
+          />
         </button>
 
-        <Dialog.Root open={isConfirmModalOpen} onOpenChange={setIsConfirmModalOpen}>
+        <Dialog.Root
+          open={isConfirmModalOpen}
+          onOpenChange={setIsConfirmModalOpen}
+        >
           <Dialog.Trigger asChild>
-            <button type="button" aria-label="Excluir o relatório de Maio de 2024">
-              <FontAwesomeIcon icon={faTrashAlt} fontSize="1.5rem" />
+            <button
+              type="button"
+              aria-label="Excluir o relatório de Maio de 2024"
+            >
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+                fontSize="1.5rem"
+              />
             </button>
           </Dialog.Trigger>
 
