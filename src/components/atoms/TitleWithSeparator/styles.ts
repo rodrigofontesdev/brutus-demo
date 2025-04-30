@@ -21,17 +21,17 @@ export const TitleContainer = styled.div<{
       return css`
         column-gap: ${theme.space[5]};
       `
-    } else {
-      return css`
-        flex-direction: column;
-        row-gap: ${theme.space[2]};
-
-        ${Separator} {
-          width: 2px;
-          height: ${$size}px;
-        }
-      `
     }
+
+    return css`
+      flex-direction: column;
+      row-gap: ${theme.space[2]};
+
+      ${Separator} {
+        width: 2px;
+        height: ${$size}px;
+      }
+    `
   }}
 
   h1,

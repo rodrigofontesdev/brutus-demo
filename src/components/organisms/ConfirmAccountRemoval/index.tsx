@@ -37,6 +37,8 @@ export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRem
   })
 
   async function handleConfirmRemovalForm(data: ConfirmRemovalForm) {
+    console.log(data)
+
     if (isValid) {
       // TODO: consume API only if form is valid
       await new Promise((resolve) => {

@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { User } from '@models/User'
 import { api } from './axios'
 

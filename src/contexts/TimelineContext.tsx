@@ -19,6 +19,7 @@ const bottomToUp = [
   },
 ]
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const TimelineContext = createContext({} as TimelineContextProps)
 
 export function TimelineProvider({ children }: TimelineProviderProps) {

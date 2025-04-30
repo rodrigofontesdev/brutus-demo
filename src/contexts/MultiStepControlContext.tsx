@@ -12,6 +12,7 @@ type MultiStepControlProviderProps = {
   children: ReactNode
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const MultiStepControlContext = createContext({} as MultiStepControlContextProps)
 
 export function MultiStepControlProvider({ children }: MultiStepControlProviderProps) {

@@ -19,6 +19,7 @@ const bottomToUp = [
   },
 ]
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const HistoryContext = createContext({} as HistoryContextProps)
 
 export function HistoryProvider({ children }: HistoryProviderProps) {

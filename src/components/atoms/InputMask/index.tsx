@@ -11,6 +11,7 @@ type InputMaskProps = {
 
 type InputProps = Pick<InputMaskProps, 'variant'> & IMaskInputProps<HTMLInputElement>
 
+// eslint-disable-next-line new-cap
 const Input = IMaskMixin<HTMLInputElement, InputProps>(({ variant, inputRef, ...rest }) => {
   return (
     <InputStyle

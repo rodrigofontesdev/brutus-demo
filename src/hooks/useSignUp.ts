@@ -88,7 +88,7 @@ export function useSignUp() {
     if (signUpRequest.isError) {
       setFocus('businessCnpj')
     }
-  }, [isLastStep])
+  }, [isLastStep, signUpRequest.isError, setFocus])
 
   return {
     handleStepValidation,
