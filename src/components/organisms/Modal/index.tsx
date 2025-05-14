@@ -1,8 +1,8 @@
+import { Box } from '@components/atoms/Box'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Dialog from '@radix-ui/react-dialog'
 import { ReactNode } from 'react'
-import { Box } from '../../atoms/Box'
 import { Body, Close, Content, Heading, Overlay, Title } from './styles'
 
 type ModalProps = {
@@ -19,7 +19,7 @@ export function Modal({
   disableOutsideClick = false,
 }: ModalProps) {
   return (
-    <Dialog.Portal>
+    <Dialog.Portal container={document.getElementById('root')}>
       <Overlay>
         <Dialog.Content
           aria-describedby={undefined}

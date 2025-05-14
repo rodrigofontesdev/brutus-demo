@@ -6,7 +6,7 @@ export const MobileMenuStyle = styled.nav`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1000;
+  z-index: 450;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 1px;
