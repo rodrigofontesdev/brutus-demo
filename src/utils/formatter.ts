@@ -19,8 +19,36 @@ const digits = (value: string) => {
   return value.replace(/[^0-9]/g, '')
 }
 
+const date = (date: string) => {
+  const regex = /^\d{4}-\d{2}-\d{2}$/
+
+  if (!regex.test(date)) return date
+
+  const [year, month, day] = date.split('-').map(Number)
+
+  const formattedDate = new Intl.DateTimeFormat('pt-BR', {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(new Date(year, month - 1, day))
+
+  return formattedDate
+}
+
+const dateToIso = (date: string) => {
+  const regex = /^\d{2}\/\d{2}\/\d{4}$/
+
+  if (!regex.test(date)) return date
+
+  const dateSegments = date.split('/')
+
+  return dateSegments.reverse().join('-')
+}
+
 export const format = {
   email: blurEmail,
   price,
   digits,
+  date,
+  dateToIso,
 }
