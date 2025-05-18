@@ -2,10 +2,12 @@ import { Button } from '@components/atoms/Button'
 import { InputGroup } from '@components/molecules/InputGroup'
 import { SelectGroup } from '@components/molecules/SelectGroup'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
+import { useAuth } from '@hooks/useAuth'
 import { useProfile } from '@hooks/useProfile'
 import { useSignOut } from '@hooks/useSignOut'
 import * as Dialog from '@radix-ui/react-dialog'
 import { STATES } from '@utils/data'
+import { format } from '@utils/formatter'
 import { useState } from 'react'
 import { Controller } from 'react-hook-form'
 import { ConfirmAccountRemoval } from '../ConfirmAccountRemoval'
@@ -25,8 +27,10 @@ export function AccountMenu() {
     control,
     formState: { errors, isDirty, isSubmitting },
   } = useProfile()
+  const { authenticatedUser } = useAuth()
   const { handleSignOut } = useSignOut()
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+  const { cnpj } = authenticatedUser?.data ?? {}
   const isSubmitButtonDisabled = isSubmitting || !isDirty
 
   return (
@@ -41,7 +45,7 @@ export function AccountMenu() {
           />
           <InputGroup.Control
             id="businessCnpj"
-            value="48.330.554/0001-37"
+            defaultValue={cnpj ? format.cnpj(cnpj) : ''}
             readOnly
           />
         </InputGroup.Root>
@@ -77,18 +81,18 @@ export function AccountMenu() {
 
         <InputGroup.Root>
           <InputGroup.Label
-            inputId="cellPhone"
+            inputId="mobilePhone"
             text="Celular"
           />
           <InputGroup.MaskControl
             mask="(00) 00000-0000"
             prefix="+55"
-            id="cellPhone"
+            id="mobilePhone"
             placeholder="Número de celular"
-            {...register('cellPhone')}
+            {...register('mobilePhone')}
           />
 
-          {errors.cellPhone && <InputGroup.Error message={errors.cellPhone.message!} />}
+          {errors.mobilePhone && <InputGroup.Error message={errors.mobilePhone.message!} />}
         </InputGroup.Root>
 
         <InputGroup.Root>
@@ -127,6 +131,20 @@ export function AccountMenu() {
 
           {errors.state && <InputGroup.Error message={errors.state.message!} />}
         </SelectGroup.Root>
+
+        <InputGroup.Root>
+          <InputGroup.Label
+            inputId="secretWord"
+            text="Palavra secreta"
+          />
+          <InputGroup.Control
+            id="secretWord"
+            placeholder="Digite uma nova palavra secreta"
+            {...register('secretWord')}
+          />
+
+          {errors.secretWord && <InputGroup.Error message={errors.secretWord.message!} />}
+        </InputGroup.Root>
 
         <Button
           type="submit"

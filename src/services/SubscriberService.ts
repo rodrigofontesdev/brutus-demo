@@ -2,11 +2,11 @@
 import { User } from '@models/User'
 import { api } from './axios'
 
-type UpdateSubscriberParams = {
+export type UpdateSubscriberParams = {
   subscriberId: string
 }
 
-type UpdateSubscriberBody = Partial<{
+export type UpdateSubscriberBody = Partial<{
   email: string
   fullName: string
   mobilePhone: string
