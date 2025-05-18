@@ -2,7 +2,7 @@
 import { Mei, MeiCategory } from '@models/MeiCategory'
 import { api } from './axios'
 
-type CreateMeiCategoryBody = {
+export type CreateMeiCategoryBody = {
   type: Mei
   creationDate: string
   tableAExcludedAfter032022?: boolean

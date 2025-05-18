@@ -2,23 +2,23 @@
 import { User } from '@models/User'
 import { api } from './axios'
 
-type SignUpBody = {
+export type SignUpBody = {
   cnpj: string
   fullName: string
   mobilePhone: string
   email: string
 }
 
-type SignInBody = {
+export type SignInBody = {
   cnpj: string
 }
 
-type AuthenticateBody = {
+export type AuthenticateBody = {
   token: string
   redirect?: string
 }
 
-type AuthenticateResponse = {
+export type AuthenticateResponse = {
   message: string
   redirect: string
 }
