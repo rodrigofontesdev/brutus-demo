@@ -45,10 +45,20 @@ const dateToIso = (date: string) => {
   return dateSegments.reverse().join('-')
 }
 
+const cnpj = (value: string) => {
+  return value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')
+}
+
+const phone = (value: string) => {
+  return value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+}
+
 export const format = {
   email: blurEmail,
   price,
   digits,
   date,
   dateToIso,
+  cnpj,
+  phone,
 }
