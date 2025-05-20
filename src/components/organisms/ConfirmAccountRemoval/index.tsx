@@ -1,59 +1,20 @@
+import { Button } from '@components/atoms/Button'
+import { InputGroup } from '@components/molecules/InputGroup'
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-import { toastify } from '../../../hooks/useToastify'
-import { Button } from '../../atoms/Button'
-import { InputGroup } from '../../molecules/InputGroup'
+import { useDeleteAccount } from '@hooks/useDeleteAccount'
 import { Actions, ConfirmAccountRemovalStyle, ConfirmRemovalForm } from './styles'
 
-const confirmRemovalFormSchema = z.object({
-  businessCnpj: z
-    .string()
-    .min(1, { message: 'Digite o CNPJ para confirmar a remoção.' })
-    .regex(/^[0-9a-z]{2}\.[0-9a-z]{3}\.[0-9a-z]{3}\/[0-9a-z]{4}-[0-9]{2}$/i, {
-      message: 'O formato do CNPJ é inválido.',
-    }),
-})
-
 type ConfirmAccountRemovalProps = {
-  onConfirm: () => void
   onCancel: () => void
 }
 
-type ConfirmRemovalForm = z.infer<typeof confirmRemovalFormSchema>
-
-export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRemovalProps) {
+export function ConfirmAccountRemoval({ onCancel }: ConfirmAccountRemovalProps) {
   const {
-    handleSubmit,
+    handleDeleteAccount,
     register,
-    formState: { errors, isSubmitting, isValid },
-  } = useForm<ConfirmRemovalForm>({
-    mode: 'onSubmit',
-    resolver: zodResolver(confirmRemovalFormSchema),
-    defaultValues: {
-      businessCnpj: '',
-    },
-  })
-
-  async function handleConfirmRemovalForm(data: ConfirmRemovalForm) {
-    console.log(data)
-
-    if (isValid) {
-      // TODO: consume API only if form is valid
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(
-            toastify('Sua conta foi excluida como solicitado.', 'success', {
-              position: 'top-center',
-            }),
-          )
-        }, 1000)
-      })
-
-      onConfirm()
-    }
-  }
+    formState: { errors, isSubmitting },
+  } = useDeleteAccount()
+  const isActionButtonDisabled = isSubmitting
 
   return (
     <ConfirmAccountRemovalStyle>
@@ -62,7 +23,7 @@ export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRem
         apagados permanentemente.
       </p>
 
-      <ConfirmRemovalForm onSubmit={handleSubmit(handleConfirmRemovalForm)}>
+      <ConfirmRemovalForm onSubmit={handleDeleteAccount}>
         <InputGroup.Root>
           <InputGroup.Label
             text="Para excluir a conta digite seu CNPJ"
@@ -100,12 +61,13 @@ export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRem
 
         <Actions>
           <Button
+            type="button"
             icon={faXmark}
             iconSize={36}
             variant="error"
             aria-label="Cancelar"
             onClick={onCancel}
-            disabled={isSubmitting}
+            disabled={isActionButtonDisabled}
           />
           <Button
             type="submit"
@@ -113,7 +75,7 @@ export function ConfirmAccountRemoval({ onConfirm, onCancel }: ConfirmAccountRem
             iconSize={36}
             variant="success"
             aria-label="Confirmar"
-            disabled={isSubmitting}
+            disabled={isActionButtonDisabled}
           />
         </Actions>
       </ConfirmRemovalForm>

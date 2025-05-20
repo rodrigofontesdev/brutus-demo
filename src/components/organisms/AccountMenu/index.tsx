@@ -167,10 +167,7 @@ export function AccountMenu() {
           </Dialog.Trigger>
 
           <Modal title="Excluir conta">
-            <ConfirmAccountRemoval
-              onConfirm={() => setIsConfirmModalOpen(false)}
-              onCancel={() => setIsConfirmModalOpen(false)}
-            />
+            <ConfirmAccountRemoval onCancel={() => setIsConfirmModalOpen(false)} />
           </Modal>
         </Dialog.Root>
       </DeleteAccount>
