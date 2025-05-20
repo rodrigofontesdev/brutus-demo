@@ -6,6 +6,10 @@ export type UpdateSubscriberParams = {
   subscriberId: string
 }
 
+export type DeleteSubscriberParams = {
+  subscriberId: string
+}
+
 export type UpdateSubscriberBody = Partial<{
   email: string
   fullName: string
@@ -28,5 +32,11 @@ export class SubscriberService {
       mobile_phone: mobilePhone,
       secret_word: secretWord,
     })
+  }
+
+  static async delete(params: DeleteSubscriberParams) {
+    const { subscriberId } = params
+
+    return await api.delete(`/subscribers/${subscriberId}`)
   }
 }
