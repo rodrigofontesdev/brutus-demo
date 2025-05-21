@@ -1,12 +1,12 @@
+import { Box } from '@components/atoms/Box'
+import { InputGroup } from '@components/molecules/InputGroup'
+import { Modal } from '@components/organisms/Modal'
+import { ReportCategories, ReportContext } from '@contexts/ReportContext'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Dialog from '@radix-ui/react-dialog'
+import { format } from '@utils/formatter'
 import { ReactElement, useContext } from 'react'
-import { Box } from '../../../../components/atoms/Box'
-import { InputGroup } from '../../../../components/molecules/InputGroup'
-import { Modal } from '../../../../components/organisms/Modal'
-import { ReportCategories, ReportContext } from '../../../../contexts/ReportContext'
-import { format } from '../../../../utils/formatter'
 import { Card, CardBody, CardFooter, CardHeader, InfoButton } from './styles'
 
 type GrossIncomeCard = {

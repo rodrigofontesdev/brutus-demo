@@ -2,9 +2,10 @@
 import { Total } from '@components/molecules/Total'
 import { ReportContext } from '@contexts/ReportContext'
 import { useAuth } from '@hooks/useAuth'
+import { useCreateReport } from '@hooks/useCreateReport'
+import { useFilter } from '@hooks/useFilter'
 import { useViewport } from '@hooks/useViewport'
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { CompleteProfileModal } from './components/CompleteProfileModal'
 import { FilterByPeriod } from './components/FilterByPeriod'
 import { GrossIncomeCard } from './components/GrossIncomeCard'
@@ -15,10 +16,20 @@ import { Progress } from './components/Progress'
 import { Cards, Main, TotalWrapper } from './styles'
 
 export function NewReport() {
-  const navigate = useNavigate()
-  const { grossIncome, total } = useContext(ReportContext)
   const { checkViewport } = useViewport()
   const { authenticatedUser } = useAuth()
+  const { grossIncome, total } = useContext(ReportContext)
+  const { reportingPeriod, months, years, onChangeMonth, onChangeYear } = useFilter()
+  const { trade, industry, services } = grossIncome
+  const { handleCreateReport } = useCreateReport({
+    tradeWithInvoice: trade.withInvoice,
+    tradeWithoutInvoice: trade.withoutInvoice,
+    industryWithInvoice: industry.withInvoice,
+    industryWithoutInvoice: industry.withoutInvoice,
+    servicesWithInvoice: services.withInvoice,
+    servicesWithoutInvoice: services.withoutInvoice,
+    period: new Date(reportingPeriod.year, reportingPeriod.month),
+  })
   const [isProfileIncomplete] = useState(() => {
     if (!authenticatedUser) return false
 
@@ -27,19 +38,16 @@ export function NewReport() {
     return [secret_word, city, state, opening_date].some((field) => field === null)
   })
 
-  async function handleCreateReport() {
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(navigate('/relatorio/2', { replace: true }))
-      }, 1000)
-    })
-  }
-
   return (
     <Main>
       {isProfileIncomplete && <CompleteProfileModal />}
 
-      <FilterByPeriod />
+      <FilterByPeriod
+        months={months}
+        years={years}
+        onChangeMonth={onChangeMonth}
+        onChangeYear={onChangeYear}
+      />
 
       {(checkViewport('mobile') || checkViewport('tablet')) && <Progress />}
 
@@ -78,7 +86,7 @@ export function NewReport() {
       <TotalWrapper>
         <Total
           amount={total}
-          onSave={() => handleCreateReport()}
+          onSave={handleCreateReport}
         />
       </TotalWrapper>
     </Main>

@@ -1,5 +1,4 @@
-import { SelectGroup } from '../../../../components/molecules/SelectGroup'
-import { useFilter } from '../../../../hooks/useFilter'
+import { SelectGroup } from '@components/molecules/SelectGroup'
 import { FilterByPeriodStyle } from './styles'
 
 type SelectOption = {
@@ -7,9 +6,19 @@ type SelectOption = {
   label: string
 }
 
-export function FilterByPeriod() {
-  const { months, years, onChangeMonth, onChangeYear } = useFilter()
+type FilterByPeriodProps = {
+  months: SelectOption[]
+  years: SelectOption[]
+  onChangeMonth: (month: number) => void
+  onChangeYear: (year: number) => void
+}
 
+export function FilterByPeriod({
+  months,
+  years,
+  onChangeMonth,
+  onChangeYear,
+}: FilterByPeriodProps) {
   return (
     <FilterByPeriodStyle>
       <SelectGroup.Root>

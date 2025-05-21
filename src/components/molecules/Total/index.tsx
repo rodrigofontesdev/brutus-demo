@@ -1,14 +1,15 @@
+import { Button } from '@components/atoms/Button'
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons'
-import { format } from '../../../utils/formatter'
-import { Button } from '../../atoms/Button'
+import { format } from '@utils/formatter'
 import { Amount, Heading, Input, TotalStyle } from './styles'
 
 type TotalProps = {
   amount: number
   onSave: () => Promise<void>
+  isSubmitDisabled?: boolean
 }
 
-export function Total({ amount, onSave }: TotalProps) {
+export function Total({ amount, onSave, isSubmitDisabled }: TotalProps) {
   return (
     <TotalStyle>
       <Heading>
@@ -24,6 +25,7 @@ export function Total({ amount, onSave }: TotalProps) {
           variant="success"
           aria-label="Salvar relatório"
           onClick={onSave}
+          disabled={isSubmitDisabled}
         />
       </Amount>
     </TotalStyle>

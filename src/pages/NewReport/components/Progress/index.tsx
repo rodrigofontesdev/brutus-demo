@@ -1,6 +1,6 @@
+import { Steps } from '@components/atoms/Steps'
+import { useViewport } from '@hooks/useViewport'
 import { Fragment } from 'react/jsx-runtime'
-import { Steps } from '../../../../components/atoms/Steps'
-import { useViewport } from '../../../../hooks/useViewport'
 import { ProgressStyle } from './styles'
 
 export function Progress() {

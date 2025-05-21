@@ -1,5 +1,5 @@
+import { MONTHS, YEARS } from '@utils/data'
 import { useState } from 'react'
-import { MONTHS, YEARS } from '../utils/data'
 
 type ReportingPeriod = {
   month: number
@@ -27,6 +27,7 @@ export function useFilter() {
   }
 
   return {
+    reportingPeriod,
     months,
     years,
     onChangeMonth,
