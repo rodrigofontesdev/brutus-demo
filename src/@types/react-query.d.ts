@@ -1,7 +1,7 @@
 import '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
-type ApiErrorTypes =
+type ApiErrorType =
   | 'API_ERROR'
   | 'AUTHENTICATION_ERROR'
   | 'AUTHORIZATION_ERROR'
@@ -12,7 +12,7 @@ type ApiErrorTypes =
   | 'RATE_LIMIT_ERROR'
 
 type ApiError = {
-  type: ApiErrorTypes
+  type: ApiErrorType
   message: string
   path: string
   started_at: string
