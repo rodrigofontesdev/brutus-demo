@@ -42,10 +42,11 @@ export function useCreateReport(props: CreateReportProps) {
       period,
     } = props
 
-    const year = period.getFullYear()
-    const month = String(period.getMonth()).padStart(2, '0')
-    const day = String(period.getDate()).padStart(2, '0')
-    const formattedPeriod = `${year}-${month}-${day}`
+    const formattedPeriod = new Intl.DateTimeFormat('en-CA', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    }).format(period)
 
     await createReportRequest.mutateAsync({
       tradeWithInvoice,

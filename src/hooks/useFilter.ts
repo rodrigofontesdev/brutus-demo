@@ -10,19 +10,22 @@ const currentMonthIndex = new Date().getMonth()
 const currentYear = new Date().getFullYear()
 
 export function useFilter() {
-  const [reportingPeriod, setReportingPeriod] = useState<ReportingPeriod>({
-    month: currentMonthIndex,
-    year: currentYear,
-  })
+  const [year, setYear] = useState(currentYear)
 
+  const months = getAvailableMonths(year)
   const years = getAvailableYears()
-  const months = getAvailableMonths(reportingPeriod.year)
+
+  const [reportingPeriod, setReportingPeriod] = useState<ReportingPeriod>({
+    month: Number(months[0].value),
+    year: Number(years[0].value),
+  })
 
   function onChangeMonth(month: number) {
     setReportingPeriod({ ...reportingPeriod, month })
   }
 
   function onChangeYear(year: number) {
+    setYear(year)
     setReportingPeriod({ ...reportingPeriod, year })
   }
 
