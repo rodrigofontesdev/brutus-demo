@@ -9,7 +9,7 @@ import { format } from '@utils/formatter'
 import { ReactElement, useContext } from 'react'
 import { Card, CardBody, CardFooter, CardHeader, InfoButton } from './styles'
 
-type GrossIncomeCard = {
+type GrossIncomeCardProps = {
   category: ReportCategories
   title: string
   subtitle: string
@@ -27,7 +27,7 @@ export function GrossIncomeCard({
   withInvoiceAmount,
   subtotal,
   help,
-}: GrossIncomeCard) {
+}: GrossIncomeCardProps) {
   const { handleAmountChange } = useContext(ReportContext)
 
   return (
