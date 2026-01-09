@@ -3,15 +3,19 @@ import { useViewport } from '@hooks/useViewport'
 import { Fragment } from 'react/jsx-runtime'
 import { ProgressStyle } from './styles'
 
-export function Progress() {
+type ProgressProps = {
+  currentStep?: number
+}
+
+export function Progress({ currentStep = 0 }: ProgressProps) {
   const { checkViewport } = useViewport()
 
   return checkViewport('mobile') || checkViewport('tablet') ? (
     <ProgressStyle>
       <Steps.Root>
-        <Steps.Step active={true} />
-        <Steps.Step active={false} />
-        <Steps.Step active={false} />
+        <Steps.Step active={currentStep === 0} />
+        <Steps.Step active={currentStep === 1} />
+        <Steps.Step active={currentStep === 2} />
       </Steps.Root>
     </ProgressStyle>
   ) : (

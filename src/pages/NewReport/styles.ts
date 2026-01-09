@@ -7,10 +7,16 @@ export const Cards = styled.div`
   padding-bottom: ${({ theme }) => theme.space[5]};
   overflow-x: scroll;
   scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 
   &::before,
   &::after {
     content: '';
+  }
+
+  > * {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
   }
 
   @media (min-width: ${({ theme }) => theme.screen.md}) {
@@ -21,10 +27,16 @@ export const Cards = styled.div`
     grid-template-columns: repeat(3, minmax(0, 1fr));
     padding-left: ${({ theme }) => theme.space[5]};
     padding-right: ${({ theme }) => theme.space[5]};
+    scroll-snap-type: none;
 
     &::before,
     &::after {
       display: none;
+    }
+
+    > * {
+      scroll-snap-align: unset;
+      scroll-snap-stop: unset;
     }
   }
 

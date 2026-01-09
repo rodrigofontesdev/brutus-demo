@@ -2,9 +2,9 @@
 import { Total } from '@components/molecules/Total'
 import { ReportContext } from '@contexts/ReportContext'
 import { useAuth } from '@hooks/useAuth'
+import { useCarousel } from '@hooks/useCarousel'
 import { useCreateReport } from '@hooks/useCreateReport'
 import { useFilter } from '@hooks/useFilter'
-import { useViewport } from '@hooks/useViewport'
 import { useContext, useState } from 'react'
 import { CompleteProfileModal } from './components/CompleteProfileModal'
 import { FilterByPeriod } from './components/FilterByPeriod'
@@ -16,10 +16,10 @@ import { Progress } from './components/Progress'
 import { Cards, Main, TotalWrapper } from './styles'
 
 export function NewReport() {
-  const { checkViewport } = useViewport()
   const { authenticatedUser } = useAuth()
   const { grossIncome, total } = useContext(ReportContext)
   const { reportingPeriod, months, years, onChangeMonth, onChangeYear } = useFilter()
+  const { currentStep, containerRef } = useCarousel({ steps: 3 })
   const { trade, industry, services } = grossIncome
   const { handleCreateReport } = useCreateReport({
     tradeWithInvoice: trade.withInvoice,
@@ -49,9 +49,9 @@ export function NewReport() {
         onChangeYear={onChangeYear}
       />
 
-      {(checkViewport('mobile') || checkViewport('tablet')) && <Progress />}
+      <Progress currentStep={currentStep} />
 
-      <Cards>
+      <Cards ref={containerRef}>
         <GrossIncomeCard
           category="trade"
           title="Comércio"
