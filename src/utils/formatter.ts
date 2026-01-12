@@ -45,11 +45,31 @@ const dateToIso = (date: string) => {
   return dateSegments.reverse().join('-')
 }
 
+const period = (date: string) => {
+  const regex = /^\d{4}-\d{2}-\d{2}$/
+
+  if (!regex.test(date)) return date
+
+  const [year, month] = date.split('-').map(Number)
+
+  const formattedDate = new Intl.DateTimeFormat('pt-BR', {
+    year: 'numeric',
+    month: 'long',
+  }).formatToParts(new Date(year, month - 1))
+
+  const monthPart = formattedDate.find((part) => part.type === 'month')?.value
+  const yearPart = formattedDate.find((part) => part.type === 'year')?.value
+
+  return `${monthPart}/${yearPart}`
+}
+
 const cnpj = (value: string) => {
+  if (!value) return ''
   return value.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')
 }
 
 const phone = (value: string) => {
+  if (!value) return ''
   return value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
 }
 
@@ -59,6 +79,7 @@ export const format = {
   digits,
   date,
   dateToIso,
+  period,
   cnpj,
   phone,
 }
