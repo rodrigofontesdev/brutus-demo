@@ -28,7 +28,7 @@ export function NewReport() {
     industryWithoutInvoice: industry.withoutInvoice,
     servicesWithInvoice: services.withInvoice,
     servicesWithoutInvoice: services.withoutInvoice,
-    period: new Date(reportingPeriod.year, reportingPeriod.month - 1),
+    period: new Date(reportingPeriod.year, reportingPeriod.month - 1, 20),
   })
   const [isProfileIncomplete] = useState(() => {
     if (!authenticatedUser) return false
