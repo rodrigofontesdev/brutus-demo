@@ -36,4 +36,10 @@ export class ReportService {
 
     return data
   }
+
+  static async get(id: string) {
+    const { data } = await api.get<Report>(`/reports/${id}`)
+
+    return data
+  }
 }
