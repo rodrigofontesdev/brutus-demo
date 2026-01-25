@@ -54,11 +54,11 @@ export const router = createBrowserRouter([
             id: 'report.edit',
             loader: async ({ params }) => {
               try {
-                const report = await queryClient.ensureQueryData({
+                const getReportRequest = await queryClient.ensureQueryData({
                   queryKey: ['report', params.id],
                   queryFn: () => ReportService.get(params.id!),
                 })
-                return { report }
+                return { report: getReportRequest }
               } catch {
                 return redirect('/')
               }

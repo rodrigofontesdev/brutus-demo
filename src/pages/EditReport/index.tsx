@@ -16,6 +16,7 @@ import {
   ReportPeriod,
 } from './styles'
 import { useEditReport } from '@hooks/useEditReport'
+import { usePrintReport } from '@hooks/usePrintReport'
 import { format } from '@utils/formatter'
 
 export function EditReport() {
@@ -32,6 +33,7 @@ export function EditReport() {
     showReportPeriodData,
     handleToggleReportPeriodData,
   } = useEditReport()
+  const { handlePrintReport } = usePrintReport()
 
   return (
     <Main>
@@ -124,6 +126,7 @@ export function EditReport() {
               <Button
                 icon={faPrint}
                 aria-label="Imprimir relatório"
+                onClick={handlePrintReport}
               />
             )}
           </ReportHeading>

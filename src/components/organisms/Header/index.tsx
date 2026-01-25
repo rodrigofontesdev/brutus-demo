@@ -5,6 +5,7 @@ import { TimelineContext } from '../../../contexts/TimelineContext'
 import { useDrawer } from '../../../hooks/useDrawer'
 import { useRouter } from '../../../hooks/useRouter'
 import { useViewport } from '../../../hooks/useViewport'
+import { usePrintReport } from '../../../hooks/usePrintReport'
 import { Button } from '../../atoms/Button'
 import { ButtonLink } from '../../atoms/ButtonLink'
 import { AccountMenu } from '../AccountMenu'
@@ -18,6 +19,7 @@ export function Header() {
   const { checkViewport } = useViewport()
   const { toggleVisibility } = useDrawer()
   const { toggleTimelineVisibility } = useContext(TimelineContext)
+  const { handlePrintReport } = usePrintReport()
 
   return (
     <HeaderStyle>
@@ -46,6 +48,7 @@ export function Header() {
             <Button
               icon={faPrint}
               aria-label="Imprimir relatório"
+              onClick={handlePrintReport}
             />
           ) : null}
 
