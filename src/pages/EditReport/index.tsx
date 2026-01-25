@@ -1,13 +1,9 @@
 import { faMinus, faPlus, faPrint } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useContext, useState } from 'react'
-import { Box } from '../../components/atoms/Box'
-import { Button } from '../../components/atoms/Button'
-import { InputGroup } from '../../components/molecules/InputGroup'
-import { Total } from '../../components/molecules/Total'
-import { ReportContext } from '../../contexts/ReportContext'
-import { toastify } from '../../hooks/useToastify'
-import { useViewport } from '../../hooks/useViewport'
+import { Box } from '@components/atoms/Box'
+import { Button } from '@components/atoms/Button'
+import { InputGroup } from '@components/molecules/InputGroup'
+import { Total } from '@components/molecules/Total'
 import { ReportItem } from './components/ReportItem'
 import {
   Entrepreneur,
@@ -19,35 +15,33 @@ import {
   ReportHeading,
   ReportPeriod,
 } from './styles'
+import { useEditReport } from '@hooks/useEditReport'
+import { format } from '@utils/formatter'
 
 export function EditReport() {
-  const { grossIncome, total } = useContext(ReportContext)
-  const { checkViewport } = useViewport()
-  const [showReportPeriodData, setShowReportPeriodData] = useState(() =>
-    checkViewport('mobile') ? false : true,
-  )
-
-  async function handleUpdateReport() {
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(
-          toastify('Relatório atualizado com sucesso.', 'success', {
-            position: 'top-center',
-          }),
-        )
-      }, 1000)
-    })
-  }
+  const {
+    authenticatedUser,
+    grossIncome,
+    total,
+    handleAmountChange,
+    handleUpdateReport,
+    periodFormatted,
+    dateFormatted,
+    stateName,
+    showPrintReportButton,
+    showReportPeriodData,
+    handleToggleReportPeriodData,
+  } = useEditReport()
 
   return (
     <Main>
       <Entrepreneur>
         <ReportPeriod>
           <h1>
-            Período de apuração <span>Junho/2024</span>
+            Período de apuração <span>{periodFormatted}</span>
           </h1>
 
-          <button onClick={() => setShowReportPeriodData(!showReportPeriodData)}>
+          <button onClick={handleToggleReportPeriodData}>
             {showReportPeriodData ? (
               <>
                 <FontAwesomeIcon
@@ -77,7 +71,7 @@ export function EditReport() {
               />
               <InputGroup.Control
                 id="businessCnpj"
-                value="48.330.554/0001-37"
+                value={format.cnpj(authenticatedUser?.data.cnpj ?? '')}
                 readOnly
               />
             </InputGroup.Root>
@@ -89,7 +83,7 @@ export function EditReport() {
               />
               <InputGroup.Control
                 id="fullName"
-                value="Rodrigo Fontes Santos"
+                value={authenticatedUser?.data.full_name}
                 readOnly
               />
             </InputGroup.Root>
@@ -101,7 +95,7 @@ export function EditReport() {
               />
               <InputGroup.Control
                 id="address"
-                value="Ribeirão Pires - São Paulo"
+                value={`${authenticatedUser?.data.city} - ${stateName}`}
                 readOnly
               />
             </InputGroup.Root>
@@ -113,7 +107,7 @@ export function EditReport() {
               />
               <InputGroup.Control
                 id="date"
-                value="20/07/2024"
+                value={dateFormatted}
                 readOnly
               />
             </InputGroup.Root>
@@ -126,9 +120,7 @@ export function EditReport() {
           <ReportHeading>
             <h2>Editar Relatório</h2>
 
-            {(checkViewport('tablet') ||
-              checkViewport('small-desktop') ||
-              checkViewport('desktop')) && (
+            {showPrintReportButton && (
               <Button
                 icon={faPrint}
                 aria-label="Imprimir relatório"
@@ -143,6 +135,7 @@ export function EditReport() {
               withInvoiceAmount={grossIncome.trade.withInvoice}
               withoutInvoiceAmount={grossIncome.trade.withoutInvoice}
               subtotal={grossIncome.trade.withInvoice + grossIncome.trade.withoutInvoice}
+              onAmountChange={handleAmountChange}
             />
 
             <ReportItem
@@ -151,6 +144,7 @@ export function EditReport() {
               withInvoiceAmount={grossIncome.industry.withInvoice}
               withoutInvoiceAmount={grossIncome.industry.withoutInvoice}
               subtotal={grossIncome.industry.withInvoice + grossIncome.industry.withoutInvoice}
+              onAmountChange={handleAmountChange}
             />
 
             <ReportItem
@@ -159,12 +153,13 @@ export function EditReport() {
               withInvoiceAmount={grossIncome.services.withInvoice}
               withoutInvoiceAmount={grossIncome.services.withoutInvoice}
               subtotal={grossIncome.services.withInvoice + grossIncome.services.withoutInvoice}
+              onAmountChange={handleAmountChange}
             />
           </ReportBody>
 
           <Total
             amount={total}
-            onSave={() => handleUpdateReport()}
+            onSave={handleUpdateReport}
           />
         </Report>
       </Box>

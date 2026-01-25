@@ -53,6 +53,7 @@ export const ReportPeriod = styled.header`
     display: block;
     color: ${({ theme }) => theme.blue[400]};
     font-size: ${({ theme }) => theme.font['2xl']};
+    text-transform: capitalize;
   }
 
   button {

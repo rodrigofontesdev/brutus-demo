@@ -8,6 +8,7 @@ import { SignIn } from '@pages/auth/SignIn'
 import { SignUp } from '@pages/auth/SignUp'
 import { AuthenticationError } from '@pages/error/AuthenticationError'
 import { authService } from '@services/AuthService'
+import { ReportService } from '@services/ReportService'
 import { queryClient } from '@services/react-query'
 import { AuthTemplate } from '@templates/AuthTemplate'
 import { DashboardTemplate } from '@templates/DashboardTemplate'
@@ -47,7 +48,22 @@ export const router = createBrowserRouter([
         id: 'dashboard',
         children: [
           { index: true, element: <NewReport />, id: 'report.new' },
-          { path: '/relatorio/:id', element: <EditReport />, id: 'report.edit' },
+          {
+            path: '/relatorio/:id',
+            element: <EditReport />,
+            id: 'report.edit',
+            loader: async ({ params }) => {
+              try {
+                const report = await queryClient.ensureQueryData({
+                  queryKey: ['report', params.id],
+                  queryFn: () => ReportService.get(params.id!),
+                })
+                return { report }
+              } catch {
+                return redirect('/')
+              }
+            },
+          },
         ],
       },
     ],
