@@ -1,7 +1,6 @@
-import { useContext } from 'react'
-import { InputGroup } from '../../../../components/molecules/InputGroup'
-import { ReportCategories, ReportContext } from '../../../../contexts/ReportContext'
-import { format } from '../../../../utils/formatter'
+import { InputGroup } from '@components/molecules/InputGroup'
+import { GrossIncomeCategory, ReportCategories } from '@hooks/useReport'
+import { format } from '@utils/formatter'
 import { ReportItemStyle } from './styles'
 
 type ReportItemProps = {
@@ -10,6 +9,7 @@ type ReportItemProps = {
   withoutInvoiceAmount: number
   withInvoiceAmount: number
   subtotal: number
+  onAmountChange: (payload: GrossIncomeCategory) => void
 }
 
 export function ReportItem({
@@ -18,9 +18,8 @@ export function ReportItem({
   withoutInvoiceAmount,
   withInvoiceAmount,
   subtotal,
+  onAmountChange,
 }: ReportItemProps) {
-  const { handleAmountChange } = useContext(ReportContext)
-
   return (
     <ReportItemStyle>
       <h3>{title}</h3>
@@ -37,7 +36,7 @@ export function ReportItem({
             placeholder="0,00"
             value={String(withoutInvoiceAmount / 100)}
             onAccept={(amount) => {
-              handleAmountChange({
+              onAmountChange({
                 category: category,
                 amount: Number(amount) * 100,
                 invoice: false,
@@ -59,7 +58,7 @@ export function ReportItem({
             placeholder="0,00"
             value={String(withInvoiceAmount / 100)}
             onAccept={(amount) => {
-              handleAmountChange({
+              onAmountChange({
                 category: category,
                 amount: Number(amount) * 100,
                 invoice: true,
@@ -72,7 +71,7 @@ export function ReportItem({
       <InputGroup.Root>
         <InputGroup.Label text="Total das receitas">
           <input
-            name={`subtotal${category}`}
+            name={`subtotal[${category}]`}
             value={format.price(subtotal / 100)}
             readOnly
           />

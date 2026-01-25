@@ -4,7 +4,6 @@ import { MobileMenu } from '@components/organisms/MobileMenu'
 import { Timeline } from '@components/organisms/Timeline'
 import { DrawerProvider } from '@contexts/DrawerContext'
 import { HistoryProvider } from '@contexts/HistoryContext'
-import { ReportProvider } from '@contexts/ReportContext'
 import { TimelineProvider } from '@contexts/TimelineContext'
 import { useAuth } from '@hooks/useAuth'
 import { Navigate, Outlet } from 'react-router-dom'
@@ -31,9 +30,7 @@ export function DashboardTemplate() {
                   <Header />
                   <MobileMenu />
 
-                  <ReportProvider>
-                    <Outlet />
-                  </ReportProvider>
+                  <Outlet />
                 </DashboardInner>
               </DashboardContainer>
             </DashboardApp>

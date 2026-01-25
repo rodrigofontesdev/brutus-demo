@@ -1,12 +1,12 @@
 import { Box } from '@components/atoms/Box'
 import { InputGroup } from '@components/molecules/InputGroup'
 import { Modal } from '@components/organisms/Modal'
-import { ReportCategories, ReportContext } from '@contexts/ReportContext'
+import { GrossIncomeCategory, ReportCategories } from '@hooks/useReport'
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Dialog from '@radix-ui/react-dialog'
 import { format } from '@utils/formatter'
-import { ReactElement, useContext } from 'react'
+import { ReactElement } from 'react'
 import { Card, CardBody, CardFooter, CardHeader, InfoButton } from './styles'
 
 type GrossIncomeCardProps = {
@@ -17,6 +17,7 @@ type GrossIncomeCardProps = {
   withInvoiceAmount: number
   subtotal: number
   help: ReactElement
+  onAmountChange: (payload: GrossIncomeCategory) => void
 }
 
 export function GrossIncomeCard({
@@ -27,9 +28,8 @@ export function GrossIncomeCard({
   withInvoiceAmount,
   subtotal,
   help,
+  onAmountChange,
 }: GrossIncomeCardProps) {
-  const { handleAmountChange } = useContext(ReportContext)
-
   return (
     <Box>
       <Card>
@@ -64,7 +64,7 @@ export function GrossIncomeCard({
                 placeholder="0,00"
                 value={String(withoutInvoiceAmount / 100)}
                 onAccept={(amount) => {
-                  handleAmountChange({
+                  onAmountChange({
                     category: category,
                     amount: Number(amount) * 100,
                     invoice: false,
@@ -86,7 +86,7 @@ export function GrossIncomeCard({
                 placeholder="0,00"
                 value={String(withInvoiceAmount / 100)}
                 onAccept={(amount) => {
-                  handleAmountChange({
+                  onAmountChange({
                     category: category,
                     amount: Number(amount) * 100,
                     invoice: true,

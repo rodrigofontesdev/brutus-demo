@@ -1,11 +1,11 @@
 /* eslint-disable camelcase */
 import { Total } from '@components/molecules/Total'
-import { ReportContext } from '@contexts/ReportContext'
 import { useAuth } from '@hooks/useAuth'
 import { useCarousel } from '@hooks/useCarousel'
 import { useCreateReport } from '@hooks/useCreateReport'
 import { useFilter } from '@hooks/useFilter'
-import { useContext, useState } from 'react'
+import { useReport } from '@hooks/useReport'
+import { useState } from 'react'
 import { CompleteProfileModal } from './components/CompleteProfileModal'
 import { FilterByPeriod } from './components/FilterByPeriod'
 import { GrossIncomeCard } from './components/GrossIncomeCard'
@@ -17,9 +17,9 @@ import { Cards, Main, TotalWrapper } from './styles'
 
 export function NewReport() {
   const { authenticatedUser } = useAuth()
-  const { grossIncome, total } = useContext(ReportContext)
-  const { reportingPeriod, months, years, onChangeMonth, onChangeYear } = useFilter()
   const { currentStep, containerRef } = useCarousel({ steps: 3 })
+  const { reportingPeriod, months, years, onChangeMonth, onChangeYear } = useFilter()
+  const { grossIncome, total, handleAmountChange } = useReport()
   const { trade, industry, services } = grossIncome
   const { handleCreateReport } = useCreateReport({
     tradeWithInvoice: trade.withInvoice,
@@ -32,9 +32,7 @@ export function NewReport() {
   })
   const [isProfileIncomplete] = useState(() => {
     if (!authenticatedUser) return false
-
     const { secret_word, city, state, opening_date } = authenticatedUser.data
-
     return [secret_word, city, state, opening_date].some((field) => field === null)
   })
 
@@ -60,6 +58,7 @@ export function NewReport() {
           withoutInvoiceAmount={grossIncome.trade.withoutInvoice}
           subtotal={grossIncome.trade.withInvoice + grossIncome.trade.withoutInvoice}
           help={<TradeHelp />}
+          onAmountChange={handleAmountChange}
         />
 
         <GrossIncomeCard
@@ -70,6 +69,7 @@ export function NewReport() {
           withoutInvoiceAmount={grossIncome.industry.withoutInvoice}
           subtotal={grossIncome.industry.withInvoice + grossIncome.industry.withoutInvoice}
           help={<IndustryHelp />}
+          onAmountChange={handleAmountChange}
         />
 
         <GrossIncomeCard
@@ -80,6 +80,7 @@ export function NewReport() {
           withoutInvoiceAmount={grossIncome.services.withoutInvoice}
           subtotal={grossIncome.services.withInvoice + grossIncome.services.withoutInvoice}
           help={<ServicesHelp />}
+          onAmountChange={handleAmountChange}
         />
       </Cards>
 
