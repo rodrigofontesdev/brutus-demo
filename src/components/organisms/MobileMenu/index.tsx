@@ -2,17 +2,20 @@ import { faChartLine, faFileInvoiceDollar, faUserCog } from '@fortawesome/free-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext } from 'react'
 import { Fragment } from 'react/jsx-runtime'
-import { HistoryContext } from '../../../contexts/HistoryContext'
 import { TimelineContext } from '../../../contexts/TimelineContext'
 import { useDrawer } from '../../../hooks/useDrawer'
 import { useViewport } from '../../../hooks/useViewport'
 import { ActionButton, MobileMenuStyle } from './styles'
 
-export function MobileMenu() {
+type MobileMenuProps = {
+  isHistoryOpen: boolean
+  onToggleHistory: VoidFunction
+}
+
+export function MobileMenu({ isHistoryOpen, onToggleHistory }: MobileMenuProps) {
   const { checkViewport } = useViewport()
   const { toggleVisibility, isOpen } = useDrawer()
   const { toggleTimelineVisibility, isOpen: isTimelineOpen } = useContext(TimelineContext)
-  const { toggleHistoryVisibility, isOpen: isHistoryOpen } = useContext(HistoryContext)
 
   return checkViewport('mobile') ? (
     <MobileMenuStyle>
@@ -20,7 +23,7 @@ export function MobileMenu() {
         type="button"
         aria-label="Abrir histórico de relatórios"
         $isActive={isHistoryOpen}
-        onClick={toggleHistoryVisibility}
+        onClick={onToggleHistory}
       >
         <FontAwesomeIcon
           icon={faFileInvoiceDollar}

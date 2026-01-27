@@ -1,17 +1,17 @@
-import { useContext } from 'react'
-import { HistoryContext } from '../../../contexts/HistoryContext'
-import { useFilter } from '../../../hooks/useFilter'
-import { TitleWithSeparator } from '../../atoms/TitleWithSeparator'
-import { SelectGroup } from '../../molecules/SelectGroup'
-import { ReportCard } from '../ReportCard'
+import { useFilter } from '@hooks/useFilter'
+import { TitleWithSeparator } from '@components/atoms/TitleWithSeparator'
+import { SelectGroup } from '@components/molecules/SelectGroup'
+import { ReportCard } from '@components/organisms/ReportCard'
 import { FilterByYear, HistoryInner, HistoryStyle, ReportsByYear, ScrollableArea } from './styles'
+import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
-export function History() {
-  const { innerRef } = useContext(HistoryContext)
+type HistoryProps = ComponentPropsWithoutRef<typeof HistoryStyle>
+
+export const History = forwardRef<HTMLDivElement, HistoryProps>((_, ref) => {
   const { years } = useFilter()
 
   return (
-    <HistoryStyle ref={innerRef}>
+    <HistoryStyle ref={ref}>
       <HistoryInner>
         <FilterByYear>
           <SelectGroup.Root>
@@ -55,4 +55,6 @@ export function History() {
       </HistoryInner>
     </HistoryStyle>
   )
-}
+})
+
+History.displayName = 'History'
