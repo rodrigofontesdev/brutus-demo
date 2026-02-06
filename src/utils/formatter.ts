@@ -47,7 +47,7 @@ const dateToIso = (date: string) => {
   return dateSegments.reverse().join('-')
 }
 
-const period = (date: string) => {
+const period = (date: string, separator?: string) => {
   const regex = /^\d{4}-\d{2}-\d{2}$/
 
   if (!regex.test(date)) return date
@@ -62,7 +62,7 @@ const period = (date: string) => {
   const monthPart = formattedDate.find((part) => part.type === 'month')?.value
   const yearPart = formattedDate.find((part) => part.type === 'year')?.value
 
-  return `${monthPart}/${yearPart}`
+  return `${monthPart}${separator ?? '/'}${yearPart}`
 }
 
 const cnpj = (value: string) => {
