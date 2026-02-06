@@ -56,9 +56,8 @@ export const ScrollableArea = styled.div`
   @media (min-width: ${({ theme }) => theme.screen.md}) {
     padding-bottom: ${({ theme }) => theme.space[10]};
   }
-`
 
-export const ReportsByYear = styled.div`
-  display: grid;
-  row-gap: ${({ theme }) => theme.space[5]};
+  & > p {
+    text-align: center;
+  }
 `

@@ -1,62 +1,64 @@
+/* eslint-disable camelcase */
 import { faEye, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { faCloudArrowDown } from '@fortawesome/free-solid-svg-icons/faCloudArrowDown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as Dialog from '@radix-ui/react-dialog'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { toastify } from '../../../hooks/useToastify'
-import { Box } from '../../atoms/Box'
+import { Box } from '@components/atoms/Box'
 import { ConfirmReportRemoval } from '../ConfirmReportRemoval'
 import { Modal } from '../Modal'
 import { Card, Title } from './styles'
+import { format } from '@utils/formatter'
+import { Report } from '@models/Report'
+import { usePrintReport } from '@hooks/usePrintReport'
+import { useDeleteReport } from '@hooks/useDeleteReport'
 
-export function ReportCard() {
+type ReportCardProps = {
+  report: Report
+}
+
+export function ReportCard({ report }: ReportCardProps) {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false)
+  const { handlePrintReport } = usePrintReport()
+  const {
+    id,
+    period,
+    trade_with_invoice,
+    trade_without_invoice,
+    industry_with_invoice,
+    industry_without_invoice,
+    services_with_invoice,
+    services_without_invoice,
+  } = report
+  const total =
+    trade_with_invoice +
+    trade_without_invoice +
+    industry_with_invoice +
+    industry_without_invoice +
+    services_with_invoice +
+    services_without_invoice
+  const periodFormatted = format.period(period, ' de ')
 
-  async function handleDownloadReport() {
-    try {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(
-            toastify('Baixando o relatório do período de apuração de Maio de 2024.', 'success', {
-              position: 'top-center',
-            }),
-          )
-        }, 1000)
-      })
-    } catch {
-      toastify('Ocorreu um problema ao baixar o relatório, tente novamente.', 'error', {
-        position: 'top-center',
-      })
-    }
-  }
+  const onCancel = () => setIsConfirmModalOpen(false)
 
-  async function handleDeleteReport() {
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setIsConfirmModalOpen(false)
-
-        resolve(
-          toastify('O relatório foi removido com sucesso.', 'success', {
-            position: 'top-center',
-          }),
-        )
-      }, 1000)
-    })
-  }
+  const { handleDeleteReport } = useDeleteReport({
+    report,
+    onfinish: onCancel,
+  })
 
   return (
     <Box>
       <Card>
         <Title>
-          <h3>Maio/2024</h3>
-          <p>R$ 6.250,00</p>
+          <h3>{format.period(period)}</h3>
+          <p>{format.price(total / 100)}</p>
         </Title>
 
         <Link
-          to={`/relatorio/1`}
+          to={`/relatorio/${id}`}
           role="button"
-          aria-label="Ver relatório de Maio de 2024"
+          aria-label={`Ver relatório de ${periodFormatted}`}
         >
           <FontAwesomeIcon
             icon={faEye}
@@ -66,8 +68,8 @@ export function ReportCard() {
 
         <button
           type="button"
-          aria-label="Baixar o relatório de Maio de 2024"
-          onClick={handleDownloadReport}
+          aria-label={`Baixar o relatório de ${periodFormatted}`}
+          onClick={() => handlePrintReport(id)}
         >
           <FontAwesomeIcon
             icon={faCloudArrowDown}
@@ -82,7 +84,7 @@ export function ReportCard() {
           <Dialog.Trigger asChild>
             <button
               type="button"
-              aria-label="Excluir o relatório de Maio de 2024"
+              aria-label={`Excluir o relatório de ${periodFormatted}`}
             >
               <FontAwesomeIcon
                 icon={faTrashAlt}
@@ -93,9 +95,9 @@ export function ReportCard() {
 
           <Modal title="Excluir relatório">
             <ConfirmReportRemoval
-              reportName="Maio de 2024"
+              reportName={periodFormatted}
               onConfirm={handleDeleteReport}
-              onCancel={() => setIsConfirmModalOpen(false)}
+              onCancel={onCancel}
             />
           </Modal>
         </Dialog.Root>

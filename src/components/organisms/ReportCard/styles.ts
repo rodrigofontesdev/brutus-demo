@@ -46,6 +46,7 @@ export const Title = styled.div`
     color: ${({ theme }) => theme.blue[400]};
     font-size: ${({ theme }) => theme.font['2xl']};
     text-align: center;
+    text-transform: capitalize;
     margin-bottom: ${({ theme }) => theme.space[1]};
   }
 
