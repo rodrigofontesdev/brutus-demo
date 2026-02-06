@@ -1,5 +1,4 @@
 import { createElement, useState, type ReactElement } from 'react'
-import { useParams } from 'react-router-dom'
 import { pdf, type DocumentProps } from '@react-pdf/renderer'
 import { ReportService } from '@services/ReportService'
 import { queryClient } from '@services/react-query'
@@ -7,22 +6,22 @@ import { STATES } from '@utils/data'
 import { useAuth } from './useAuth'
 import { toastify } from './useToastify'
 import { ReportPdfTemplate } from '@templates/ReportPdfTemplate'
+import { format } from '@utils/formatter'
 
 export function usePrintReport() {
-  const { id } = useParams()
   const { authenticatedUser } = useAuth()
   const [isPrinting, setIsPrinting] = useState(false)
   const state = STATES.find(({ value }) => value === authenticatedUser?.data.state)?.label
 
-  const handlePrintReport = async () => {
-    if (!id || isPrinting) return
+  const handlePrintReport = async (reportId: string) => {
+    if (!reportId || isPrinting) return
 
     try {
       setIsPrinting(true)
 
       const getReportRequest = await queryClient.ensureQueryData({
-        queryKey: ['report', id],
-        queryFn: () => ReportService.get(id),
+        queryKey: ['report', reportId],
+        queryFn: () => ReportService.get(reportId),
       })
       const report = getReportRequest
 
@@ -47,6 +46,10 @@ export function usePrintReport() {
       anchor.download = `${report.period}-relatorio-mensal-das-receitas-brutas.pdf`
       anchor.click()
       setTimeout(() => URL.revokeObjectURL(url), 0)
+      toastify(
+        `Baixando o relatório do período de ${format.period(report.period, ' de ')}.`,
+        'success',
+      )
     } catch {
       toastify('Ocorreu um erro ao gerar o relatório para o período.', 'error')
     } finally {

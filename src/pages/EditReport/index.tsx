@@ -18,8 +18,10 @@ import {
 import { useEditReport } from '@hooks/useEditReport'
 import { usePrintReport } from '@hooks/usePrintReport'
 import { format } from '@utils/formatter'
+import { useParams } from 'react-router-dom'
 
 export function EditReport() {
+  const { id } = useParams()
   const {
     authenticatedUser,
     grossIncome,
@@ -126,7 +128,7 @@ export function EditReport() {
               <Button
                 icon={faPrint}
                 aria-label="Imprimir relatório"
-                onClick={handlePrintReport}
+                onClick={() => handlePrintReport(id!)}
               />
             )}
           </ReportHeading>
