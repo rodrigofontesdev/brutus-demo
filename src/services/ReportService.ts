@@ -93,4 +93,8 @@ export class ReportService {
 
     return data
   }
+
+  static async delete(id: string) {
+    await api.delete<void>(`/reports/${id}`)
+  }
 }
